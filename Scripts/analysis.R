@@ -1,35 +1,54 @@
-#----------------------------------------
+#Intro----------------------------------------
 # The purpose of this script is to perform the analysis.
-# It is divided based on the domains of deviations:
+# It is divided based on the domains of deviations + defining functions:
+#   -functions
 #   -baseline condition with no deviations
 #   -outlier deviations
 #   -sample size deviations
 #   -model deviations
 
-#-------------------------------------------
-#Baseline Scenario
+#Functions-------------------------------------------
 
+##Extract function-----
 
-#Extract function
+#create the extract function with model as input
+extract <- function(model){
+  
+  #create temporary data frame
+  statistics <- data.frame(matrix(ncol = 4, nrow = 1))
+  colnames(statistics) <- c("b1","p-value","lower ci","upper ci")
+  
+  #calculate confidence intervals
+  ci <- confint(model, level = 0.95)
+  
+  #save the summary of the model
+  summ <- summary(model)
+  
+  #save each statistic from the summary of the MODEL in a dataframe
+statistics[1,1] <- summ$coefficients[2,1] #save regression coefficient b1
+statistics[1,2] <- summ$coefficients[2,4] #save p-value
+statistics[1,3] <- ci[2,1] #save confidence interval lower of the b1
+statistics[1,4] <- ci[2,2] #save confidence interval upper of the b1
 
-
-statistics <- data.frame(matrix(ncol = 4, nrow = 1)) #4 columns, one for each saved statistic
-
-
-#linear model
-reg.no <- lm(y_no ~ x, data = df)
-summary(reg.no)
-
-#calculate confidence intervals
-ci <- predict(
-  reg.no, 
-  interval = "confidence", 
-  level = 0.95
-)
-
-extract <- function(){
-statistics[i,1] <- reg.no$coefficients[2,1] #save regression coefficient b1
-statistics[i,2] <- reg.no$coefficients[2,4] #save p-value
-statistics[i,3] <- ci[,2] #save confidence interval lower
-statistics[i,4] <- ci[,3] #save confidence interval upper
+return(statistics)
 }
+
+###test-----
+#create data set
+df <- dgm()
+
+#creating a linear model to extract from linear model
+reg.no <- lm(y_no ~ x, data = df)
+
+#extraction
+extract(model = reg.no)
+
+#checking if same as in model summary
+summary(reg.no)
+confint(reg.no)
+
+#yes it works
+
+##Other function-----
+
+#Baseline scenario---------------------------------------------------
