@@ -6,11 +6,12 @@
 #   -sample size conditions
 #   -outlier conditions
 #   -model conditions
+#   -overarching analysis function
 #
 # All scenarios will be framed as a function where the input is y, to make
 # inputting the scenario easier.
 
-#Functions-------------------------------------------
+#Functions----------------------------------------------------------------------
 
 ##Extract function-----
 
@@ -57,7 +58,7 @@ confint(reg.no)
 
 
 
-#Baseline scenario---------------------------------------------------
+#Baseline scenario--------------------------------------------------------------
 
 #having the baseline scenario be a function where you can fill in which
 #dependent variable (scenario) you want to examine
@@ -93,7 +94,7 @@ identical(fun, test)
 
 
 
-#Sample size conditions----------------
+#Sample size conditions---------------------------------------------------------
 
 samplesize <- function(dep){
   
@@ -156,15 +157,110 @@ identical(test, fun[2,])
 
 
 
-#Analysis function-------
+#Outlier conditions-------------------------------------------------------------
+
+outlier <- function(dep){
+  
+  #create dataframe to save statistics
+  outlier.stat <- data.frame(matrix(ncol = 4, nrow = 2)) #4 because four values get saved in the extract function, 2 columns for methods
+  colnames(outlier.stat) <- cn
+  
+  #for the outlier scenario we only take the first 200 participants
+  df.outlier <- df %>% slice(1:200)
+  
+  ##perform baseline regression in order to identify outliers with Cook's
+  y <- df.outlier[[dep]]
+  reg <- lm(y~x, data = df.outlier)
+  
+  #Z-scores
+  ##exclude outliers based on z-scores
+  df.outlier$z <- scale(df.outlier[[dep]])
+  df.ex.z <- df.outlier %>% filter(between(z, -3, 3))
+  
+  ##perform regression for the z-score condtion
+  y <- df.ex.z[[dep]]
+  reg.ex.z <- lm(y~x, data = df.ex.z)
+  outlier.stat[1,] <- extr(model = reg.ex.z)
+  rownames(outlier.stat)[1] <- "Z-score"
+  
+  #Cook's
+  ##exclude outliers based on Cook's distance
+  df.outlier$cook <- cooks.distance(reg)
+  df.ex.cook <- df.outlier %>% filter(between(cook, 0, 1))
+  
+  ##perform regression for the Cook'S condition
+  y <- df.ex.cook[[dep]]
+  reg.ex.cook <- lm(y~x, data = df.ex.cook)
+  outlier.stat[2,] <- extr(model = reg.ex.cook)
+  rownames(outlier.stat)[2] <- "Cook's"
+  
+  #return the statistics as output 
+  return(outlier.stat)
+}
+
+outlier("y_no")
+
+##test----
+
+set.seed(1979094)
+df <- dgm()
+
+#calculate z-scores outside of function
+#for the outlier scenario we only take the first 200 participants
+df.outlier <- df %>% slice(1:200)
+
+##perform baseline regression in order to identify outliers with Cook's
+reg <- lm(y_no~x, data = df.outlier)
+
+#Z-scores
+##exclude outliers based on z-scores
+df.outlier$z <- scale(df.outlier$y_no)
+df.ex.z <- df.outlier %>% filter(between(z, -3, 3))
+
+##perform regression for the z-score condtion
+reg.ex.z <- lm(y_no~x, data = df.ex.z)
+test <- extr(model = reg.ex.z)
+rownames(test) <- "Z-score"
+
+#z-scores according to function
+fun <- outlier("y_no")
+
+#are they identical?
+identical(fun[1,], test)
+
+#Cook's
+##exclude outliers based on Cook's distance
+df.outlier$cook <- cooks.distance(reg)
+df.ex.cook <- df.outlier %>% filter(between(cook, 0, 1))
+
+##perform regression for the Cook'S condition
+reg.ex.cook <- lm(y_no~x, data = df.ex.cook)
+test <- extr(model = reg.ex.cook)
+rownames(test) <- "Cook's"
+
+#are they identical?
+identical(fun[2,], test)
+
+
+
+#Model conditions---------------------------------------------------------------
+
+
+##test----
+
+
+#Analysis function--------------------------------------------------------------
 
 #combinging the condition functions to output one dataset
 analysis <- function(dep){
   base.stat <- baseline(dep)
   size.stat <- samplesize(dep)
+  outlier.stat <- outlier(dep)
+  #model.stat <- model(dep)
   
-  frames <- list(base.stat, size.stat)
+  frames <- list(base.stat, size.stat, outlier.stat) #, model.stat
   do.call(rbind, frames)
 }
 
 analysis("y_no")
+

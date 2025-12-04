@@ -157,4 +157,5 @@ dgm <- function() {
 }
 
 #save data from dgm as df data set
+set.seed(1979094)
 df <- dgm()
