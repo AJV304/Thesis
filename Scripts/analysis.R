@@ -3,9 +3,9 @@
 # It is divided based on the domains of deviations + defining functions:
 #   -functions
 #   -baseline condition with no deviations
-#   -outlier deviations
-#   -sample size deviations
-#   -model deviations
+#   -sample size conditions
+#   -outlier conditions
+#   -model conditions
 #
 # All scenarios will be framed as a function where the input is y, to make
 # inputting the scenario easier.
@@ -52,7 +52,10 @@ confint(reg.no)
 
 #yes it works
 
+
 ##Other function-----
+
+
 
 #Baseline scenario---------------------------------------------------
 
@@ -66,11 +69,17 @@ baseline <- function(dep){
   
   #perform a regression analysis and extract the statistics
   reg <- lm(y ~ x, data = df.baseline)
-  extr(model = reg)
+  base.stat <- extr(model = reg)
+  row.names(base.stat) <- c("Baseline")
+  
+  return(base.stat)
 }
 
 #run the function
 fun <- baseline("y_no")
+baseline("y_no")
+
+##test----
 
 #values should match: 
 df.baseline <- df %>% slice(1:200)
@@ -83,3 +92,45 @@ test <- extr(model = reg)
 identical(fun, test) 
 
 
+
+#Sample size conditions----------------
+
+samplesize <- function(dep){
+  
+  size <- c(170, 195, 200, 205, 230)
+  ss <- length(size)
+  size.stat <- data.frame(matrix(ncol = 4, nrow = ss)) #4 because four values get saved in the extract function
+    colnames(size.stat) <- cn
+    
+      
+  for (i in 1:ss) {
+    df.samplesize <- df %>% slice(1:size[i])
+    y <- df.samplesize[[dep]]
+    
+    #perform a regression analysis and extract the statistics
+    reg <- lm(y ~ x, data = df.samplesize)
+    size.stat[i,] <- extr(model = reg)
+    rownames(size.stat)[i] <- paste0("Sample size (", size[i], ")")
+  }
+    
+    return(size.stat)
+}
+
+samplesize("y_no")
+
+
+
+
+
+
+
+#Analysis function-------
+
+analysis <- function(dep){
+  base.stat <- baseline(dep)
+  size.stat <- samplesize(dep)
+  
+  rbind(base.stat, size.stat)
+}
+
+analysis("y_no")
