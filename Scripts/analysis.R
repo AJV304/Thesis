@@ -97,14 +97,19 @@ identical(fun, test)
 
 samplesize <- function(dep){
   
-  size <- c(170, 195, 200, 205, 230)
+  #specify the alternative sample sizes to test
+  size <- c(170, 195, 205, 230)
   ss <- length(size)
+  
+  #create empty data frame to save the output in 
   size.stat <- data.frame(matrix(ncol = 4, nrow = ss)) #4 because four values get saved in the extract function
     colnames(size.stat) <- cn
     
-      
+  #create forloop which tests for each different sample size    
   for (i in 1:ss) {
+    #take the specified size from the full data set
     df.samplesize <- df %>% slice(1:size[i])
+    #use the specified depedent variable as the dependent variable
     y <- df.samplesize[[dep]]
     
     #perform a regression analysis and extract the statistics
@@ -112,25 +117,54 @@ samplesize <- function(dep){
     size.stat[i,] <- extr(model = reg)
     rownames(size.stat)[i] <- paste0("Sample size (", size[i], ")")
   }
-    
+   
+     #return the statistics as output 
     return(size.stat)
 }
 
+#call function in no effect scenario 
 samplesize("y_no")
 
+##test----
 
+set.seed(1979094)
+df <- dgm()
 
+#manual test for ss 170
+df.samplesize <- df %>% slice(1:170)
+reg <- lm(y_no ~ x, data = df.samplesize)
+test <- extr(model = reg)
+rownames(test) <- "Sample size (170)"
 
+#function test
+fun <- samplesize("y_no")
+
+#are they the same?
+identical(test, fun[1,])
+
+#manual test for ss 195
+df.samplesize <- df %>% slice(1:195)
+reg <- lm(y_no ~ x, data = df.samplesize)
+test <- extr(model = reg)
+rownames(test) <- "Sample size (195)"
+
+#function test
+fun <- samplesize("y_no")
+
+#are they the same?
+identical(test, fun[2,])
 
 
 
 #Analysis function-------
 
+#combinging the condition functions to output one dataset
 analysis <- function(dep){
   base.stat <- baseline(dep)
   size.stat <- samplesize(dep)
   
-  rbind(base.stat, size.stat)
+  frames <- list(base.stat, size.stat)
+  do.call(rbind, frames)
 }
 
 analysis("y_no")
