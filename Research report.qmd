@@ -36,39 +36,39 @@ Preregistrations were popularized in the 2010s in psychology as a way to increas
 
 This method of increased transparency about research choices has become more popular over the years with the number of preregistrations increasing yearly [@ferguson2023; @lindsay2018]. However, whether the desired effect of limiting flexibility and improving reproducibility has been achieved is debated. It is often argued that preregistrations should lead to more credible anad reproducible results [@wagenmakers2012a; @lakensb; @nosek2018a]. However, research has also shown no difference between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024b], nor a reduction in p-hacking [@brodeur_preregistration_2024].
 
-There are many reasons for the uncertainty of the effect. Preregistrations are often incomplete or unspecific about their decisions [@heirene_preregistration_2024; @claesen2021]. Furthermore, researchers also deviate from their predetermined choices quite often [@vandenakker2024a; @claesen2021]. Deviations have been found in as high as 93% of preregistered papers, with as much as 63% going unreported [@claesen2021; @willroth2024]. Little is known about the effects of these divergences.
+There are many reasons for the uncertainty of the effect. Preregistrations are often incomplete or unspecific about their decisions [@heirene_preregistration_2024; @claesen2021]. Furthermore, researchers also deviate from their predetermined choices quite often [@vandenakker2024a; @claesen2021]. Deviations have been found in as high as 93% of preregistered papers, with as much as 63% going unreported [@claesen2021; @willroth2024]. This can potentially cause a large problem. Because, what we do not know is 'what is the effect of deviations from preregistrations?'.
 
-The aim of this project is to identify problematic deviations and investigate their effects. I first go into more depth about the goals and problems of preregistrations and the potential impact of deviations. Based on how commonly they occur, how problematic they are in theory, and how justifiable they are, I identify multiple deviation domains to investigate. Then, through a simulation study I examine the effect of said deviations on the type I and type II error rates in research **and evaluate what this means for the existing literature**.
+The aim of this project is to identify problematic deviations and investigate their effects. I first go into more depth about the goals and problems of preregistrations and the potential impact of deviations. Then, through a simulation study I examine the effect of said deviations on the type I and type II error rates in research.
 
 ### The Problem and the Solution
 
 The inability to reliably reproduce findings in the field of psychology is a known problem. In 2015, @opensciencecollaboration2015 showed that only 36% of significant results could be reproduced. One reason for this replication crisis is 'researcher degrees of freedom' [@simmons2011]. This term describes the flexibility that researchers have in decisions made during their work. This includes decisions such as how many participants to collect, which statistical model to use and which covariates to add. When these decisions are made during data collection or analysis, researchers can make opportunistic choices to steer their results towards the desired outcome. This action is called 'p-hacking' and can dramatically increase false-positive rates of research [@stefan2023].
 
-In order to limit these types of practices, preregistrations (amongst other solutions) were proposed. Decisions concerning the research process are documented before data collection in order to limit flexibility during the research process. In theory this works well, if researchers are specific in their preregistrations and follow them closely, this should lead to better reproducible findings. In practice, this happens differently. Preregistrations are often imprecise and incomplete, meaning that their limitation of flexibility is diminished. Furthermore, deviations from preregistrations also happen commonly [@vandenakker2024a; @claesen2021]. Meaning that during the actual research, predetermined plans are not being followed. Changes between preregistrations and final publications occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024a]. This includes discrepancies in the total sample size, how outliers are selected and which covariates are used. This could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to p-hacking strategies.
+In order to limit these types of practices, preregistrations (amongst other solutions) were proposed. Templates are available to researchers, specifying which information is important to preregister, depending on the type of research. The preregistration is then uploaded to a public repository with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and evaluate it before the start of the study or compare it to the final research paper. In theory preregistrations work well, if researchers are specific in their preregistrations and follow them closely, this should lead to better reproducible findings. In practice, this happens differently. Preregistrations are often imprecise and incomplete, meaning that the goal of limitating flexibility is diminished. Furthermore, deviations from preregistrations also happen commonly [@vandenakker2024a; @claesen2021]. Meaning that during the actual research, predetermined plans are not being followed. Changes between preregistrations and final publications occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024a]. This includes discrepancies in the total sample size, how outliers are selected and which covariates are used. This could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to p-hacking strategies.
 
-### The good, the bad, and the unknown / Are all deviations bad? / The problem of the solution
+### Are all deviations bad?
 
-Deviations from preregistrations occur in all different aspects of the research process, but what is not known is the effect of these divergences. Do these changes from original research plans negatively impact the quality of the research? @lakens_when_2024 theorized what the possible consequences could be. He argues that if deviations occur due to assumptions being violated or data no longer being suitable for the planned analysis, then deviating from the original research plan can have positive effects on the validity of a test. Similarly, adding additional analyses can increase the robustness. On the other hand, changes in testing also mean that a test is generally less "severely" tested. Meaning that a theory has not been given the proper opportunity to be falsified which can result in higher type II errors. Consequently, little can be said about whether deviations are bad, especially when the reason for the deviation is unknown.
+Deviations from preregistrations occur in all different aspects of the research process, but what is not known is the effect of these deviations. Do these changes from original research plans negatively impact the quality of the research? @lakens_when_2024 theorized what the possible consequences could be. He argues that if deviations occur due to assumptions being violated or data no longer being suitable for the planned analysis, then deviating from the original research plan can have positive effects on the validity of a test. Similarly, adding additional analyses can increase the robustness. On the other hand, changes in testing also mean that a test is generally less "severely" tested. Meaning that a theory has not been given the proper opportunity to be falsified which can result in higher type II errors. Consequently, little can be said about whether deviations are bad, especially when the reason for the deviation is unknown.
 
 When evaluating whether inconsistencies between preregistrations and final publications are problematic, researchers themselves are also uncertain. When asked by @willroth2024, researchers deemed certain deviations to be more problematic than others. No deviation is considered to be very acceptable but changes to analyses and hypotheses are deemed least acceptable, whereas changing the research platform or using different software might be justifiable. These judgements were based not only on the type of deviation but also on whether the deviation was reported transparently and what the estimated impact on the results of the study was. However, as mentioned, assessing the impact of these deviations remains difficult.
 
 ### This project
 
-With this simulation study, I intend to close this gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect Type I and Type II error rates in research?’. The effect of divergences is studied in three domains: sample size, outlier identification, and the statistical model. Different deviations are simulated in each of these domains and compared to a baseline condition with no deviations. This project investigates this question in the context of behavioral psychology and uses linear regression as the main model of interest. The effects are examined across two scenarios: a no-effect scenario, and an effect scenario. The aim of this study is descriptive and therefore no specific hypotheses are formalized.
+With this simulation study, I intend to close this gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect Type I and Type II error rates in research?’. The effect of deviations is studied in three domains: sample size, outlier identification, and the statistical model. Different deviations are simulated in each of these domains and compared to a baseline condition with no deviations. This research question is investigated in the context of behavioral psychology and uses linear regression as the main model of interest. The effects are examined across two scenarios: a no-effect scenario, and an effect scenario. The aim of this study is descriptive and therefore no specific hypotheses are formalized.
 
-As a secondary goal, this project also addresses the issue of reasons for deviations being unknown. Each deviation condition is initially simulated as random and the outcomes will be used to assess type I and type II error. Next, deviations will be simulated and compared to the baseline condition, results will be chosen opportunistically from either condition after which error rates will then be compared.
+As a potential secondary goal, I hope to address the issue of reasons for deviations being unknown. The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the result that they like best. In order to assess the effect of choice on the effect of deviations each deviation condition is simulated twice. Initially, the deviation conditions are simulated and the outcomes are used to assess type I and type II error. In the second phase, deviations are simulated but the outcomes are then compared to the baseline condition. Results are chosen from either the baseline or the deviation condition, based on which condition has the better value, to proxy the opportunistic selection of results by the researcher.
 
-With these simulations I hope to provide clarity on the effect of deviations from preregistration on type I and type II errors, as well as shed more light on the effect of picking deviations opportunistically.
+With these simulations I hope to provide clarity on the effect of deviations from preregistration on type I and type II errors, as well as the effect of picking deviations opportunistically.
 
 ## Methods
 
 ### Aims
 
-The aim of this simulation study is to investigate the impact of making changes to analysis plan on the type I and type II error rates.
+The aim of this simulation study is to investigate the impact of making changes to preregistered analysis plans on the type I and type II error rates.
 
 ### Conditions
 
-I identified important deviations to investigate based on (1) how often they occur, (2) their potential impact and (3) their justifiability. These deviations occur in the following domains: sample size, outlier identification, and statistical model. Within these domains, multiple conditions will be simulated and compared to a baseline condition without any deviations.
+I reviewed which deviations to investigate by (1) how often they occur, (2) their potential impact and (3) their justifiability. Based on this I chose deviations in the following domains: sample size, outlier identification, and statistical model. Another important domain in which deviations occur is in the hypotheses. Deviations in the hypotheses often include adding an additional hypothesis, removing hypotheses or changing the direction of the hypothesis [@akkerhypothesis]. Most of those deviations occur at the paper level, as they involve multiple hypotheses or altering the type of testing involved. This project examines deviations on the hypothesis level, where the determinant is kept constant. As such, deviations in the hypothesis domain are not included in this study but remain an important aspect of preregistration deviation. Within the three chosen domains, multiple conditions are simulated and compared to a baseline condition without any deviations.
 
 #### Sample size
 
@@ -80,25 +80,13 @@ Literature shows that over half of published papers do not adhere to their own s
 
 However, @lakens argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by @simmons2011, who showed that the Type I error increases linearly with the number of outlier methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data [@john]. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations could be impactful. Consequently, whilst deviations in outlier identification are common and relatively accepted, they might have quite an effect.
 
-The most common method for excluding outliers in the social sciences is the Z-score. A minimum of three standard deviations is often maintained as the rule of thumb. Within linear regression, it is also common to base outliers on influence. One of the more commonly used methods is Cook's distance. Based on this, the baseline condition will be to not exclude any datapoints, with deviation conditions based on z-score and Cook's distance @tbl-conditions.
-
-<!-- #### Hypotheses -->
-
-<!-- @akkerhypothesis found that 60% of published papers contain a difference in hypotheses when compared to their corresponding preregistration. However, there is no evidence that papers with or without deviations in their hypotheses report more significant results. The deviations that occur are varied and are often due either to improper specification in the preregistration [@heirene_preregistration_2024]. Another reason that researchers might choose to alter their hypotheses during their research is to be able to select hypotheses with desired results [@john]. Common deviations are the adding or removing of a hypothesis in the final paper [@akkerhypothesis], this is commonly done by researchers to present a more convincing argument [@john]. Even though they occur frequently, changes in the hypotheses are ranked as the least justifiable deviations by researchers themselves [@willroth2024]. The following deviations will be simulated. -->
-
-<!-- | Deviation                                                | -->
-
-<!-- |----------------------------------------------------------| -->
-
-<!-- | changed directionality                                   | -->
-
-<!-- | subgrouping\* <!--- too close to outlier/covariate? --->
-
-<!-- : Hypothesis Deviations {#tbl-hyp} -->
+The most common method for excluding outliers in the social sciences is the z-score. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, it is also common to exclude outliers based on their influence. One of the more commonly used methods is Cook's distance. Cook's distance excludes outliers based on how much the exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on z-score and Cook's distance @tbl-conditions.
 
 #### Statistical model
 
-Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered model. Many areas to exist within the statistical model in which researchers can choose to change their predetermined plans. Including, but not limited to, changes in the dependent variable, independent variable, statistical inference criteria and the actual model that is assessed. Different research have investigated deviations in this domain differently. @claesen2021 shows a divergence rate of 70% within the 'analysis' domain, of which most divergences go unreported. Whereas @vandenakker2024a shows inconsistencies in 40% of the statistical models.
+Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. 'Statistical model' is a very broad domain and includes many types of deviations. Such as, changes in the dependent variable, independent variable, statistical inference criteria and the actual model which is assessed. In this paper 'statistical model' refers to all the abovementioned types of changes, not the tested model.
+
+Different research have investigated deviations in this domain differently. @claesen2021 shows a deviation rate of 70% within the 'analysis' domain, including deviations like examining additional effects, changing which model is tested and performing unregistered robustness checks. The majority of these deviations went unreported. @vandenakker2024a also shows inconsistencies in 40% of the statistical models. In that research, deviations included the specifications of the variables, which model was tested and how variables were used.
 
 As @lakens argues, at times it might be necessary to alter the statistical model used. For example, when a variable has been measured at a different level than expected or when data from two different indicators cannot be combined. However, changing the statistical model can also be done opportunistically. Adding an extra dependent variable can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% [@simmons2011]. Therefore, the reasoning behind the change becomes very important. Deviations due to failing to properly specify how variables would be operationalized in the preregistration are therefore also seen as a larger shortcoming than model deviations due to unforeseen consequences [@willroth2024]. Within the statistical model, three deviation conditions are simulated; outcome switching, adding a continuous covariate, and adding a dichotomous covariate (@tbl-conditions.)
 
@@ -108,11 +96,11 @@ As @lakens argues, at times it might be necessary to alter the statistical model
 |------------------------|--------------------------------|
 | Baseline               | No deviations                  |
 | Sample Size            | +5 participants                |
-|                        | +30 participants                |
-|                        | -5 participants               |
+|                        | +30 participants               |
+|                        | -5 participants                |
 |                        | -30 participants               |
-| Outlier Identification | Z-score >|3| SD            |
-|                        | Cook's distance >1        |
+| Outlier Identification | Z-score \>                     |
+|                        | Cook's distance \>1            |
 | Statistical Model      | Outcome switching              |
 |                        | Adding a continuous covariate  |
 |                        | Adding a dichotomous covariate |
@@ -131,39 +119,22 @@ $$. In which $y$ is the dependent variable, $beta_0$ the intercept, $beta_1$ the
 | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
 | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
 | Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ |
-|  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$ |
-|  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$ |
+|  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* |
+|  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* |
+|Continuous covariate regression coefficient|$\beta_2 = 0.10$|
 | Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ |
+|Dichotomous covariate regression coefficient|$\beta_3 = 0.10$|
 | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
 | Sample size | $200$ |
 
-: Data generating mechanism {#tbl-DGM}
+\*Specific value of epsilon for outliers is to be determined
 
-<!-- | parameter/scenario | $H0 = true$ | $Ha = true$ | -->
+:   Data generating mechanism {#tbl-DGM}
 
-<!-- |--------------------|--------------------------|--------------------------| -->
-
-<!-- | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ | $X \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-
-<!-- | Random error | $\epsilon \sim \mathcal{N}(\mu, \sigma^2)$ | $\epsilon \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-
-<!-- | Regression coefficient | $\beta_1 = 0$ | $\beta_1 = 0.30$ | -->
-
-<!-- | Intercept | $\beta_0 = 0 $ | $\beta_0 = 0$ | -->
-
-<!-- | Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ | $Z \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-
-<!-- | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ | $D \sim \text{Bernoulli}(0.5)$ | -->
-
-<!-- | Sample size | $150$ | $150$ | -->
-
-<!-- : Data generating conditions {#tbl-DGM}{.striped .hover} -->
 
 ### Estimands
 
-Each condition will be assessed on how they affect the type I and type II error. The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of 0.05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
-
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of 0.20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
+The estimand of this study is $\beta_1,$ which represents the effect of the independent variable. 
 
 ### Methods
 
@@ -172,8 +143,8 @@ As previously mentioned, there are two scenarios under which data is generated. 
 | Parameter        | Baseline condition | Deviations conditions    |
 |------------------|--------------------|--------------------------|
 | Sample size      | 200                | +5                       |
-|                  |                    | +30                     |
-|                  |                    | -5                      |
+|                  |                    | +30                      |
+|                  |                    | -5                       |
 |                  |                    | -30                      |
 | Outliers         | None               | Based on Z-scores        |
 |                  |                    | Based on Cook's distance |
@@ -185,12 +156,15 @@ As previously mentioned, there are two scenarios under which data is generated. 
 
 *If time allows*, After examining the effects per condition, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation condition as reported in #tbl-cond, but instead of automatically examining the value of the deviation condition, a choice is made. In each iteration the p-value of the deviation condition is compared to the p-value of the baseline condition, the most desired p-value is added reported as the outcome. An overview can be found in Figure @fig:process-phases.
 
-
 ![Process Flowchart](process-phases.png)
 
 ### Performance measures
 
-Performance is assessed through the Type I and Type II error. Furthermore, the regression coefficient and confidence interval are collected as well.
+Performance is assessed through the Type I and Type II error for the estimand $\beta_1.$ Specifically, the regression coefficient itself, the p-value and the confidence interval are collected for each condition in each iteration.
+
+The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of 0.05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
+
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of 0.20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
 
 <!-- ## Results -->
 
@@ -199,11 +173,15 @@ Performance is assessed through the Type I and Type II error. Furthermore, the r
 <!-- ## Discussion -->
 
 <!-- -   limitation of specific field -->
+
 <!-- -   what does this research say about the field and what has been published till now -->
+
 <!-- -   how do we keep the field reliable? which deviations should we try to avoid and which ones do not seem to matter much? -->
+
 <!-- -   hypotheses so many deviations, could be concern but outside of this scope -->
 
 <!-- ## Conclusion -->
 
 \newpage
+
 ## References
