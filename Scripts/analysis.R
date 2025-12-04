@@ -6,13 +6,16 @@
 #   -outlier deviations
 #   -sample size deviations
 #   -model deviations
+#
+# All scenarios will be framed as a function where the input is y, to make
+# inputting the scenario easier.
 
 #Functions-------------------------------------------
 
 ##Extract function-----
 
 #create the extract function with model as input
-extract <- function(model){
+extr <- function(model){
   
   #create temporary data frame
   statistics <- data.frame(matrix(ncol = 4, nrow = 1))
@@ -41,7 +44,7 @@ df <- dgm()
 reg.no <- lm(y_no ~ x, data = df)
 
 #extraction
-extract(model = reg.no)
+extr(model = reg.no)
 
 #checking if same as in model summary
 summary(reg.no)
@@ -52,3 +55,31 @@ confint(reg.no)
 ##Other function-----
 
 #Baseline scenario---------------------------------------------------
+
+#having the baseline scenario be a function where you can fill in which
+#dependent variable (scenario) you want to examine
+baseline <- function(dep){
+  
+  #for the baseline scenario we only take the first 200 participants
+  df.baseline <- df %>% slice(1:200)
+  y <- df.baseline[[dep]]
+  
+  #perform a regression analysis and extract the statistics
+  reg <- lm(y ~ x, data = df.baseline)
+  extr(model = reg)
+}
+
+#run the function
+fun <- baseline("y_no")
+
+#values should match: 
+df.baseline <- df %>% slice(1:200)
+y <- df.baseline$y_no
+#perform a regression analysis and extract the statistics
+reg <- lm(y ~ x, data = df.baseline)
+test <- extr(model = reg)
+
+#evaluate if the same:
+identical(fun, test) 
+
+

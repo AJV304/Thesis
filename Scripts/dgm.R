@@ -152,10 +152,9 @@ dgm <- function() {
                                                 list   = sample(1:n, 0.05*n), 
                                                 values = ifelse(runif(length(repla)) < 0.5, sample(y_yes_outlier_high, 0.05*n), sample(y_yes_outlier_low, 0.05*n))))
   
-  #request the two data sets as output of the function
+  #request the data set as output of the function
   return(df)
 }
 
 #save data from dgm as df data set
 df <- dgm()
-hist(df$y_yes)
