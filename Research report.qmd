@@ -52,7 +52,10 @@ Deviations from preregistrations occur in all different aspects of the research 
 
 When evaluating whether inconsistencies between preregistrations and final publications are problematic, researchers themselves are also uncertain. When asked by @willroth2024, researchers deemed certain deviations to be more problematic than others. No deviation is considered to be very acceptable but changes to analyses and hypotheses are deemed least acceptable, whereas changing the research platform or using different software might be justifiable. These judgements were based not only on the type of deviation but also on whether the deviation was reported transparently and what the estimated impact on the results of the study was. However, as mentioned, assessing the impact of these deviations remains difficult.
 
+<!-- summarize what is know before introducting own project. what is still missing is formal analysis of the effects -->
+
 ### This project
+<!-- THe presetn project -->
 
 With this simulation study, I intend to close this gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect Type I and Type II error rates in research?’. The effect of deviations is studied in three domains: sample size, outlier identification, and the statistical model. Different deviations are simulated in each of these domains and compared to a baseline condition with no deviations. This research question is investigated in the context of behavioral psychology and uses linear regression as the main model of interest. The effects are examined across two scenarios: a no-effect scenario, and an effect scenario. The aim of this study is descriptive and therefore no specific hypotheses are formalized.
 
@@ -108,6 +111,7 @@ As @lakens argues, at times it might be necessary to alter the statistical model
 : Deviation Domains and Corresponding Deviation Conditions {#tbl-conditions}
 
 ### Data-generating mechanism
+<!-- talk about hypothesis in terms of effect no effect -->
 
 Data is generated under two scenarios; the hypothesis is true and the hypothesis is not true. The hypothesis is as follows: 'X has an effect on Y'. Both scenarios generate data by producing parametric draws from a linear regression model. $$
 Y = \beta_0 + \beta_1X + \epsilon
