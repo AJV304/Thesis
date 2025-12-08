@@ -34,7 +34,7 @@ library(stats)
 
 Preregistrations were popularized in the 2010s in psychology as a way to increase reproducibility [@lindsay]. Preregistrations are documents that are published at the start of the research process, in which decisions concerning data collection and analysis are recorded. This is done with the aim to limit the amount of choices a researcher can make during their project, thereby limiting how much can be steered towards desired results.
 
-This method of increased transparency about research choices has become more popular over the years with the number of preregistrations increasing yearly [@ferguson2023; @lindsay2018]. However, whether the desired effect of limiting flexibility and improving reproducibility has been achieved is debated. It is often argued that preregistrations should lead to more credible anad reproducible results [@wagenmakers2012a; @lakensb; @nosek2018a]. However, research has also shown no difference between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024b], nor a reduction in p-hacking [@brodeur_preregistration_2024].
+This method of increased transparency about research choices has become more popular over the years with, the number of preregistrations increasing yearly [@ferguson2023; @lindsay2018]. However, whether the desired effect of limiting flexibility and improving reproducibility has been achieved is debated. It is often argued that preregistrations should lead to more credible and reproducible results [@wagenmakers2012a; @lakensb; @nosek2018a]. However, research has also shown no difference between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024b], nor a reduction in p-hacking [@brodeur_preregistration_2024].
 
 There are many reasons for the uncertainty of the effect. Preregistrations are often incomplete or unspecific about their decisions [@heirene_preregistration_2024; @claesen2021]. Furthermore, researchers also deviate from their predetermined choices quite often [@vandenakker2024a; @claesen2021]. Deviations have been found in as high as 93% of preregistered papers, with as much as 63% going unreported [@claesen2021; @willroth2024]. This can potentially cause a large problem. Because, what we do not know is 'what is the effect of deviations from preregistrations?'.
 
@@ -44,13 +44,13 @@ The aim of this project is to identify problematic deviations and investigate th
 
 The inability to reliably reproduce findings in the field of psychology is a known problem. In 2015, @opensciencecollaboration2015 showed that only 36% of significant results could be reproduced. One reason for this replication crisis is 'researcher degrees of freedom' [@simmons2011]. This term describes the flexibility that researchers have in decisions made during their work. This includes decisions such as how many participants to collect, which statistical model to use and which covariates to add. When these decisions are made during data collection or analysis, researchers can make opportunistic choices to steer their results towards the desired outcome. This action is called 'p-hacking' and can dramatically increase false-positive rates of research [@stefan2023].
 
-In order to limit these types of practices, preregistrations (amongst other solutions) were proposed. Templates are available to researchers, specifying which information is important to preregister, depending on the type of research. The preregistration is then uploaded to a public repository with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and evaluate it before the start of the study or compare it to the final research paper. In theory preregistrations work well, if researchers are specific in their preregistrations and follow them closely, this should lead to better reproducible findings. In practice, this happens differently. Preregistrations are often imprecise and incomplete, meaning that the goal of limitating flexibility is diminished. Furthermore, deviations from preregistrations also happen commonly [@vandenakker2024a; @claesen2021]. Meaning that during the actual research, predetermined plans are not being followed. Changes between preregistrations and final publications occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024a]. This includes discrepancies in the total sample size, how outliers are selected and which covariates are used. This could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to p-hacking strategies.
+In order to limit these types of practices, preregistrations (amongst other solutions) were proposed. Templates are available to researchers, specifying which information is important to preregister, depending on the type of research. The preregistration is then uploaded to a public repository with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration to evaluate it before the start of the study or compare it to the final research paper. In theory preregistrations work well, if researchers are specific in their preregistrations and follow them closely, this should lead to better reproducible findings. In practice, this happens differently. Preregistrations are often imprecise and incomplete, meaning that the goal of limiting flexibility is diminished. Furthermore, deviations from preregistrations also happen commonly [@vandenakker2024a; @claesen2021]. Meaning that during the actual research, predetermined plans are not being followed. Changes between preregistrations and final publications occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024a]. This includes discrepancies in the total sample size, how outliers are selected and which covariates are used. This could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to p-hacking strategies.
 
 ### Are all deviations bad?
 
 Deviations from preregistrations occur in all different aspects of the research process, but what is not known is the effect of these deviations. Do these changes from original research plans negatively impact the quality of the research? @lakens_when_2024 theorized what the possible consequences could be. He argues that if deviations occur due to assumptions being violated or data no longer being suitable for the planned analysis, then deviating from the original research plan can have positive effects on the validity of a test. Similarly, adding additional analyses can increase the robustness. On the other hand, changes in testing also mean that a test is generally less "severely" tested. Meaning that a theory has not been given the proper opportunity to be falsified which can result in higher type II errors. Consequently, little can be said about whether deviations are bad, especially when the reason for the deviation is unknown.
 
-When evaluating whether inconsistencies between preregistrations and final publications are problematic, researchers themselves are also uncertain. When asked by @willroth2024, researchers deemed certain deviations to be more problematic than others. No deviation is considered to be very acceptable but changes to analyses and hypotheses are deemed least acceptable, whereas changing the research platform or using different software might be justifiable. These judgements were based not only on the type of deviation but also on whether the deviation was reported transparently and what the estimated impact on the results of the study was. However, as mentioned, assessing the impact of these deviations remains difficult.
+When evaluating whether inconsistencies between preregistrations and final publications are problematic, researchers themselves are also uncertain. When asked by @willroth2024, researchers deemed certain deviations to be more problematic than others. No deviation is considered to be very acceptable but changes to analyses and hypotheses are deemed least acceptable, whereas changing the research platform or using different software might be justifiable. These judgments were based not only on the type of deviation but also on whether the deviation was reported transparently and what the estimated impact on the results of the study was. However, as mentioned, assessing the impact of these deviations remains difficult.
 
 ### This project
 
@@ -84,7 +84,7 @@ The most common method for excluding outliers in the social sciences is the z-sc
 
 #### Statistical model
 
-Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. 'Statistical model' is a very broad domain and includes many types of deviations. Such as, changes in the dependent variable, independent variable, statistical inference criteria and the actual model which is assessed. In this paper 'statistical model' refers to all the abovementioned types of changes, not only the statistical test and its specifications.
+Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. 'Statistical model' is a very broad domain and includes many types of deviations. Such as, changes in the dependent variable, independent variable, statistical inference criteria and the actual model which is assessed. In this paper 'statistical model' refers to all the above-mentioned types of changes, not only the statistical test and its specifications.
 
 The broadness of the domain also means that deviations within the domain have been investigated from multiple angles. @claesen2021 shows a deviation rate of 70% within the 'analysis' domain, including deviations like examining additional effects, changing which model is tested and performing unregistered robustness checks. The majority of these deviations went unreported. @vandenakker2024a also shows inconsistencies in 40% of the statistical models. In that research, deviations included the specifications of the variables, which model was tested and how variables were used.
 
@@ -114,16 +114,16 @@ Y = \beta_0 + \beta_1X + \epsilon
 $$. In which $y$ is the dependent variable, $beta_0$ the intercept, $beta_1$ the main effect, and $\epsilon$ the random error. Therefore the one difference in data generation between the two scenarios is in the $\beta_1$ parameter. In the $H = true$ scenario, $\beta_1$ is 0.3, and in the $H = false$ scenario, $\beta_1$ will be 0. In order to asses differences between outlier identification methods, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$. The parameter values for the data generating mechanism are specified in @tbl-DGM.
 
 | Parameter | Value |
-|-------------------------------|-----------------------------------------|
+|------------------------------------|------------------------------------|
 | Intercept | $\beta_0 = 0$ |
 | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
 | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
 | Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ |
 |  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* |
 |  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* |
-|Continuous covariate regression coefficient|$\beta_2 = 0.10$|
+| Continuous covariate regression coefficient | $\beta_2 = 0.10$ |
 | Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ |
-|Dichotomous covariate regression coefficient|$\beta_3 = 0.10$|
+| Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ |
 | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
 | Sample size | $200$ |
 
@@ -131,10 +131,9 @@ $$. In which $y$ is the dependent variable, $beta_0$ the intercept, $beta_1$ the
 
 :   Data generating mechanism {#tbl-DGM}
 
-
 ### Estimands
 
-The estimand of this study is $\beta_1,$ which represents the effect of the independent variable. 
+The estimand of this study is $\beta_1,$ which represents the effect of the independent variable.
 
 ### Methods
 
@@ -154,7 +153,7 @@ As previously mentioned, there are two scenarios under which data is generated. 
 
 : Parameter Values for Baseline and Deviation Conditions {#tbl-cond}
 
-*If time allows*, After examining the effects per condition, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation condition as reported in #tbl-cond, but instead of automatically examining the value of the deviation condition, a choice is made. In each iteration the p-value of the deviation condition is compared to the p-value of the baseline condition, the most desired p-value is added reported as the outcome. An overview can be found in Figure @fig:process-phases.
+*If time allows*, After examining the effects per condition, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation condition as reported in @tbl-cond, but instead of automatically examining the value of the deviation condition, a choice is made. In each iteration the p-value of the deviation condition is compared to the p-value of the baseline condition, the most desired p-value is added reported as the outcome. An overview can be found in Figure @fig:process-phases.
 
 ![Process Flowchart](process-phases.png)
 
