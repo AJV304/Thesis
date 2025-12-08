@@ -68,7 +68,7 @@ The aim of this simulation study is to investigate the impact of making changes 
 
 ### Conditions
 
-I reviewed which deviations to investigate by (1) how often they occur, (2) their potential impact and (3) their justifiability. Based on this I chose deviations in the following domains: sample size, outlier identification, and statistical model. Another important domain in which deviations occur is in the hypotheses. Deviations in the hypotheses often include adding an additional hypothesis, removing hypotheses or changing the direction of the hypothesis [@akkerhypothesis]. Most of those deviations occur at the paper level, as they involve multiple hypotheses or altering the type of testing involved. This project examines deviations on the hypothesis level, where the determinant is kept constant. As such, deviations in the hypothesis domain are not included in this study but remain an important aspect of preregistration deviation. Within the three chosen domains, multiple conditions are simulated and compared to a baseline condition without any deviations.
+I reviewed which deviations to investigate by (1) how often they occur, (2) their potential impact and (3) their justifiability. Based on this I chose deviations in the following domains: sample size, outlier identification, and statistical model. Another important domain in which deviations occur is in the hypotheses. Deviations in the hypotheses often include adding an additional hypothesis, removing hypotheses or changing the direction of the hypothesis [@akkerhypothesis]. Most of those deviations occur at the study level, as they involve multiple hypotheses or altering the type of testing involved. This project examines deviations on the hypothesis level, where the determinant is kept constant. As such, deviations in the hypothesis domain are not included in this study but remain an important aspect of preregistration deviation. Within the three chosen domains, multiple conditions are simulated and compared to a baseline condition without any deviations.
 
 #### Sample size
 
@@ -95,13 +95,13 @@ As @lakens argues, at times it might be necessary to alter the statistical model
 | Domain                 | Simulation Condition           |
 |------------------------|--------------------------------|
 | Baseline               | No deviations                  |
-| Sample Size            | +5 participants                |
-|                        | +30 participants               |
+| Sample size            | +30 participants               |
+|                        | +5 participants                |
 |                        | -5 participants                |
 |                        | -30 participants               |
-| Outlier Identification | Z-score \>                     |
+| Outlier identification | Z-score \> 3 SD                |
 |                        | Cook's distance \>1            |
-| Statistical Model      | Outcome switching              |
+| Statistical model      | Outcome switching              |
 |                        | Adding a continuous covariate  |
 |                        | Adding a dichotomous covariate |
 
@@ -109,9 +109,23 @@ As @lakens argues, at times it might be necessary to alter the statistical model
 
 ### Data-generating mechanism
 
-Data is generated under two scenarios; the hypothesis is true and the hypothesis is not true. The hypothesis is as follows: 'X has an effect on Y'. Both scenarios generate data by producing parametric draws from a linear regression model. $$
-Y = \beta_0 + \beta_1X + \epsilon
-$$. In which $y$ is the dependent variable, $beta_0$ the intercept, $beta_1$ the main effect, and $\epsilon$ the random error. Therefore the one difference in data generation between the two scenarios is in the $\beta_1$ parameter. In the $H = true$ scenario, $\beta_1$ is 0.3, and in the $H = false$ scenario, $\beta_1$ will be 0. In order to asses differences between outlier identification methods, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$. The parameter values for the data generating mechanism are specified in @tbl-DGM.
+
+
+
+Data generation follows the intended model of scientific interest: a linear regression model with outcome $Y$ and predictor $X$. In the baseline condition, the statistical model is defined as 
+$$
+Y = \beta_0 + \beta_1X + \epsilon,
+$$ 
+where $Y$ is the dependent variable, $\beta_0$ the intercept, $\beta_1$ the main effect, and $\epsilon$ the random error. The population parameter values are presented in Table @tbl-DGM, together with the parameter values for the deviation conditions. The complete data-generating model is defined as
+\begin{align*}
+Y =&  \beta_0 + \beta_1X + \beta_2Z_1 + \beta_3Z_2 + \epsilon,\\
+Y_a =&  \beta_0 + \beta_1X + \beta_2Z_1 + \beta_3Z_2 + \epsilon,
+\end{align*}
+where $Z_1$ and $Z_2$ represent a continuous and categorical covariate (respectively) and $Y_a$ represents an alternative outcome variable.
+
+Data is generated under two scenarios: 'X has an effect on Y' and 'X has no effect on Y'. Both scenarios generate data by producing parametric draws from a multivariate normal distribution for $X$, $Z_1$ and $Z_2$. The difference in data generation between the two scenarios is in the generation of $Y$ from the predictor space. In the 'no effect' scenario, $\beta_1$ is 0, and in the 'effect' scenario, $\beta_1$ will be 0.3.
+
+In order to asses differences between outlier identification methods, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$. The parameter values for the data generating mechanism are specified in @tbl-DGM.
 
 | Parameter | Value |
 |------------------------------------|------------------------------------|
@@ -133,7 +147,7 @@ $$. In which $y$ is the dependent variable, $beta_0$ the intercept, $beta_1$ the
 
 ### Estimands
 
-The estimand of this study is $\beta_1,$ which represents the effect of the independent variable.
+The estimand of this study is $\beta_1,$ which represents the effect of the independent variable $X$. The coefficient is estimated using the `lm` package in `R` (REF), under the different deviation conditions.
 
 ### Methods
 
@@ -161,9 +175,9 @@ As previously mentioned, there are two scenarios under which data is generated. 
 
 Performance is assessed through the Type I and Type II error for the estimand $\beta_1.$ Specifically, the regression coefficient itself, the p-value and the confidence interval are collected for each condition in each iteration.
 
-The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of 0.05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
+The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
 
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of 0.20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
 
 <!-- ## Results -->
 
