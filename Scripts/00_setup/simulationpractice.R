@@ -130,7 +130,7 @@ samplesize <- c(1, 1.1, 1.5, 2)
 ss <- length(samplesize)
 rep <- 1000
 n <- 150
-pval <- data.frame(matrix(ncol = ss, nrow = rep))
+pval <- data.frame(matrix(ncol = ss, nrow = 1000))
 
 
 for (p in 1:ss){

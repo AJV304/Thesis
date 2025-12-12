@@ -179,7 +179,7 @@ As previously mentioned, there are two scenarios under which data is generated. 
 
 *If time allows*, After examining the effects per condition, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation condition as reported in #tbl-cond, but instead of automatically examining the value of the deviation condition, a choice is made. In each iteration the p-value of the deviation condition is compared to the p-value of the baseline condition, the most desired p-value is added reported as the outcome. An overview can be found in Figure @fig:process-phases.
 
-![Process Flowchart](process-phases.png)
+![Process Flowchart](Visuals/process-phases.png)
 
 ### Performance measures
 
