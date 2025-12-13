@@ -111,34 +111,23 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 
 <!-- talk about hypothesis in terms of effect no effect -->
 
-Data is generated under two scenarios; the hypothesis is true and the hypothesis is not true. The hypothesis is as follows: 'X has an effect on Y'. Both scenarios generate data by producing parametric draws from a linear regression model. $$
-Y = \beta_0 + \beta_1X + \epsilon
-$$. In which $y$ is the dependent variable, $beta_0$ the intercept, $beta_1$ the main effect, and $\epsilon$ the random error. Therefore the one difference in data generation between the two scenarios is in the $\beta_1$ parameter. In the $H = true$ scenario, $\beta_1$ is 0.3, and in the $H = false$ scenario, $\beta_1$ will be 0. In order to asses differences between outlier identification methods, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$. The parameter values for the data generating mechanism are specified in @tbl-DGM.
-
-```{=html}
-<!--
-
-Data generation follows the intended model of scientific interest: a linear regression model with outcome $Y$ and predictor $X$. In the baseline condition, the statistical model is defined as 
-$$
+Data generation follows the intended model of scientific interest: a linear regression model with outcome $Y$ and predictor $X$. In the baseline condition, the statistical model is defined as $$
 Y = \beta_0 + \beta_1X + \epsilon,
-$$ 
-where $Y$ is the dependent variable, $\beta_0$ the intercept, $\beta_1$ the main effect, and $\epsilon$ the random error. The population parameter values are presented in Table @tbl-DGM, together with the parameter values for the deviation conditions. The complete data-generating model is defined as
-\begin{align*}
-Y =&  \beta_0 + \beta_1X + \beta_2Z_1 + \beta_3Z_2 + \epsilon,\\
-Y_a =&  \beta_0 + \beta_1X + \beta_2Z_1 + \beta_3Z_2 + \epsilon,
-\end{align*}
-where $Z_1$ and $Z_2$ represent a continuous and categorical covariate (respectively) and $Y_a$ represents an alternative outcome variable.
+$$ where $Y$ is the dependent variable, $\beta_0$ the intercept, $\beta_1$ the main effect, and $\epsilon$ the random error.
 
-Data is generated under two scenarios: 'X has an effect on Y' and 'X has no effect on Y'. Both scenarios generate data by producing parametric draws from a multivariate normal distribution for $X$, $Z_1$ and $Z_2$. The difference in data generation between the two scenarios is in the generation of $Y$ from the predictor space. In the 'no effect' scenario, $\beta_1$ is 0, and in the 'effect' scenario, $\beta_1$ will be 0.3.
+The population parameter values are presented in Table @tbl-DGM, together with the parameter values for the deviation conditions. The complete data-generating model is defined as
 
-In order to asses differences between outlier identification methods, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$. The parameter values for the data generating mechanism are specified in @tbl-DGM.
+$$ Y =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,\\
+Y_a =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon, $$
 
+where $Z$ and $D$ represent a continuous and categorical covariate (respectively) and $Y_a$ represents an alternative outcome variable.
 
--->
-```
+Data is generated under two scenarios: 'X has an effect on Y' and 'X has no effect on Y'. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.3, and in the no effect scenario, $\beta_1$ will be 0.
+
+In order to asses differences between outlier identification methods, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$.
 
 | Parameter | Value |
-|----|----|
+|-------------------------------|-----------------------------------------|
 | Intercept | $\beta_0 = 0$ |
 | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
 | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
@@ -151,9 +140,7 @@ In order to asses differences between outlier identification methods, the data n
 | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
 | Sample size | $200$ |
 
-\*Specific value of epsilon for outliers is to be determined
-
-:   Data generating mechanism {#tbl-DGM}
+: Data generating mechanism {#tbl-DGM} \*Specific value of epsilon to be determined
 
 ### Estimands
 
