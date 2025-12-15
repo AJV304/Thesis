@@ -23,3 +23,28 @@ graph <- DiagrammeR(" graph TD; A(Scenario) --> F(Baseline Condition);A --> G(De
 export_graph(graph, file_name = "process-phases.png", file_type = "png")
 
 ```
+
+#mermaid code
+---
+  config:
+  theme: redux
+layout: dagre
+---
+  flowchart TB
+subgraph identifier["</br>"]
+B["Generate data"]
+C["Baseline condition"]
+D["deviation condition"]
+
+A["Scenario"] --> B
+B --> C & D
+
+subgraph identifier2["</br>"]
+D --> E["Deviation value"] 
+end
+
+subgraph identifier3["</br>"]
+D --> G[Pick baseline vs deviation value]
+end
+end
+
