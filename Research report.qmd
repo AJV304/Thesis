@@ -4,9 +4,10 @@
 # author: A. J. Vijlbrief
 # date: today
 format:
-  pdf:
+  html:
     documentclass: report
     indent: true
+    fig-cap-location: top
 editor: visual
 bibliography: My Library.bib
 csl: apa.csl
@@ -29,13 +30,13 @@ csl: apa.csl
 \vfill
 
 {\large\textbf{Supervisors}\par}
-Dr. Alice Smith\\
-Prof. Bob Johnson
+A. M. Scheel\\
+H. I. Oberman
 
 \vspace{0.5cm}
 
 {\large\textbf{Word Count}\par}
-12,345
+2,480
 \end{titlepage}
 
 \newpage
@@ -61,17 +62,19 @@ library(stats)
 
 Preregistrations were popularized in the 2010s in psychology as a way to increase reproducibility [@lindsay2018]. Preregistrations are documents that are published at the start of the research process, in which decisions concerning data collection and analysis are recorded. This is done with the aim of limiting the extent to which such decisions can be influenced by results.
 
-This method of increased transparency about research choices has become more popular over the years, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018]. However, whether the desired effect of reduced flexibility and increased reproducibility has been achieved is debated. It is often argued that preregistration should lead to more credible and reproducible results [@wagenmakers2012; @lakens2019; @nosek2018]. However, research has shown no difference between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024a], nor a reduction in *p*-hacking [@brodeur2024].
+This practice increases transparency about research choices and has become more popular over the years, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018]. However, whether the desired effect of reduced flexibility and increased reproducibility has been achieved is debated. Preregistration should lead to more credible and reproducible results [@wagenmakers2012; @lakens2019; @nosek2018]. However, no difference has been found between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024a], nor a reduction in *p*-hacking [@brodeur2024].
 
 There are many reasons for the uncertainty of the effect of preregistration. Preregistrations are often incomplete or overly vague about their decisions [@heirene2024; @claesen2021]. Researchers also deviate from their predetermined choices [@vandenakker2024; @claesen2021]. Deviations have been found in as many as 93% of preregistered papers, with up to 89% being incompletely reported [@claesen2021; @willroth2024]. These high deviation rates could be the reason why we see no reduction in significant findings and *p*-hacking.
 
-The aim of this project is to identify potentially problematic deviations and investigate their effects. I first go into more depth about the goals and problems of preregistration and the potential impact of deviations. Then, through a simulation study, I examine the effect of said deviations on the type I and type II error rates in research.
+The aim of this project is to identify potentially problematic deviations and investigate their effects. I first go into more depth about the goals and problems of preregistration and the potential impact of deviations. Then, through a simulation study, I examine the effect of said deviations on type I and type II error rates.
 
 ### The Problem and the Solution
 
-The inability to reliably reproduce findings in the field of psychology is a known problem. In 2015, @opensciencecollaboration2015 showed that only 36% of significant results could be reproduced. One reason for this "replication crisis" is "researcher degrees of freedom" [@simmons2011]. This term describes the flexibility that researchers have in decisions made during their work. This includes decisions such as how many observations to collect, which statistical model to use and which covariates to add. When these decisions are made during data collection or analysis, researchers can make opportunistic choices to steer their results towards the desired outcome. Such opportunistic choices are called *p*-hacking and can dramatically increase the false-positive rates of research [@stefan2023].
+The inability to reliably reproduce findings in the field of psychology is a known problem. Only 36% of significant results were found to be reproducible [@opensciencecollaboration2015]. One reason for this "replication crisis" is "researcher degrees of freedom" [@simmons2011]. This term describes the flexibility that researchers have in decisions made during their work. This includes decisions such as how many observations to collect, which statistical model to use and which covariates to add. When these decisions are made during data collection or analysis, researchers can make opportunistic choices to steer their results towards desired outcomes. Such opportunistic choices are called *p*-hacking and can dramatically increase false-positive rates [@stefan2023].
 
-One of the solutions proposed in order to limit these types of practices is preregistration. Templates are available to researchers, to inform them about which information is important to preregister. The preregistration is then uploaded to a public repository with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and can evaluate it before the start of the study or compare it to the final research paper. In theory preregistration works well, if researchers are specific in their preregistration and follow it closely, this should lead to better reproducible findings. In practice, preregistrations are often imprecise and incomplete. This means that they are less effective at restricting researcher degrees of freedom. Another common problem are deviations from preregistration [@vandenakker2024; @claesen2021]. Deviating means that the preregistered plan is not being followed during the execution of the research. Changes between preregistrations and final publications occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024]. This includes discrepancies in the total sample size, how outliers are selected and which covariates are used. These deviations could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to *p*-hacking strategies.
+The preregistration is proposed as a solution to limit these types of practices. Templates are available to researchers, to inform them about which information is important to preregister. The preregistration is then uploaded to a public repository with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and can evaluate it before the start of the study or compare it to the final research paper. 
+
+In theory preregistration works well, if researchers are specific in their preregistration and follow it closely, this should lead to better reproducible findings. In practice, preregistrations are often imprecise and incomplete, making them less effective at restricting researcher degrees of freedom. Another common problem are deviations from preregistration [@vandenakker2024; @claesen2021]. Deviating means that the preregistered plan is not being followed during the execution of the study. Deviations occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024]. This includes differences in the total sample size, how outliers are selected and which covariates are used. These deviations could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to *p*-hacking strategies.
 
 ### Are all deviations bad?
 
@@ -99,9 +102,9 @@ Deviations in the sampling size are some of the most common deviations, with con
 
 #### Outlier exclusion criteria
 
-Literature shows that over half of published papers do not adhere to their pre-specified outlier exclusion criteria [@vandenakker2024; @claesen2021]. Reasons for these deviations often include vague criteria in the preregistration or failing to specify outlier criteria at all. When criteria are specified, they often leave a lot of room for interpretation and ad hoc decisions [@heirene2024]. This could potentially lead to researchers choosing how to exclude outliers based on which method provides better results. However, @bakker2014 showed that there is no significant difference in the amount of significant findings between papers with outlier exclusion and those without. This suggests that adding outlier exclusion criteria when they were not specified in the preregistration might not be a problem. Researchers also deem outlier deviations to be relatively acceptable [@willroth2024].
+Literature shows that over half of published papers do not adhere to their pre-specified outlier exclusion criteria [@vandenakker2024; @claesen2021]. Reasons for these deviations often include vague criteria in the preregistration or failing to specify outlier criteria at all. When criteria are specified, they often leave a lot of room for interpretation and ad hoc decisions [@heirene2024]. This could potentially lead to researchers choosing how to exclude outliers based on which method provides better results. Researchers themselves, however, deem outlier deviations to be relatively acceptable [@willroth2024].
 
-However, @lakens2024 argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by @stefan2023, who showed that the type I error increases linearly with the number of outlier detection methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data [@john2012]. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations are important.
+H@lakens2024 argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by @stefan2023, who showed that the type I error increases linearly with the number of outlier detection methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data [@john2012]. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations are important.
 
 The most common method for identifying outliers in the social sciences is the z-score. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook's distance excludes outliers based on how much the exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on z-score and Cook's distance (@tbl-cond).
 
@@ -115,19 +118,19 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 
 <!-- reasons to compare only nested models perhaps to maintain same estimands and performance measures  -->
 
-| Domain | Baseline condition | Deviations conditions |
-|---------------------|-----------------------|-----------------------------|
-| Sample size | 200 | +5 |
-|  |  | +30 |
-|  |  | -5 |
-|  |  | -30 |
-| Outlier exclusion criteria | No outliers excluded | Excluded based on Z-scores |
-|  |  | Excluded based on Cook's distance |
-| Statistical methods: covariates | No covariates | Continuous covariate |
-|  |  | Dichotomous covariate |
-| Statistical methods: outcome | Y | Ya |
+<!-- | Domain | Baseline condition | Deviations conditions | -->
+<!-- |---------------------|-----------------------|-----------------------------| -->
+<!-- | Sample size | 200 | +5 | -->
+<!-- |  |  | +30 | -->
+<!-- |  |  | -5 | -->
+<!-- |  |  | -30 | -->
+<!-- | Outlier exclusion criteria | No outliers excluded | Excluded based on Z-scores | -->
+<!-- |  |  | Excluded based on Cook's distance | -->
+<!-- | Statistical methods: covariates | No covariates | Continuous covariate | -->
+<!-- |  |  | Dichotomous covariate | -->
+<!-- | Statistical methods: outcome | Y | Ya | -->
 
-: Parameter Values for Baseline and Deviation Conditions per Domain {#tbl-cond}
+<!-- : Parameter Values for Baseline and Deviation Conditions per Domain {#tbl-cond} -->
 
 ### Data-generating mechanism
 
@@ -152,23 +155,23 @@ Data is generated under two scenarios: "X has an effect on Y" and "X has no effe
 
 In order to assess differences between outlier exclusion criteria, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$.
 
-| Parameter | Value |
-|-------------------------------|-----------------------------------------|
-| Intercept | $\beta_0 = 0$ |
-| Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
-| Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
-| Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ |
-|  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* |
-|  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* |
-| Continuous covariate regression coefficient | $\beta_2 = 0.10$ |
-| Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ |
-| Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ |
-| Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
-| Sample size | $200$ |
+<!-- | Parameter | Value | -->
+<!-- |-------------------------------|-----------------------------------------| -->
+<!-- | Intercept | $\beta_0 = 0$ | -->
+<!-- | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ | -->
+<!-- | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ | -->
+<!-- | Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ | -->
+<!-- |  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* | -->
+<!-- |  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* | -->
+<!-- | Continuous covariate regression coefficient | $\beta_2 = 0.10$ | -->
+<!-- | Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ | -->
+<!-- | Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ | -->
+<!-- | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ | -->
+<!-- | Sample size | $200$ | -->
 
-: Data generating mechanism {#tbl-DGM}
+<!-- : Data generating mechanism {#tbl-DGM} -->
 
-\*Specific value of epsilon to be determined
+<!-- \*Specific value of epsilon to be determined -->
 
 ### Estimands
 
@@ -178,13 +181,15 @@ The estimand of this study is $\beta_1,$ which represents the effect of the inde
 
 As previously mentioned, there are two scenarios under which data is generated. A no-effect scenario and an effect scenario. Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (@tbl-cond)
 
-After examining the effects per condition, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation condition as reported in @tbl-cond, but instead of automatically examining the value of the deviation condition, a choice is made. In each iteration the p-value of the deviation condition is compared to the p-value of the baseline condition, the most desired p-value is reported as the outcome. An overview can be found in Figure @fig-phases.
+In phase 1, the type I and type II error rates are compared between the baseline result and deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation, but instead of automatically reporting the deviation result, a choice is made. In each iteration the *p*-values of the deviation result and baseline result are compared, the most desired *p*-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in @fig-phases.
 
-![Process Flowchart](Visuals/process-phases.png){#fig-phases}
+<!-- ![Condition Comparisons](Visuals/phases.png){#fig-phases} -->
+
+<!-- *Note.* This figures illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result. -->
 
 ### Performance measures
 
-Performance is assessed through the type I and type II error for the estimand $\beta_1.$ Specifically, the regression coefficient itself, the p-value and the confidence interval are collected for each condition in each iteration.
+Performance is assessed through the type I and type II error for the estimand $\beta_1.$ Specifically, the regression coefficient itself, the *p*-value and the confidence interval are collected for each condition in each iteration.
 
 The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
 
