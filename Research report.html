@@ -129,32 +129,90 @@ window.Quarto = {
 <p>I reviewed which deviations to investigate by (1) how often they occur, (2) their potential impact and (3) their justifiability. Based on this I chose deviations in the following domains: sample size, outlier exclusion criteria, and statistical model. Within the three chosen domains, multiple conditions are simulated and compared to a baseline condition without any deviations.</p>
 <section id="sample-size" class="level4">
 <h4 class="anchored" data-anchor-id="sample-size">Sample size</h4>
-<p>Deviations in the sampling size are some of the most common deviations, with consistency between preregistrations and published papers only being 28% for the exact sampling size <span class="citation" data-cites="vandenakker2024">(<a href="#ref-vandenakker2024" role="doc-biblioref">van den Akker, Bakker, et al., 2024</a>)</span>. Changing the sample size can decrease power in research as well as inflate the false-positive rates <span class="citation" data-cites="lakens2024 simmons2011">(<a href="#ref-lakens2024" role="doc-biblioref">Lakens, 2024</a>; <a href="#ref-simmons2011" role="doc-biblioref">Simmons et al., 2011</a>)</span>. Small deviations in sample size are common and often due to factors outside of the researcher’s agency. Researchers also admit to stopping collection earlier or continuing collection longer after finding disappointing results <span class="citation" data-cites="john2012">(<a href="#ref-john2012" role="doc-biblioref">John et al., 2012</a>)</span>, however, whether this is also used as a reason to deviate from preregistrations is unknown. Based on this, the conditions in <strong>?@tbl-cond</strong> are simulated within the sample size domain.</p>
+<p>Deviations in the sampling size are some of the most common deviations, with consistency between preregistrations and published papers only being 28% for the exact sampling size <span class="citation" data-cites="vandenakker2024">(<a href="#ref-vandenakker2024" role="doc-biblioref">van den Akker, Bakker, et al., 2024</a>)</span>. Changing the sample size can decrease power in research as well as inflate the false-positive rates <span class="citation" data-cites="lakens2024 simmons2011">(<a href="#ref-lakens2024" role="doc-biblioref">Lakens, 2024</a>; <a href="#ref-simmons2011" role="doc-biblioref">Simmons et al., 2011</a>)</span>. Small deviations in sample size are common and often due to factors outside of the researcher’s agency. Researchers also admit to stopping collection earlier or continuing collection longer after finding disappointing results <span class="citation" data-cites="john2012">(<a href="#ref-john2012" role="doc-biblioref">John et al., 2012</a>)</span>, however, whether this is also used as a reason to deviate from preregistrations is unknown. Based on this, the conditions in <a href="#tbl-cond" class="quarto-xref">Table&nbsp;1</a> are simulated within the sample size domain.</p>
 </section>
 <section id="outlier-exclusion-criteria" class="level4">
 <h4 class="anchored" data-anchor-id="outlier-exclusion-criteria">Outlier exclusion criteria</h4>
 <p>Literature shows that over half of published papers do not adhere to their pre-specified outlier exclusion criteria <span class="citation" data-cites="vandenakker2024 claesen2021">(<a href="#ref-claesen2021" role="doc-biblioref">Claesen et al., 2021</a>; <a href="#ref-vandenakker2024" role="doc-biblioref">van den Akker, Bakker, et al., 2024</a>)</span>. Reasons for these deviations often include vague criteria in the preregistration or failing to specify outlier criteria at all. When criteria are specified, they often leave a lot of room for interpretation and ad hoc decisions <span class="citation" data-cites="heirene2024">(<a href="#ref-heirene2024" role="doc-biblioref">Heirene et al., 2024</a>)</span>. This could potentially lead to researchers choosing how to exclude outliers based on which method provides better results. Researchers themselves, however, deem outlier deviations to be relatively acceptable <span class="citation" data-cites="willroth2024">(<a href="#ref-willroth2024" role="doc-biblioref">Willroth &amp; Atherton, 2024</a>)</span>.</p>
 <p>H@lakens2024 argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by <span class="citation" data-cites="stefan2023">Stefan &amp; Schönbrodt (<a href="#ref-stefan2023" role="doc-biblioref">2023</a>)</span>, who showed that the type I error increases linearly with the number of outlier detection methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data <span class="citation" data-cites="john2012">(<a href="#ref-john2012" role="doc-biblioref">John et al., 2012</a>)</span>. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations are important.</p>
-<p>The most common method for identifying outliers in the social sciences is the z-score. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook’s distance excludes outliers based on how much the exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on z-score and Cook’s distance (<strong>?@tbl-cond</strong>).</p>
+<p>The most common method for identifying outliers in the social sciences is the z-score. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook’s distance excludes outliers based on how much the exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on z-score and Cook’s distance (<a href="#tbl-cond" class="quarto-xref">Table&nbsp;1</a>).</p>
 </section>
 <section id="statistical-model" class="level4">
 <h4 class="anchored" data-anchor-id="statistical-model">Statistical model</h4>
 <p>Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. “Statistical model” is a very broad domain and includes many types of deviations. Such as, changes in the dependent variable, independent variable, statistical inference criteria and the actual model which is assessed. In this paper “statistical model” refers to all the above-mentioned types of changes, not only the statistical test and its specifications.</p>
 <p>The broadness of the domain also means that deviations within the domain have been investigated from multiple angles. <span class="citation" data-cites="claesen2021">Claesen et al. (<a href="#ref-claesen2021" role="doc-biblioref">2021</a>)</span> show a deviation rate of 70% within the “analysis” domain, including deviations like examining additional effects, changing which model is tested and performing unregistered robustness checks. The majority of these deviations went unreported. <span class="citation" data-cites="vandenakker2024">van den Akker, Bakker, et al. (<a href="#ref-vandenakker2024" role="doc-biblioref">2024</a>)</span> also show inconsistencies in 40% of the statistical models. In that research, deviations included the specifications of the variables, which model was tested and how variables were used.</p>
-<p>As <span class="citation" data-cites="lakens2024">Lakens (<a href="#ref-lakens2024" role="doc-biblioref">2024</a>)</span> argues, at times it might be necessary to alter the statistical model used. For example, when a variable has been measured at a different level than expected or a test assumption has been violated. However, changing the statistical model can also be done opportunistically. Choosing to add an extra dependent variable because results are not yet satisfying can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% <span class="citation" data-cites="simmons2011">(<a href="#ref-simmons2011" role="doc-biblioref">Simmons et al., 2011</a>)</span>. The reasoning behind the change thus becomes very important. Therefore, deviations due to failing to properly specify how variables would be operationalized in the preregistration are also seen as a larger shortcoming than model deviations due to unforeseen consequences <span class="citation" data-cites="willroth2024">(<a href="#ref-willroth2024" role="doc-biblioref">Willroth &amp; Atherton, 2024</a>)</span>. Within the statistical model, three deviation conditions are simulated; outcome switching, adding a continuous covariate, and adding a dichotomous covariate (<strong>?@tbl-cond</strong>).</p>
+<p>As <span class="citation" data-cites="lakens2024">Lakens (<a href="#ref-lakens2024" role="doc-biblioref">2024</a>)</span> argues, at times it might be necessary to alter the statistical model used. For example, when a variable has been measured at a different level than expected or a test assumption has been violated. However, changing the statistical model can also be done opportunistically. Choosing to add an extra dependent variable because results are not yet satisfying can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% <span class="citation" data-cites="simmons2011">(<a href="#ref-simmons2011" role="doc-biblioref">Simmons et al., 2011</a>)</span>. The reasoning behind the change thus becomes very important. Therefore, deviations due to failing to properly specify how variables would be operationalized in the preregistration are also seen as a larger shortcoming than model deviations due to unforeseen consequences <span class="citation" data-cites="willroth2024">(<a href="#ref-willroth2024" role="doc-biblioref">Willroth &amp; Atherton, 2024</a>)</span>. Within the statistical model, three deviation conditions are simulated; outcome switching, adding a continuous covariate, and adding a dichotomous covariate (<a href="#tbl-cond" class="quarto-xref">Table&nbsp;1</a>).</p>
 <!-- reasons to compare only nested models perhaps to maintain same estimands and performance measures  -->
-<!-- | Domain | Baseline condition | Deviations conditions | -->
-<!-- |---------------------|-----------------------|-----------------------------| -->
-<!-- | Sample size | 200 | +5 | -->
-<!-- |  |  | +30 | -->
-<!-- |  |  | -5 | -->
-<!-- |  |  | -30 | -->
-<!-- | Outlier exclusion criteria | No outliers excluded | Excluded based on Z-scores | -->
-<!-- |  |  | Excluded based on Cook's distance | -->
-<!-- | Statistical methods: covariates | No covariates | Continuous covariate | -->
-<!-- |  |  | Dichotomous covariate | -->
-<!-- | Statistical methods: outcome | Y | Ya | -->
-<!-- : Parameter Values for Baseline and Deviation Conditions per Domain {#tbl-cond} -->
+<div id="tbl-cond" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cond-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Parameter Values for Baseline and Deviation Conditions per Domain
+</figcaption>
+<div aria-describedby="tbl-cond-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 31%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Baseline condition</th>
+<th>Deviations conditions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sample size</td>
+<td>200</td>
+<td>+5</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>+30</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>-5</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>-30</td>
+</tr>
+<tr class="odd">
+<td>Outlier exclusion criteria</td>
+<td>No outliers excluded</td>
+<td>Excluded based on Z-scores</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Excluded based on Cook’s distance</td>
+</tr>
+<tr class="odd">
+<td>Statistical methods: covariates</td>
+<td>No covariates</td>
+<td>Continuous covariate</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Dichotomous covariate</td>
+</tr>
+<tr class="odd">
+<td>Statistical methods: outcome</td>
+<td>Y</td>
+<td>Ya</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
 </section>
 <section id="data-generating-mechanism" class="level3">
@@ -163,7 +221,7 @@ window.Quarto = {
 <p>Data generation follows the intended model of interest: a linear regression model with outcome <span class="math inline">\(Y\)</span> and predictor <span class="math inline">\(X\)</span>. In the baseline condition, the statistical model is defined as <span class="math display">\[
 Y = \beta_0 + \beta_1X + \epsilon,
 \]</span> where <span class="math inline">\(Y\)</span> is the dependent variable, <span class="math inline">\(\beta_0\)</span> the intercept, <span class="math inline">\(\beta_1\)</span> the main effect, and <span class="math inline">\(\epsilon\)</span> the random error.</p>
-<p>The population parameter values are presented in <strong>?@tbl-DGM</strong>, together with the parameter values for the deviation conditions. The complete data-generating model is defined as</p>
+<p>The population parameter values are presented in <a href="#tbl-DGM" class="quarto-xref">Table&nbsp;2</a>, together with the parameter values for the deviation conditions. The complete data-generating model is defined as</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,\\
@@ -173,21 +231,74 @@ Y_a =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,
 <p>where <span class="math inline">\(Z\)</span> and <span class="math inline">\(D\)</span> represent a continuous and categorical covariate (respectively) and <span class="math inline">\(Y_a\)</span> represents an alternative outcome variable.</p>
 <p>Data is generated under two scenarios: “X has an effect on Y” and “X has no effect on Y”. The only difference in data generation between the two scenarios is in the main effect parameter, <span class="math inline">\(\beta_1\)</span>. In the effect scenario, <span class="math inline">\(\beta_1\)</span> is 0.3, and in the no effect scenario, <span class="math inline">\(\beta_1\)</span> is 0.</p>
 <p>In order to assess differences between outlier exclusion criteria, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for <span class="math inline">\(\epsilon\)</span>.</p>
-<!-- | Parameter | Value | -->
-<!-- |-------------------------------|-----------------------------------------| -->
-<!-- | Intercept | $\beta_0 = 0$ | -->
-<!-- | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ | -->
-<!-- | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-<!-- | Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ | -->
-<!-- |  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* | -->
-<!-- |  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* | -->
-<!-- | Continuous covariate regression coefficient | $\beta_2 = 0.10$ | -->
-<!-- | Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-<!-- | Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ | -->
-<!-- | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ | -->
-<!-- | Sample size | $200$ | -->
-<!-- : Data generating mechanism {#tbl-DGM} -->
-<!-- \*Specific value of epsilon to be determined -->
+<div id="tbl-DGM" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-DGM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Data generating mechanism
+</figcaption>
+<div aria-describedby="tbl-DGM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intercept</td>
+<td><span class="math inline">\(\beta_0 = 0\)</span></td>
+</tr>
+<tr class="even">
+<td>Regression coefficient</td>
+<td><span class="math inline">\(\beta_1 = 0\)</span> or <span class="math inline">\(\beta_1 = 0.30\)</span></td>
+</tr>
+<tr class="odd">
+<td>Independent variable</td>
+<td><span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span></td>
+</tr>
+<tr class="even">
+<td>Random error</td>
+<td><span class="math inline">\(95\% = \epsilon \sim \mathcal{N}(0, 1)\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(2.5\% = \epsilon \sim \mathcal{N}(-2, 1)\)</span>*</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math inline">\(2.5\% = \epsilon \sim \mathcal{N}(2, 1)\)</span>*</td>
+</tr>
+<tr class="odd">
+<td>Continuous covariate regression coefficient</td>
+<td><span class="math inline">\(\beta_2 = 0.10\)</span></td>
+</tr>
+<tr class="even">
+<td>Continuous demographic variable</td>
+<td><span class="math inline">\(Z \sim \mathcal{N}(\mu, \sigma^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Dichotomous covariate regression coefficient</td>
+<td><span class="math inline">\(\beta_3 = 0.10\)</span></td>
+</tr>
+<tr class="even">
+<td>Dichotomous demographic variable</td>
+<td><span class="math inline">\(D \sim \text{Bernoulli}(0.5)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Sample size</td>
+<td><span class="math inline">\(200\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>*Specific value of epsilon to be determined</p>
 </section>
 <section id="estimands" class="level3">
 <h3 class="anchored" data-anchor-id="estimands">Estimands</h3>
@@ -195,10 +306,19 @@ Y_a =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,
 </section>
 <section id="methods-1" class="level3">
 <h3 class="anchored" data-anchor-id="methods-1">Methods</h3>
-<p>As previously mentioned, there are two scenarios under which data is generated. A no-effect scenario and an effect scenario. Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (<strong>?@tbl-cond</strong>)</p>
-<p>In phase 1, the type I and type II error rates are compared between the baseline result and deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation, but instead of automatically reporting the deviation result, a choice is made. In each iteration the <em>p</em>-values of the deviation result and baseline result are compared, the most desired <em>p</em>-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in <strong>?@fig-phases</strong>.</p>
-<!-- ![Condition Comparisons](Visuals/phases.png){#fig-phases} -->
-<!-- *Note.* This figures illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result. -->
+<p>As previously mentioned, there are two scenarios under which data is generated. A no-effect scenario and an effect scenario. Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (<a href="#tbl-cond" class="quarto-xref">Table&nbsp;1</a>)</p>
+<p>In phase 1, the type I and type II error rates are compared between the baseline result and deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation, but instead of automatically reporting the deviation result, a choice is made. In each iteration the <em>p</em>-values of the deviation result and baseline result are compared, the most desired <em>p</em>-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in <a href="#fig-phases" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-phases" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Condition Comparisons
+</figcaption>
+<div aria-describedby="fig-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Visuals/phases.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+<p><em>Note.</em> This figures illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result.</p>
 </section>
 <section id="performance-measures" class="level3">
 <h3 class="anchored" data-anchor-id="performance-measures">Performance measures</h3>

@@ -118,19 +118,19 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 
 <!-- reasons to compare only nested models perhaps to maintain same estimands and performance measures  -->
 
-<!-- | Domain | Baseline condition | Deviations conditions | -->
-<!-- |---------------------|-----------------------|-----------------------------| -->
-<!-- | Sample size | 200 | +5 | -->
-<!-- |  |  | +30 | -->
-<!-- |  |  | -5 | -->
-<!-- |  |  | -30 | -->
-<!-- | Outlier exclusion criteria | No outliers excluded | Excluded based on Z-scores | -->
-<!-- |  |  | Excluded based on Cook's distance | -->
-<!-- | Statistical methods: covariates | No covariates | Continuous covariate | -->
-<!-- |  |  | Dichotomous covariate | -->
-<!-- | Statistical methods: outcome | Y | Ya | -->
+| Domain | Baseline condition | Deviations conditions |
+|---------------------|-----------------------|-----------------------------|
+| Sample size | 200 | +5 |
+|  |  | +30 |
+|  |  | -5 |
+|  |  | -30 |
+| Outlier exclusion criteria | No outliers excluded | Excluded based on Z-scores |
+|  |  | Excluded based on Cook's distance |
+| Statistical methods: covariates | No covariates | Continuous covariate |
+|  |  | Dichotomous covariate |
+| Statistical methods: outcome | Y | Ya |
 
-<!-- : Parameter Values for Baseline and Deviation Conditions per Domain {#tbl-cond} -->
+: Parameter Values for Baseline and Deviation Conditions per Domain {#tbl-cond}
 
 ### Data-generating mechanism
 
@@ -155,23 +155,23 @@ Data is generated under two scenarios: "X has an effect on Y" and "X has no effe
 
 In order to assess differences between outlier exclusion criteria, the data need to include outliers. In order to simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$.
 
-<!-- | Parameter | Value | -->
-<!-- |-------------------------------|-----------------------------------------| -->
-<!-- | Intercept | $\beta_0 = 0$ | -->
-<!-- | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ | -->
-<!-- | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-<!-- | Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ | -->
-<!-- |  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* | -->
-<!-- |  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* | -->
-<!-- | Continuous covariate regression coefficient | $\beta_2 = 0.10$ | -->
-<!-- | Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ | -->
-<!-- | Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ | -->
-<!-- | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ | -->
-<!-- | Sample size | $200$ | -->
+| Parameter | Value |
+|-------------------------------|-----------------------------------------|
+| Intercept | $\beta_0 = 0$ |
+| Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
+| Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
+| Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ |
+|  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* |
+|  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* |
+| Continuous covariate regression coefficient | $\beta_2 = 0.10$ |
+| Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ |
+| Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ |
+| Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
+| Sample size | $200$ |
 
-<!-- : Data generating mechanism {#tbl-DGM} -->
+: Data generating mechanism {#tbl-DGM}
 
-<!-- \*Specific value of epsilon to be determined -->
+\*Specific value of epsilon to be determined
 
 ### Estimands
 
@@ -183,9 +183,9 @@ As previously mentioned, there are two scenarios under which data is generated. 
 
 In phase 1, the type I and type II error rates are compared between the baseline result and deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation, but instead of automatically reporting the deviation result, a choice is made. In each iteration the *p*-values of the deviation result and baseline result are compared, the most desired *p*-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in @fig-phases.
 
-<!-- ![Condition Comparisons](Visuals/phases.png){#fig-phases} -->
+![Condition Comparisons](Visuals/phases.png){#fig-phases}
 
-<!-- *Note.* This figures illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result. -->
+*Note.* This figures illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result.
 
 ### Performance measures
 
