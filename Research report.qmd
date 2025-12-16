@@ -40,6 +40,7 @@ Prof. Bob Johnson
 
 \newpage
 
+
 <!-- WHEN YOU WANT TO RUN THE CODE, REMOVE EVAL: FALSE FROM YAML -->
 
 ```{r}
@@ -82,7 +83,7 @@ There is no clear consensus on whether inconsistencies between preregistrations 
 
 With this simulation study, I intend to close this gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect type I and type II error rates in research?’ The effect of deviations is studied in three domains: sample size, outlier exclusion criteria, and the statistical model. Different deviations are simulated in each domain and compared to a baseline condition without deviations. This research question is investigated in the context of behavioral psychology and uses linear regression as the model of interest. The effects are examined across two scenarios: a no-effect scenario, and an effect scenario, in which the main effect parameter is changed. The aim of this study is descriptive and therefore no specific hypotheses are formalized.
 
-As a potential secondary goal, I hope to address the issue of reasons for deviations being unknown. The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the results they prefer. Initially, the deviation conditions are simulated and the outcomes are used to assess type I and type II error as compared to the baseline condition. In the second phase, deviations are simulated but the outcomes are selectively chosen from either the baseline or the deviation condition, based on which condition has the better value. This is done in order to proxy the opportunistic selection of results by the researcher.
+As a potential secondary goal, I hope to address the issue of reasons for deviations being unknown. The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the results they prefer. Initially, the deviation conditions are simulated and the outcomes are used to assess type I and type II error as compared to the baseline condition. In the second phase, deviations are simulated but the outcomes are selectively chosen from either the baseline or the deviation condition, based on which condition has the better *p*-value. This is done in order to proxy the opportunistic selection of results by the researcher.
 
 With these simulations I hope to provide clarity on the effect of deviations from preregistration on type I and type II errors, as well as the effect of picking deviations opportunistically.
 
