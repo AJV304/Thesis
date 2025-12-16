@@ -1,9 +1,11 @@
 ---
-title: "Research Report"
-author: A. J. Vijlbrief
+# title: "Research Report"
+# subtitle: "Busy Making Other Plans: A Simulation Study on the Effects of Deviations from Preregistrations"
+# author: A. J. Vijlbrief
+# date: today
 format:
   pdf:
-    documentclass: article
+    documentclass: report
     indent: true
 editor: visual
 bibliography: My Library.bib
@@ -11,6 +13,32 @@ csl: apa.csl
 # execute:
 #    eval: false
 ---
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+
+{\Huge Research Report\par}
+\vspace{0.8cm}
+
+{\Large \bfseries Busy Making Other Plans: A Simulation Study on the Effects of Deviations from Preregistrations\par}
+\vspace{1cm}
+
+{\large A. J. Vijlbrief\par}
+{\large December 19, 2025\par}
+
+\vfill
+
+{\large\textbf{Supervisors}\par}
+Dr. Alice Smith\\
+Prof. Bob Johnson
+
+\vspace{0.5cm}
+
+{\large\textbf{Word Count}\par}
+12,345
+\end{titlepage}
+
+\newpage
 
 <!-- WHEN YOU WANT TO RUN THE CODE, REMOVE EVAL: FALSE FROM YAML -->
 
