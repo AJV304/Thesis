@@ -8,6 +8,11 @@ format:
     documentclass: report
     indent: true
     fig-cap-location: top
+    geometry:
+      - top=4cm
+      - bottom=4cm
+      - left=3cm
+      - right=3cm
 editor: visual
 bibliography: My Library.bib
 csl: apa.csl
@@ -62,7 +67,7 @@ library(stats)
 
 Preregistrations were popularized in the 2010s in psychology as a way to increase reproducibility [@lindsay2018]. Preregistrations are documents that are published at the start of the research process, in which decisions concerning data collection and analysis are recorded. This is done with the aim of limiting the extent to which such decisions can be influenced by results.
 
-This practice increases transparency about research choices and has become more popular over the years, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018]. However, whether the desired effect of reduced flexibility and increased reproducibility has been achieved is debated. Preregistration should lead to more credible and reproducible results [@wagenmakers2012; @lakens2019; @nosek2018]. However, no difference has been found between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024a], and no a reduction in *p*-hacking [@brodeur2024].
+This practice increases transparency about research choices and has become more popular, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018]. However, whether the desired effect of reduced flexibility and increased reproducibility has been achieved is debated. Preregistration should lead to more credible and reproducible results [@wagenmakers2012; @lakens2019; @nosek2018]. However, no difference has been found between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024a], and no reduction in *p*-hacking [@brodeur2024].
 
 There are many reasons for the uncertainty of the effect of preregistration. Preregistrations are often incomplete or overly vague about their decisions [@heirene2024; @claesen2021]. Researchers also deviate from their predetermined choices [@vandenakker2024; @claesen2021]. Deviations have been found in as many as 93% of preregistered papers, with up to 89% being incompletely reported [@claesen2021; @willroth2024]. These high deviation rates could be the reason why we see no reduction in significant findings and *p*-hacking.
 
@@ -102,19 +107,20 @@ Deviations in the sample size are some of the most common deviations, with consi
 
 #### Outlier exclusion criteria
 
-Literature shows that over half of published papers do not adhere to their pre-specified outlier exclusion criteria [@vandenakker2024; @claesen2021]. Vague or missing criteria in preregistrations make it harder to assess deviations and leave a lot of room for interpretation and ad hoc decisions [@heirene2024]. This could potentially lead to researchers choosing how to exclude outliers based on which method provides better results. Researchers themselves, however, deem outlier deviations to be relatively acceptable [@willroth2024].
+Literature shows that over half of published papers do not adhere to their pre-specified outlier exclusion criteria [@vandenakker2024; @claesen2021]. Vague or missing criteria in preregistrations make it harder to assess deviations and leave a lot of room for interpretation and ad hoc decisions [@heirene2024]. This could potentially lead researchers to choose how to exclude outliers based on which method provides better results. Researchers themselves, however, deem outlier deviations to be relatively acceptable [@willroth2024].
 
 @lakens2024 argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by @stefan2023, who showed that the type I error increases linearly with the number of outlier detection methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data [@john2012]. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations are important.
 
-The most common method for identifying outliers in the social sciences is the z-score. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook's distance excludes outliers based on how much the exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on z-score and Cook's distance (@tbl-cond).
+The most common method for identifying outliers in the social sciences is the *z*-score [@bakker2014; @leys2013]. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook's distance excludes outliers based on how much their exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on *z*-score and Cook's distance (@tbl-cond).
 
 #### Statistical model
 
-Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. "Statistical model" is a very broad domain and includes many types of deviations. Such as, changes in the dependent variable, independent variable, statistical inference criteria and the actual model which is assessed. In this paper "statistical model" refers to the above-mentioned types of changes, not only the statistical test and its specifications.
+Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. "Statistical model" is a very broad domain and includes many types of deviations, such as, changes in the dependent variable, independent variable, statistical inference criteria and the actual statistical test. In this paper, "statistical model" refers to the above-mentioned types of changes, not only the statistical test and its specifications.
 
-The broadness of the domain also means that deviations within the domain have been investigated from multiple angles. @claesen2021 show a deviation rate of 70% within the "analysis" domain, including deviations like examining additional effects, changing which model is tested and performing unregistered robustness checks. The majority of these deviations went unreported. @vandenakker2024 also show inconsistencies in 40% of the statistical models. In that study, deviations included the specifications of the variables, which model was tested and how variables were used.
+The broadness of the domain also means that deviations within the domain have been investigated from multiple angles. @claesen2021 found a deviation rate of 70% within the "analysis" domain, including deviations like examining additional effects, changing which model is tested and performing unregistered robustness checks. The majority of these deviations went unreported. Another study reported inconsistencies in 40% of the statistical models, deviations included the specifications of the variables, which model was tested and how variables were used [@vandenakker2024].
 
-As @lakens2024 argues, at times it might be necessary to alter the statistical model used. This could happen when a variable has been measured at a different level than expected or a test assumption has been violated. However, changing the statistical model can also be done opportunistically. Choosing to add an extra dependent variable because results are not yet satisfying can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% [@simmons2011]. The reasoning behind the change thus becomes very important. Therefore, deviations due to failing to properly specify how variables would be operationalized in the preregistration are also seen as a larger shortcoming than model deviations due to unforeseen consequences [@willroth2024]. Within the statistical model, three deviation conditions are simulated; outcome switching, adding a continuous covariate, and adding a dichotomous covariate (@tbl-cond).
+As @lakens2024 argues, at times it might be necessary to alter the statistical model used. This could happen when a variable has been measured at a different level than expected or a test assumption has been violated. However, changing the statistical model can also be done opportunistically. Choosing to add an extra dependent variable because results are not yet satisfying can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% [@simmons2011]. The reasoning behind the change thus becomes very important. Therefore, deviations due to failing to properly specify how variables would be operationalized in the preregistration are also seen as a larger shortcoming than model deviations due to unforeseen consequences [@willroth2024]. Within the statistical model, three deviation conditions are simulated: outcome switching, adding a continuous covariate, and adding a dichotomous covariate (@tbl-cond).
+
 
 <!-- reasons to compare only nested models perhaps to maintain same estimands and performance measures  -->
 
@@ -124,13 +130,27 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 |  |  | +30 |
 |  |  | -5 |
 |  |  | -30 |
-| Outlier exclusion criteria | No outliers excluded | Excluded based on Z-scores |
-|  |  | Excluded based on Cook's distance |
-| Statistical methods: covariates | No covariates | Continuous covariate |
+| Outlier exclusion criteria | No outliers excluded | Exclusion based on *z*-scores |
+|  |  | Exclusion based on Cook's distance |
+| Statistical methods: *covariates* | No covariates | Continuous covariate |
 |  |  | Dichotomous covariate |
-| Statistical methods: outcome | Y | Ya |
+| Statistical methods: *outcome*| Y | Ya |
 
-: Parameter Values for Baseline and Deviation Conditions per Domain {#tbl-cond}
+: Parameter Values for Baseline Condition and Deviation Conditions per Domain {#tbl-cond}
+
+
+
+### Methods
+
+Data is generaterd under two scenarios: "X has an effect on Y" and "X has no effect on Y". Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (@tbl-cond)
+
+In phase 1, the type I and type II error rates are compared between the baseline result and each deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation again, but instead of automatically reporting the deviation result, a choice is made. In each iteration the *p*-values of the deviation result and baseline result are compared, the most desired *p*-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in @fig-phases.
+
+![Condition Comparisons](Visuals/phases.png){#fig-phases}
+
+*Note.* This figure illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result.
+
+
 
 ### Data-generating mechanism
 
@@ -143,18 +163,18 @@ The population parameter values are presented in @tbl-DGM, together with the par
 $$
 \begin{aligned}
 Y =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,\\
-Y_a =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon, 
+Y_a =  Y + \epsilon_a, 
 \end{aligned}
 $$
 
 where $Z$ and $D$ represent a continuous and categorical covariate (respectively) and $Y_a$ represents an alternative outcome variable.
 
-Data is generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.3, and in the no effect scenario, $\beta_1$ is 0.
+As mentioned, data is generated under two scenarios: an effect scenario and a no-effect scenario. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.3, and in the no-effect scenario, $\beta_1$ is 0.
 
-In order to assess differences between outlier exclusion criteria, the data need to include outliers. To simulate outliers, 5% of the data is simulated with an increased or decreased value for $\epsilon$.
+In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data with increased or decreased values for $\epsilon$.
 
 | Parameter | Value |
-|-------------------------------|-----------------------------------------|
+|-------------------------------|----------------------------------------|
 | Intercept | $\beta_0 = 0$ |
 | Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
 | Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
@@ -167,31 +187,21 @@ In order to assess differences between outlier exclusion criteria, the data need
 | Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
 | Sample size | $200$ |
 
-: Data generating mechanism {#tbl-DGM}
+: Parameter Values for the Data generating mechanism {#tbl-DGM}
 
 \*Specific value of epsilon to be determined
 
 ### Estimands
 
-The estimand of this study is $\beta_1,$ which represents the effect of the independent variable $X$. The coefficient is estimated using the `lm` package in `R` (REF), under the different deviation conditions.
-
-### Methods
-
-As previously mentioned, there are two scenarios under which data is generated. A no-effect scenario and an effect scenario. Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (@tbl-cond)
-
-In phase 1, the type I and type II error rates are compared between the baseline result and deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation, but instead of automatically reporting the deviation result, a choice is made. In each iteration the *p*-values of the deviation result and baseline result are compared, the most desired *p*-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in @fig-phases.
-
-![Condition Comparisons](Visuals/phases.png){#fig-phases}
-
-*Note.* This figures illustrates the study phases. In phase 1, the baseline result is compared to the deviation result. In phase 2, the baseline result is compared to the best result.
+The estimand of this study is $\beta_1,$ which represents the effect of the independent variable $X$ on dependent variable $Y$. The coefficient is estimated using the `stats` package in `R` [@rcoreteam2024], under the baseline and deviation conditions.
 
 ### Performance measures
 
-Performance is assessed through the type I and type II error for the estimand $\beta_1.$ Specifically, the regression coefficient itself, the *p*-value and the confidence interval are collected for each condition in each iteration.
+Performance is assessed through the type I and type II error for the estimand $\beta_1.$ Specifically, the regression coefficient itself, the *p*-value (for decision making in phase 2) and the confidence interval (to assess coverage) are collected for each condition in each iteration.
 
 The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
 
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered to have an inflated type II error rate.
 
 <!-- ## Results -->
 
