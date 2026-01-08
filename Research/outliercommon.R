@@ -45,8 +45,10 @@ outliercheck(meat2)
 
 boxplot(meat1$Value)
 boxplot(meat2$Value)
+hist(meat2$Value)
 
-#another data set
+
+#another daValue#another data set
 library(haven)
 socialsurvey <- read_sas("Research/gss2024.sas7bdat")
 
@@ -61,6 +63,9 @@ boxplot(socialsurvey1$AGE)
 boxplot(socialsurvey1$WRKSTAT)
 boxplot(socialsurvey1$MARITAL)
 #when looking at boxplots, there are no outliers
+#histograms
+apply(socialsurvey1, 2, hist)
+
 
 #loading data set
 vegres <- read.csv("Research/Datafiniti_Vegetarian_and_Vegan_Restaurants.csv")
@@ -68,6 +73,7 @@ vegres1 <- vegres %>% select(menus.amountMax, menus.amountMin, priceRangeMin, pr
 
 outliercheck(vegres1)
 boxplot(vegres1)
+apply(vegres1, 2, hist)
 
 #loading data set
 library(readxl)
@@ -78,3 +84,5 @@ well <- read_dta("Research/kenya_water_filter_public_ca20171108.dta")
 well1 <- well %>% select(ecoli_num)
 outliercheck(well1)
 boxplot(well1)
+hist(well1$ecoli_num)
+

@@ -48,8 +48,8 @@ dgm <- function(effectsize){
   
   #replacing 5% of values with potentially random outliers
   ##creating an increased random error
-  re_outlier_high <- rnorm(n = n, mean = 2, sd = 1)
-  re_outlier_low <- rnorm(n = n, mean = -2, sd = 1)
+  re_outlier_high <- rnorm(n = n, mean = 4, sd = 4)
+  re_outlier_low <- rnorm(n = n, mean = -4, sd = 4)
   
   ##creating new dependent variable with increased outlier probability
   y_outlier_high <- b0 + b1*x + b_z*z + b_d*d + re_outlier_high
@@ -78,3 +78,7 @@ summary(df_outlier)
 
 hist(df$y, ylim = c(0,80), xlim = c(-2, 8), breaks = 14)
 hist(df_outlier$y, ylim = c(0,80), xlim = c(-2, 8), breaks = 14)
+
+
+hist(df$y)
+hist(df_outlier$y, breaks = 14)
