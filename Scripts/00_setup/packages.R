@@ -10,6 +10,7 @@ library(DiagrammeR)
 library(mvtnorm)
 library(stats)
 
+
 #------------
 #Diagram
 

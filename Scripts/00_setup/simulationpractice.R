@@ -486,7 +486,7 @@ df_long <- pval %>%
                values_to = "value")
 
 ggplot(df_long, aes(x = value, fill = variable)) +
-  geom_histogram(position = "identity", alpha = 0.7, bins = 50) +
+  geom_histogram(position = "identity", alpha = 0.7, bins = 20) +
   scale_fill_brewer(palette = "Set1") +
   geom_vline(xintercept = 0.05, color = "red", size = 0.1) +
   theme_minimal() +
@@ -542,8 +542,6 @@ ggplot(pval, aes(x = X3)) +
 #tabular overview of <.05 cases
 apply(pval, 2, function(x) sum(x < .05))
 #as stated before, it seems that cook's has an inflated type I error
-
-
 
 
 
