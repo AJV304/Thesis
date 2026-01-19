@@ -39,7 +39,8 @@ return(statistics)
 
 ###test-----
 #create data set
-df <- dgm()
+set.seed(1979094)
+df <- dgm(n, b0, b1_no, b1_yes, b_z, b_d)
 
 #creating a linear model to extract from linear model
 reg.no <- lm(y_no ~ x, data = df)
@@ -64,8 +65,16 @@ confint(reg.no)
 #dependent variable (scenario) you want to examine
 baseline <- function(dep){
   
-  #for the baseline scenario we only take the first 200 participants
-  df.baseline <- df %>% slice(1:200)
+  #for the baseline scenario we only take the first 200 participants, then
+  #remove outliers >3sd
+  df.baseline <- df %>% slice(1:200) 
+  
+  df.baseline <- df.baseline %>% filter(
+    .data[[dep]] >= mean(.data[[dep]]) - 3*sd(.data[[dep]]),
+    .data[[dep]] <= mean(.data[[dep]]) + 3*sd(.data[[dep]])
+  )
+  
+  #save dependent variable as y
   y <- df.baseline[[dep]]
   
   #perform a regression analysis and extract the statistics
@@ -82,12 +91,34 @@ baseline("y_no")
 
 ##test----
 
-#values should match: 
+#testing to see if outlier exclusion works 
+dep <- "y_no"
 df.baseline <- df %>% slice(1:200)
+
+#defining boundary values to check whether data falls within boundary after removal
+u.lim <- mean(df.baseline$y_no) + 3*sd(df.baseline$y_no)
+l.lim <- mean(df.baseline$y_no) - 3*sd(df.baseline$y_no)
+
+#remove outliers based on 3 sd
+df.baseline <- df.baseline %>% filter(
+  .data[[dep]] >= (mean(.data[[dep]]) - 3*sd(.data[[dep]])),
+  .data[[dep]] <= (mean(.data[[dep]]) + 3*sd(.data[[dep]]))
+)
+
+#evaluate is 
+max(df.baseline$y_no) <= u.lim
+min(df.baseline$y_no) >= l.lim
+#values should match: 
+df.baseline <- df %>% slice(1:200) %>% filter(
+  .data[[dep]] >= mean(.data[[dep]]) - 3*sd(.data[[dep]]),
+  .data[[dep]] <= mean(.data[[dep]]) + 3*sd(.data[[dep]])
+)
 y <- df.baseline$y_no
+
 #perform a regression analysis and extract the statistics
 reg <- lm(y ~ x, data = df.baseline)
 test <- extr(model = reg)
+rownames(test) <- "Baseline"
 
 #evaluate if the same:
 identical(fun, test) 
@@ -251,7 +282,7 @@ identical(fun[2,], test)
 
 #Analysis function--------------------------------------------------------------
 
-#combinging the condition functions to output one dataset
+#combining the condition functions to output one dataset
 analysis <- function(dep){
   base.stat <- baseline(dep)
   size.stat <- samplesize(dep)
