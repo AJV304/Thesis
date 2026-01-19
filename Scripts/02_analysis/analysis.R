@@ -20,7 +20,7 @@ extr <- function(model){
   
   #create temporary data frame
   statistics <- data.frame(matrix(ncol = 4, nrow = 1))
-  colnames(statistics) <- c("b1","p-value","lower ci","upper ci")
+  colnames(statistics) <- c("b1","p-value","lower-ci","upper-ci")
   
   #calculate confidence intervals
   ci <- confint(model, level = 0.95)

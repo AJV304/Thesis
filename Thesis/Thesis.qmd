@@ -168,33 +168,20 @@ As mentioned, data is generated under two scenarios: an effect scenario and a no
 
 In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data with increased or decreased values for $\epsilon$.
 
-+----------------------------------------------+----------------------------------------------+
-| Parameter                                    | Value                                        |
-+==============================================+==============================================+
-| Intercept                                    | $\beta_0 = 0$                                |
-+----------------------------------------------+----------------------------------------------+
-| Regression coefficient                       | $\beta_1 = 0$ or $\beta_1 = 0.30$            |
-+----------------------------------------------+----------------------------------------------+
-| Independent variable                         | $X \sim \mathcal{N}(\mu, \sigma^2)$          |
-+----------------------------------------------+----------------------------------------------+
-| Random error                                 | $95\% = \epsilon \sim \mathcal{N}(0, 1)$     |
-+----------------------------------------------+----------------------------------------------+
-|                                              | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* |
-+----------------------------------------------+----------------------------------------------+
-|                                              | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\*  |
-+----------------------------------------------+----------------------------------------------+
-| Continuous covariate regression coefficient  | $\beta_2 = 0.10$                             |
-+----------------------------------------------+----------------------------------------------+
-| Continuous demographic variable              | $Z \sim \mathcal{N}(\mu, \sigma^2)$          |
-+----------------------------------------------+----------------------------------------------+
-| Dichotomous covariate regression coefficient | $\beta_3 = 0.10$                             |
-+----------------------------------------------+----------------------------------------------+
-| Dichotomous demographic variable             | $D \sim \text{Bernoulli}(0.5)$               |
-+----------------------------------------------+----------------------------------------------+
-| Alternative outcome error                    | $\epsilon_a \sim \mathcal{N}(\mu, \sigma^2)$ |
-+----------------------------------------------+----------------------------------------------+
-| Sample size                                  | $200$                                        |
-+----------------------------------------------+----------------------------------------------+
+| Parameter | Value |
+|----|----|
+| Intercept | $\beta_0 = 0$ |
+| Regression coefficient | $\beta_1 = 0$ or $\beta_1 = 0.30$ |
+| Independent variable | $X \sim \mathcal{N}(\mu, \sigma^2)$ |
+| Random error | $95\% = \epsilon \sim \mathcal{N}(0, 1)$ |
+|  | $2.5\% = \epsilon \sim \mathcal{N}(-2, 1)$\* |
+|  | $2.5\% = \epsilon \sim \mathcal{N}(2, 1)$\* |
+| Continuous covariate regression coefficient | $\beta_2 = 0.10$ |
+| Continuous demographic variable | $Z \sim \mathcal{N}(\mu, \sigma^2)$ |
+| Dichotomous covariate regression coefficient | $\beta_3 = 0.10$ |
+| Dichotomous demographic variable | $D \sim \text{Bernoulli}(0.5)$ |
+| Alternative outcome error | $\epsilon_a \sim \mathcal{N}(\mu, \sigma^2)$ |
+| Sample size | $200$ |
 
 : Parameter Values for the Data generating mechanism {#tbl-DGM}
 
