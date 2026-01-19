@@ -70,7 +70,14 @@ df_outlier <- df_outlier %>% mutate(y_yes =
                                               list   = sample(1:n, 0.05*n), 
                                               values = ifelse(runif(length(repla)) < 0.5, sample(y_yes_outlier_high, 0.05*n), sample(y_yes_outlier_low, 0.05*n))))
 
-#graphical view
+#Alternative y variable 
+df$y_alt_yes <- rnorm_pre(df$y_yes, mu = 0, sd = 1, r = 0.6)
+df$y_alt_no <-  rnorm_pre(df$y_no, mu = 0, sd = 1, r = 0.6)
+
+df_outlier$y_alt_yes <- rnorm_pre(df_outlier$y_yes, mu = 0, sd = 1, r = 0.6)
+df_outlier$y_alt_no <-  rnorm_pre(df_outlier$y_no, mu = 0, sd = 1, r = 0.6)
+
+#summary and graphical view
 summary(df)
 summary(df_outlier)
 
@@ -101,13 +108,13 @@ dgm <- function() {
   #sampling from distributions
   ##simulating the independent variable x
   x <- rnorm(n = n,
-             mean = 10,
+             mean = 0,
              sd = 1)
   
   ##simulating the continuous covariate z
   z <- rnorm(n = n,
-             mean = 20,
-             sd = 3)
+             mean = 0,
+             sd = 1)
   
   ##simulating the dichotomous covariate d
   d <- rbinom(n = n,
@@ -128,8 +135,8 @@ dgm <- function() {
   
   #replacing 5% of values with potentially random outliers
   ##creating an increased random error
-  re_outlier_high <- rnorm(n = n, mean = 2, sd = 1)
-  re_outlier_low <- rnorm(n = n, mean = -2, sd = 1)
+  re_outlier_high <- rnorm(n = n, mean = 4, sd = 1)
+  re_outlier_low <- rnorm(n = n, mean = -4, sd = 1)
   
   ##creating new dependent variable with increased outlier probability
   y_no_outlier_high <- b0 + b1_no*x + b_z*z + b_d*d + re_outlier_high
@@ -152,6 +159,10 @@ dgm <- function() {
                                                 list   = sample(1:n, 0.05*n), 
                                                 values = ifelse(runif(length(repla)) < 0.5, sample(y_yes_outlier_high, 0.05*n), sample(y_yes_outlier_low, 0.05*n))))
   
+  #Alternative y variable correlated .6 with y 
+  df$y_alt_yes <- rnorm_pre(df$y_yes, mu = 0, sd = 1, r = 0.6)
+  df$y_alt_no <-  rnorm_pre(df$y_no, mu = 0, sd = 1, r = 0.6)
+  
   #request the data set as output of the function
   return(df)
 }
@@ -159,3 +170,16 @@ dgm <- function() {
 #save data from dgm as df data set
 set.seed(1979094)
 df <- dgm()
+
+#checks
+##effect vs no effect
+summary(lm(y_yes ~ x, df))
+summary(lm(y_no ~ x, df))
+
+##outliers
+boxplot(df$y_yes)
+boxplot(df$y_no)
+
+#correlation y and y alt
+cor(df$y_yes, df$y_alt_yes)
+cor(df$y_no, df$y_alt_no)

@@ -21,13 +21,13 @@ dgm <- function(effectsize){
   #sampling from distributions
   ##simulating the independent variable x
   x <- rnorm(n = n,
-             mean = 10,
+             mean = 0,
              sd = 1)
   
   ##simulating the continuous covariate z
   z <- rnorm(n = n,
-             mean = 20,
-             sd = 3)
+             mean = 0,
+             sd = 1)
   
   ##simulating the dichotomous covariate d
   d <- rbinom(n = n,
@@ -76,9 +76,9 @@ df_outlier <- dgm(0)[[2]]
 summary(df)
 summary(df_outlier)
 
-hist(df$y, ylim = c(0,80), xlim = c(-2, 8), breaks = 14)
-hist(df_outlier$y, ylim = c(0,80), xlim = c(-2, 8), breaks = 14)
+hist(df$y, ylim = c(0,80), xlim = c(-10, 10), breaks = 8)
+hist(df_outlier$y, ylim = c(0,80), xlim = c(-10, 10), breaks = 14)
 
 
-hist(df$y)
+hist(df$y, breaks = 14)
 hist(df_outlier$y, breaks = 14)
