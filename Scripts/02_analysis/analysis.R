@@ -11,7 +11,10 @@
 # All scenarios will be framed as a function where the input is y, to make
 # inputting the scenario easier.
 
-#Functions----------------------------------------------------------------------
+#Functions and objects----------------------------------------------------------
+
+##Objects
+cn <- c("b1","p-value","lower-ci","upper-ci")
 
 ##Extract function-----
 
@@ -20,7 +23,7 @@ extr <- function(model){
   
   #create temporary data frame
   statistics <- data.frame(matrix(ncol = 4, nrow = 1))
-  colnames(statistics) <- c("b1","p-value","lower-ci","upper-ci")
+  colnames(statistics) <- cn
   
   #calculate confidence intervals
   ci <- confint(model, level = 0.95)
@@ -39,8 +42,9 @@ return(statistics)
 
 ###test-----
 #create data set
+
 set.seed(1979094)
-df <- dgm(n, b0, b1_no, b1_yes, b_z, b_d)
+df <- dgm(n = 230, b0 = 0, b1_no = 0, b1_yes = 0.3, b_z = 0.06, b_d = 0.06)
 
 #creating a linear model to extract from linear model
 reg.no <- lm(y_no ~ x, data = df)
@@ -141,6 +145,12 @@ samplesize <- function(dep){
   for (i in 1:ss) {
     #take the specified size from the full data set
     df.samplesize <- df %>% slice(1:size[i])
+    #filter the outliers from the data
+    df.samplesize <- df.samplesize %>% filter(
+      .data[[dep]] >= mean(.data[[dep]]) - 3*sd(.data[[dep]]),
+      .data[[dep]] <= mean(.data[[dep]]) + 3*sd(.data[[dep]])
+    )
+    
     #use the specified depedent variable as the dependent variable
     y <- df.samplesize[[dep]]
     
@@ -159,11 +169,12 @@ samplesize("y_no")
 
 ##test----
 
-set.seed(1979094)
-df <- dgm()
-
 #manual test for ss 170
 df.samplesize <- df %>% slice(1:170)
+df.samplesize <- df.samplesize %>% filter(
+  df.samplesize$y_no >= mean(df.samplesize$y_no) - 3*sd(df.samplesize$y_no),
+  df.samplesize$y_no <= mean(df.samplesize$y_no) + 3*sd(df.samplesize$y_no)
+)
 reg <- lm(y_no ~ x, data = df.samplesize)
 test <- extr(model = reg)
 rownames(test) <- "Sample size (170)"
@@ -176,6 +187,11 @@ identical(test, fun[1,])
 
 #manual test for ss 195
 df.samplesize <- df %>% slice(1:195)
+df.samplesize <- df.samplesize %>% filter(
+  df.samplesize$y_no >= mean(df.samplesize$y_no) - 3*sd(df.samplesize$y_no),
+  df.samplesize$y_no <= mean(df.samplesize$y_no) + 3*sd(df.samplesize$y_no)
+)
+
 reg <- lm(y_no ~ x, data = df.samplesize)
 test <- extr(model = reg)
 rownames(test) <- "Sample size (195)"
