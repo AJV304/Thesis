@@ -126,14 +126,16 @@ hist(
 #As function--------------------
 #Turn it into a function with no arguments
 
-dgm <- function() {
-  #setting set values
-  n <- 230      #200 for the baseline condition + 15% for the max sample size increase condition
-  b0 <- 0       #intercept
-  b1_no <- 0    #main effect in the no effect scenario
-  b1_yes <- 0.3 #main effect in the effect scenario
-  b_z <- 0.06   #effect of continuous covariate
-  b_d <- 0.06   #effect of dichotomous covariate
+#setting set values
+n <- 230      #200 for the baseline condition + 15% for the max sample size increase condition
+b0 <- 0       #intercept
+b1_no <- 0    #main effect in the no effect scenario
+b1_yes <- 0.3 #main effect in the effect scenario
+b_z <- 0.06   #effect of continuous covariate
+b_d <- 0.06   #effect of dichotomous covariate
+
+dgm <- function(n, b0, b1_no, b1_yes, b_z, b_d) {
+
   
   #DONT SET A SEED BECAUSE THEN EACH DATA SET WILL BE THE SAME HAHA
   #setting a seed
@@ -217,7 +219,7 @@ dgm <- function() {
 
 #save data from dgm as df data set
 set.seed(1979094)
-df <- dgm()
+df <- dgm(n, b0, b1_no, b1_yes, b_z, b_d)
 
 #checks
 ##effect vs no effect
