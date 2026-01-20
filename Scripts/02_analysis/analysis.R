@@ -14,7 +14,9 @@
 #Functions and objects----------------------------------------------------------
 
 ##Objects
+###column and rownames
 cn <- c("b1","p-value","lower-ci","upper-ci")
+rn <- c("Baseline", "Sample size (170)", "Sample size (195)", "Sample size (205)", "Sample size (230)", "Strict z-score", "Cook's", "Continuous covariate", "Dichotomous covariate")
 
 ##Extract function-----
 
@@ -67,7 +69,7 @@ confint(reg.no)
 
 #having the baseline scenario be a function where you can fill in which
 #dependent variable (scenario) you want to examine
-baseline <- function(dep){
+baseline <- function(df, dep){
   
   #for the baseline scenario we only take the first 200 participants, then
   #remove outliers >3sd
@@ -131,7 +133,7 @@ identical(fun, test)
 
 #Sample size conditions---------------------------------------------------------
 
-samplesize <- function(dep){
+samplesize <- function(df, dep){
   
   #specify the alternative sample sizes to test
   size <- c(170, 195, 205, 230)
@@ -206,7 +208,7 @@ identical(test, fun[2,])
 
 #Outlier conditions-------------------------------------------------------------
 
-outlier <- function(dep){
+outlier <- function(df, dep){
   
   #create dataframe to save statistics
   outlier.stat <- data.frame(matrix(ncol = 4, nrow = 2)) #4 because four values get saved in the extract function, 2 columns for methods
@@ -292,7 +294,7 @@ identical(fun[2,], test)
 
 #Model conditions---------------------------------------------------------------
 
-models <- function(dep) {
+models <- function(df, dep) {
   
   #create dataframe to save statistics
   models.stat <- data.frame(matrix(ncol = 4, nrow = 2)) #4 because four values get saved in the extract function, 2 columns for methods
@@ -355,15 +357,14 @@ identical(fun[2,], test)
 #Analysis function--------------------------------------------------------------
 
 #combining the condition functions to output one dataset
-analysis <- function(dep){
-  base.stat <- baseline(dep)
-  size.stat <- samplesize(dep)
-  outlier.stat <- outlier(dep)
-  model.stat <- models(dep)
+analysis <- function(df, dep){
+  base.stat <- baseline(df, dep)
+  size.stat <- samplesize(df, dep)
+  outlier.stat <- outlier(df, dep)
+  model.stat <- models(df, dep)
   
   frames <- list(base.stat, size.stat, outlier.stat, model.stat)
   do.call(rbind, frames)
 }
 
 analysis("y_no")
-
