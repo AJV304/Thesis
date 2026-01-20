@@ -262,18 +262,19 @@ reg <- lm(y_no~x, data = df.outlier)
 #Z-scores
 ##exclude outliers based on z-scores
 df.outlier$z <- scale(df.outlier$y_no)
-df.ex.z <- df.outlier %>% filter(between(z, -3, 3))
+df.ex.z <- df.outlier %>% filter(between(z, -2, 2))
 
 ##perform regression for the z-score condtion
 reg.ex.z <- lm(y_no~x, data = df.ex.z)
 test <- extr(model = reg.ex.z)
-rownames(test) <- "Z-score"
+rownames(test) <- "Strict z-score"
 
 #z-scores according to function
 fun <- outlier("y_no")
 
 #are they identical?
 identical(fun[1,], test)
+
 
 #Cook's
 ##exclude outliers based on Cook's distance
@@ -289,12 +290,67 @@ rownames(test) <- "Cook's"
 identical(fun[2,], test)
 
 
-
 #Model conditions---------------------------------------------------------------
 
+models <- function(dep) {
+  
+  #create dataframe to save statistics
+  models.stat <- data.frame(matrix(ncol = 4, nrow = 2)) #4 because four values get saved in the extract function, 2 columns for methods
+  colnames(models.stat) <- cn
+  rownames(models.stat) <- c("Continuous covariate", "Dichotomous covariate")
+  
+  #we take the first 200 participants, then
+  #remove outliers >3sd
+  df.models <- df %>% slice(1:200) 
+  
+  df.models <- df.models %>% filter(
+    .data[[dep]] >= mean(.data[[dep]]) - 3*sd(.data[[dep]]),
+    .data[[dep]] <= mean(.data[[dep]]) + 3*sd(.data[[dep]])
+  )
+  
+  #save dependent variable as y
+  y <- df.models[[dep]]
+  
+  #then we run the different possible models
+  ##continuous covariate
+  reg <- lm(y ~ x + z, data = df.models)
+  models.stat[1,] <- extr(model = reg)
+
+  ##dichotomous covariate
+  reg <- lm(y ~ x + d, data = df.models)
+  models.stat[2,] <- extr(model = reg)
+  
+  #return the statistics as output
+  return(models.stat)
+}
+
+fun <- models("y_no")
 
 ##test----
 
+df.models <- df %>% slice(1:200) 
+
+df.models <- df.models %>% filter(
+  y_no >= mean(y_no) - 3*sd(y_no),
+  y_no <= mean(y_no) + 3*sd(y_no)
+)
+
+#then we run the different possible models
+##continuous covariate
+reg <- lm(y_no ~ x + z, data = df.models)
+test <- extr(reg)
+rownames(test) <- "Continuous covariate"
+
+#test if they are the same
+identical(fun[1,], test)
+
+##dichotomous covariate
+reg <- lm(y_no ~ x + d, data = df.models)
+test <- extr(reg)
+rownames(test) <- "Dichotomous covariate"
+
+#test if they are the same
+identical(fun[2,], test)
 
 #Analysis function--------------------------------------------------------------
 
@@ -303,9 +359,9 @@ analysis <- function(dep){
   base.stat <- baseline(dep)
   size.stat <- samplesize(dep)
   outlier.stat <- outlier(dep)
-  #model.stat <- model(dep)
+  model.stat <- models(dep)
   
-  frames <- list(base.stat, size.stat, outlier.stat) #, model.stat
+  frames <- list(base.stat, size.stat, outlier.stat, model.stat)
   do.call(rbind, frames)
 }
 
