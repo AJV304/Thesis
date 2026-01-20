@@ -219,23 +219,23 @@ outlier <- function(dep){
   y <- df.outlier[[dep]]
   reg <- lm(y~x, data = df.outlier)
   
-  #Z-scores
+  #Strict Z-scores (2 sd)
   ##exclude outliers based on z-scores
   df.outlier$z <- scale(df.outlier[[dep]])
-  df.ex.z <- df.outlier %>% filter(between(z, -3, 3))
+  df.ex.z <- df.outlier %>% filter(between(z, -2, 2))
   
   ##perform regression for the z-score condtion
   y <- df.ex.z[[dep]]
   reg.ex.z <- lm(y~x, data = df.ex.z)
   outlier.stat[1,] <- extr(model = reg.ex.z)
-  rownames(outlier.stat)[1] <- "Z-score"
+  rownames(outlier.stat)[1] <- "Strict z-score"
   
   #Cook's
   ##exclude outliers based on Cook's distance
   df.outlier$cook <- cooks.distance(reg)
   df.ex.cook <- df.outlier %>% filter(between(cook, 0, 1))
   
-  ##perform regression for the Cook'S condition
+  ##perform regression for the Cook's condition
   y <- df.ex.cook[[dep]]
   reg.ex.cook <- lm(y~x, data = df.ex.cook)
   outlier.stat[2,] <- extr(model = reg.ex.cook)
