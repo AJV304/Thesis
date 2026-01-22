@@ -19,7 +19,7 @@ thesis <- function(iter, n, b0, b1_no, b1_yes, b_z, b_d, dep) {
   }
 
 
-test <- thesis(iter = 2, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.3, b_z = 0.06, b_d = 0.06, dep = "y_no")
+test <- thesis(iter = 5, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.3, b_z = 0.06, b_d = 0.06, dep = "y_no")
 test
       
 
