@@ -3,3 +3,4 @@ rm(list=setdiff(ls(), c('extr', "dgm", "baseline", "cn", "df", "samplesize", "an
 
 #colnames
 cn <- c("b1","p-value","lower ci","upper ci")
+
