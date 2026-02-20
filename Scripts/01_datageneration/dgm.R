@@ -22,8 +22,8 @@ dgm <- function(n, b0, b1_no, b1_yes, b_z, b_d) {
   
   #formulating the regression formula
   ##simulating the dependent variable y
-  y_no <-  b0 + b1_no * x + b_z * z + b_d * d + re
-  y_yes <- b0 + b1_yes * x + b_z * z + b_d * d + re
+  y_no <-  b0 + b_z * z + b_d * d + re
+  y_yes <- y_no + b1_yes * x 
   
   #create data frame
   df <- data.frame(x, y_no, y_yes, z, d)
