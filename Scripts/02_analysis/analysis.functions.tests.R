@@ -92,7 +92,7 @@ baseline <- function(df, dep){
 }
 
 #run the function
-fun <- baseline("y_no")
+fun <- baseline(df, "y_no")
 baseline("y_no")
 
 ##test----
@@ -180,13 +180,13 @@ df.samplesize <- df.samplesize %>% filter(
 )
 reg <- lm(y_no ~ x, data = df.samplesize)
 test <- extr(model = reg)
-rownames(test) <- "Sample size (170)"
+
 
 #function test
-fun <- samplesize("y_no")
+fun <- samplesize(df, "y_no")
 
 #are they the same?
-identical(test, fun[1,])
+identical(test, fun[1,c(1:4)])
 
 #manual test for ss 195
 df.samplesize <- df %>% slice(1:195)
