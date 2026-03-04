@@ -1,0 +1,63 @@
+---
+title: "parameter"
+format: pdf
+editor: visual
+---
+
+## Parameter values in the DGM
+
+Data is generated according to a parametric linear regression model.
+
+$$
+\begin{aligned}
+Y =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon
+\end{aligned}
+$$
+
+Each variable is drawn from a known distribution as follows:
+
+Independent variable $X$ is drawn from a standardized normal distribution, as is the continuous covariate $Z$. Dichotomous covariate $D$ is drawn from a binomial distribution with equal chances of value 0 or 1. Standardized distributions are used in order to make results easily comparable and independent of scale. The random error $\epsilon$ is drawn from a normal distribution with a mean of zero and standard deviation 0.87. The standard deviation was set to 0.87 in order to achieve the desired level of power of 80%.
+
+$$
+\begin{aligned}
+X \sim \mathcal{N}(0,1) \\ Z \sim \mathcal{N}(0,1) \\ D \sim \text{Bin}(1, 0.5) \\\epsilon \sim \mathcal{N}(0,0.87)
+\end{aligned}
+$$
+
+Five percent (2.5% at each end of the distribution) of the data is drawn with an alternative random error to increase the occurrence of outliers. The means of the alternative error are 3 and -3 in order to simulate data points around the cut-off value of the baseline scenario (3 standard deviations from the mean).
+
+$$
+\epsilon \sim \mathcal{N}(3,1) \\ \epsilon \sim \mathcal{N}(-3,1) 
+$$
+
+The alternative outcome variable $Y_a$ is simulated using the `faux` package. The variable is drawn from a normal distribution with a correlation of 0.6 with the outcome variable $Y$. This correlation was chosen in order to have strongly correlated variables but not so strong as to risk multicollinearity.
+
+$$
+Y_a = 
+$$
+
+The following values are held constant over the course of this project:
+
+$$
+\begin{aligned}
+\text{iterations} = 1600,\\
+n = 200, \\
+\beta_0 = 0,\\
+\beta_1 = 0/0.2,\\
+\beta_z = 0.06, \\
+\beta_d = 0.06
+\end{aligned}
+$$
+
+The number of iterations is based on the desired precision of the project. A Monte-Carlo Error of 1% is deemed appropriate. According to the formula by Morris et al.
+
+$$
+\begin{aligned}
+\sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
+0.1 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}},
+\end{aligned}
+$$
+
+the required number of iterations to achieve the desired MCE is 1600.
+
+The rest of the constant settings are based on
