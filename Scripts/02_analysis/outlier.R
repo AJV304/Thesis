@@ -17,8 +17,8 @@ outlier <- function(df, dep){
   
   #Strict Z-scores (2 sd)
   ##exclude outliers based on z-scores
-  df.outlier$z <- scale(df.outlier[[dep]])
-  df.ex.z <- df.outlier %>% filter(between(z, -2, 2))
+  df.outlier$zscore <- scale(df.outlier[[dep]])
+  df.ex.z <- df.outlier %>% filter(between(zscore, -2, 2))
   
   ##perform regression for the z-score condtion
   y <- df.ex.z[[dep]]
