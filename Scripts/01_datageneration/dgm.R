@@ -1,10 +1,4 @@
-dgm <- function(n, b0, b1_no, b1_yes, b_z, b_d) {
-  
-  
-  #DONT SET A SEED BECAUSE THEN EACH DATA SET WILL BE THE SAME HAHA
-  #setting a seed
-  #set.seed(1979094)
-  
+dgm <- function(n, b0, b1_yes, b_z, b_d) {
   
   #sampling from distributions
   ##simulating the independent variable x
@@ -34,11 +28,11 @@ dgm <- function(n, b0, b1_no, b1_yes, b_z, b_d) {
   re_outlier_low <- rnorm(n = n, mean = -3, sd = 1)
   
   ##creating new dependent variable with increased outlier probability
-  y_no_outlier_high <- b0 + b1_no * x + b_z * z + b_d * d + re_outlier_high
-  y_no_outlier_low <- b0 + b1_no * x + b_z * z + b_d * d + re_outlier_low
+  y_no_outlier_high <- b0 + b_z * z + b_d * d + re_outlier_high
+  y_no_outlier_low <- b0 + b_z * z + b_d * d + re_outlier_low
   
-  y_yes_outlier_high <- b0 + b1_yes * x + b_z * z + b_d * d + re_outlier_high
-  y_yes_outlier_low <- b0 + b1_yes * x + b_z * z + b_d * d + re_outlier_low
+  y_yes_outlier_high <- y_no_outlier_high + b1_yes * x 
+  y_yes_outlier_low <-y_no_outlier_low + b1_yes * x 
   
   #replace 5% (list) of all y values (x) with a value from the new dependent variable (values)
   repla <- sample(1:n, 0.05 * n)
