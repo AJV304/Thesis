@@ -11,7 +11,7 @@ samplesize <- function(df, dep){
   
   #create empty data frame to save the output in 
   size.stat <- data.frame(matrix(ncol = 4, nrow = ss)) #4 because four values get saved in the extract function
-  colnames(size.stat) <- cn
+  colnames(size.stat) <- c("b1","p.value","lower.ci","upper.ci")
   
   #create forloop which tests for each different sample size    
   for (i in 1:ss) {

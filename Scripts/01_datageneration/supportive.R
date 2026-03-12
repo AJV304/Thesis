@@ -1,6 +1,3 @@
-#supportive
-cn <- c("b1","p.value","lower.ci","upper.ci")
-rn <- c("Baseline", "Sample size (170)", "Sample size (195)", "Sample size (205)", "Sample size (230)", "Strict z-score", "Cook's", "Continuous covariate", "Dichotomous covariate")
 
 ##Extract function-----
 
@@ -9,7 +6,7 @@ extr <- function(model){
   
   #create temporary data frame
   statistics <- data.frame(matrix(ncol = 4, nrow = 1))
-  colnames(statistics) <- cn
+  colnames(statistics) <- c("b1","p.value","lower.ci","upper.ci")
   
   #calculate confidence intervals
   ci <- confint(model, level = 0.95)

@@ -4,7 +4,7 @@ thesis <- function(iter, n, b0, b1_yes, b_z, b_d, dep) {
   
   #create empty dataframe for the statistics 
   stats <- data.frame(matrix(ncol = 5, nrow = (9*iter)))
-  colnames(stats) <- c(cn, "condition")
+  colnames(stats) <- c("b1","p.value","lower.ci","upper.ci", "condition")
   
   for (i in 1:iter) {
     

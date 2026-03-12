@@ -5,7 +5,7 @@ models <- function(df, dep) {
   
   #create dataframe to save statistics
   models.stat <- data.frame(matrix(ncol = 4, nrow = 2)) #4 because four values get saved in the extract function, 2 columns for methods
-  colnames(models.stat) <- cn
+  colnames(models.stat) <- c("b1","p.value","lower.ci","upper.ci")
   
   #we take the first 200 participants, then
   #remove outliers >3sd
