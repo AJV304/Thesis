@@ -54,7 +54,7 @@ The number of iterations is based on the desired precision of the project. A Mon
 $$
 \begin{aligned}
 \sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
-0.1 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}},
+0.01 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}},
 \end{aligned}
 $$
 
