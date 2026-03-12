@@ -1,4 +1,4 @@
-test <- thesis(iter = 5, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.3, b_z = 0.06, b_d = 0.06, dep = "y_no")
+test <- thesis(iter = 1000, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.3, b_z = 0.06, b_d = 0.06, dep = "y_no")
 test
 
 
@@ -42,7 +42,7 @@ identical(test, test2)
 summary(lm(y_yes ~ x, df))
 
 #
-test <- thesis(iter = 1600, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.2, b_z = 0.06, b_d = 0.06, dep = "y_yes")
+test <- thesis(iter = 100, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.2, b_z = 0.06, b_d = 0.06, dep = "y_yes")
 powertest <- test %>% filter(condition ==  "Baseline")
 p <- powertest %>% filter(p.value < 0.05)
 
