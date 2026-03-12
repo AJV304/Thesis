@@ -165,7 +165,7 @@ $$
 
 where $Z$ and $D$ represent a continuous and categorical covariate (respectively) and $Y_a$ represents an alternative outcome variable based on $Y$ with additional error $\epsilon_a$.
 
-As mentioned, data is generated under two scenarios: an effect scenario and a no-effect scenario. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.3, and in the no-effect scenario, $\beta_1$ is 0.
+As mentioned, data is generated under two scenarios: an effect scenario and a no-effect scenario. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0.
 
 In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data with increased or decreased values for $\epsilon$.
 
