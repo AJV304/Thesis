@@ -11,7 +11,7 @@ dgm <- function(n, b0, b1_yes, b_z, b_d) {
   d <- rbinom(n = n, size = 1, prob = 0.5)
   
   ##simulating random error epsilon
-  re <- rnorm(n = n, mean = 0, sd = 0.87)
+  re <- rnorm(n = n, mean = 0, sd = 0.86)
   
   
   #formulating the regression formula
