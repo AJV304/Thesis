@@ -1,6 +1,6 @@
 #combining the condition functions to output one dataset
 
-analysis <- function(df, dep){
+conditions <- function(df, dep){
   base.stat <- baseline(df, dep)
   size.stat <- samplesize(df, dep)
   outlier.stat <- outlier(df, dep)
