@@ -33,7 +33,7 @@ $$
 The alternative outcome variable $Y_a$ is simulated using the `faux` package. The variable is drawn from a normal distribution with a correlation of 0.6 with the outcome variable $Y$. This correlation was chosen in order to have strongly correlated variables but not so strong as to risk multicollinearity.
 
 $$
-Y_a = 
+Y_a \sim Y, \quad \rho(Y, Y_a) = 0.6
 $$
 
 The following values are held constant over the course of this project:
@@ -49,15 +49,14 @@ n = 200, \\
 \end{aligned}
 $$
 
-The number of iterations is based on the desired precision of the project. A Monte-Carlo Error of 1% is deemed appropriate. According to the formula by Morris et al.
+The number of iterations is based on the desired precision of the project. A Monte-Carlo Error of 1% is deemed appropriate. According to the formula by Morris et al.,
 
 $$
 \begin{aligned}
 \sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
-0.01 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}},
+0.01 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}}, \\
+n_\text{sim} = \frac{0.8 \times 0.2}{(0.01)^2},
 \end{aligned}
 $$
 
 the required number of iterations to achieve the desired MCE is 1600.
-
-The rest of the constant settings are based on
