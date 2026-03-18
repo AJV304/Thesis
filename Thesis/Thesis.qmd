@@ -62,6 +62,7 @@ library(mvtnorm)
 library(stats)
 library(faux)
 library(microbenchmark)
+library(thepack)
 ```
 
 ## Introduction
@@ -158,8 +159,8 @@ The population parameter values are presented in @tbl-DGM, together with the par
 
 $$
 \begin{aligned}
-Y =  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,\\
-Y_a =  Y + \epsilon_a, 
+Y &=  \beta_0 + \beta_1X + \beta_2Z + \beta_3D + \epsilon,\\
+Y_a &\sim Y, \quad \rho(Y, Y_a) = 0.6, 
 \end{aligned}
 $$
 
@@ -224,6 +225,21 @@ Performance is assessed through the type I and type II error for the estimand $\
 The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
 
 Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
+
+## Analysis
+
+```{r}
+
+#The no-effect scenario
+set.seed()
+rq1_no <- analysis(1600, 200, 0, 0.2, 0.06, 0.06, "y_no")
+rq2_no <- choice(rq1_no)
+
+#The effect scenario
+set.seed()
+rq1_yes <- analysis(1600, 200, 0, 0.2, 0.06, 0.06, "y_yes")
+rq2_yes <- choice(rq1_yes)
+```
 
 <!-- ## Results -->
 
