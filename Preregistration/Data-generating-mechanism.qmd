@@ -16,7 +16,7 @@ $$
 
 Each variable is drawn from a known distribution as follows:
 
-Independent variable $X$ is drawn from a standardized normal distribution, as is the continuous covariate $Z$. Dichotomous covariate $D$ is drawn from a binomial distribution with equal chances of value 0 or 1. Standardized distributions are used in order to make results easily comparable and independent of scale. The random error $\epsilon$ is drawn from a normal distribution with a mean of zero and standard deviation 0.86. The standard deviation was set to 0.86 in order to achieve the desired level of power of 80%.
+Independent variable $X$ is drawn from a standardized normal distribution, as is the continuous covariate $Z$. Dichotomous covariate $D$ is drawn from a binomial distribution with equal chances of value 0 or 1. Standardized distributions are used in order to make results easily comparable and independent of scale. The random error $\epsilon$ is drawn from a normal distribution with a mean of zero and standard deviation 0.86. The standard deviation was set to 0.86 in order to achieve the desired level of power of 80% in the baseline scenario.
 
 $$
 \begin{aligned}
