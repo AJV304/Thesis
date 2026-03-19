@@ -54,12 +54,12 @@ H. I. Oberman
 #| warning: false
 #| message: false
 
-library(dplyr)
+library(stats)
 library(tidyr)
 library(ggplot2)
 library(DiagrammeR)
 library(mvtnorm)
-library(stats)
+library(dplyr)
 library(faux)
 library(microbenchmark)
 library(thepack)
