@@ -1,7 +1,7 @@
 
 #benchmark to see how long one iteration takes
-microbenchmark(thesis(iter = 1, n = 230, b0 = 0, b1_no = 0, b1_yes = 0.3, b_z = 0.06, b_d = 0.06, dep = "y_no") , times = 100, unit = "s")
-
+microbenchmark(analysis(iter = 1, n = 200,0,0,0,0) , times = 100, unit = "s")
+microbenchmark(fullyfactorial(1, 200, 0,0,0,0,"y_no"), times = 100, unit = "s")
 
 #Type 1 test
 type1test <- thesis(iter = 1000, n = 230, b0 = 0, b1_yes = 0.2, b_z = 0.06, b_d = 0.06, dep = "y_no")
