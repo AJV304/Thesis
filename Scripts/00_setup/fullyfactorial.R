@@ -3,9 +3,15 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
   
 #---------------Necessary information ---------------
 #create functions for possible steps 
+  #For each deviation pattern there are 4 steps
+  #1. Select data from dataset (deviate in sample size)
+  #2. Remove outlier (deviate in outlier criteria)
+  #3. Specify the model (deviate in the statistical model)
+  #4. Extract model statistics (same for all)
   
-  ###Sample size functions  
-  ##do 
+  
+  ###Functions for deviations in step 1
+  ##Sample size baseline/100%
   ss1 <- function(df){
     ss <- (nrow(df)/1.15)
     df.samplesize <- df %>% slice(1:ss)
@@ -13,7 +19,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.samplesize)
   }
   
-  ## or 
+  ##Sample size 85%
   ss85 <- function(df){
     ss <- (nrow(df)/1.15)
     size <- 0.85
@@ -22,7 +28,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.samplesize)
   }
   
-  ## or
+  ##Sample size 97.5%
   ss975 <- function(df){
     ss <- (nrow(df)/1.15)
     size <- 0.975
@@ -31,7 +37,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.samplesize)
   }
   
-  ## or 
+  ##Sample size 1.025% 
   ss1025 <- function(df){
     ss <- (nrow(df)/1.15)
     size <- 1.025
@@ -40,7 +46,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.samplesize)
   }
   
-  ## or
+  ##Sample size 115%
   ss115 <- function(df){
     ss <- (nrow(df)/1.15)
     size <- 1.15
@@ -49,9 +55,9 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.samplesize)
   }
   
-  ###Outlier functions
+  ###Functions for deviations in step 2
   
-  ## do
+  ##Outliers based on 3 s.d.
   outz3 <- function(df.samplesize, dep){
     
     df.outlier <- df.samplesize %>% filter(
@@ -62,7 +68,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.outlier)
   }
   
-  ## or
+  ##Outliers based on 2 s.d.
   outz2 <- function(df.samplesize, dep){
     df.outlier <- df.samplesize
     df.outlier$zscore <- scale(df.samplesize[[dep]])
@@ -71,7 +77,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.outlier)
   }
   
-  ## or
+  ##Outliers based on Cook's > 1
   outc1 <- function(df.samplesize, dep){
     
     df.outlier <- df.samplesize %>% filter(
@@ -88,9 +94,9 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(df.outlier)
   }
   
-  ###Model functions
+  ###Functions for deviations in step 3
   
-  ## do
+  ##Baseline model 
   modelyx <- function(df.outlier, dep){
     
     y <- df.outlier[[dep]]
@@ -99,7 +105,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(reg)
   }
   
-  ## or
+  ##Model with continuous covariate
   modelyxz <- function(df.outlier, dep){
     
     y <- df.outlier[[dep]]
@@ -108,7 +114,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(reg)
   }
   
-  ## or
+  ##Model with dichotomous covariate
   modelyxd <- function(df.outlier, dep){
     
     y <- df.outlier[[dep]]
@@ -117,7 +123,7 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(reg)
   }
   
-  ## or
+  ##Model with alternative outcome
   modelyax <- function(df.outlier, dep){
     
     ya <- df.outlier[[paste0(dep, "_alt")]]
@@ -126,7 +132,8 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
     return(reg)
   }
   
-  ###Extraction function
+  ###Functions for deviations in step 4
+  #extract function
   ext <- function(reg){
     
     result <- extr(reg) 
@@ -163,9 +170,11 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
   n_opts <- sapply(steps, length)
   combos <- expand.grid(lapply(n_opts, seq_len))
   names(combos) <- names(steps)
-  combos$combo_id <- apply(combos, 1, paste0, collapse = "")
   
-#factorial analysis function
+  #create an 'id' specifying which combination was used
+  combos$id <- apply(combos, 1, paste0, collapse = "")
+  
+#factorial analysis function (perform analysis using one combination)
   combinations <- function(selectdata, excludeoutliers, runmodel, extraction, data, dependent) {
     
     res <- data
@@ -181,31 +190,33 @@ fullyfactorial <- function(iter, n, b0, b1, b_z, b_d, dep){
   
 #---------------
   
-  #now iteratively,
+  #now iteratively
+  #create empty list
   all <- list()
   
+  #per iteration: generate data, run factorial analysis, save output
   for (i in 1:iter){
   
   #generate data
   dataset <- dgm(n, b0, b1, b_z, b_d)
   
-  #run factorial analysis on data
+  #run analysis using each possible combination of steps
   results <- purrr::pmap(combos[names(steps)], 
                          combinations, 
                          data = dataset, 
                          dependent = dep)
   
-  #create output 
-  results_df <- cbind((combos %>% select(combo_id)), bind_rows(results))
+  #create output (id and model output)
+  results_df <- cbind((combos %>% select(id)), bind_rows(results))
   
   #save output 
   all[[i]] <- results_df
   
   }
   
+  #output of function gives long df with additional column for iteration
   final <- bind_rows(all, .id = "iteration")
   
-  #factorial function bracket
   return(final)
 }
 
