@@ -12,6 +12,9 @@ ggplot(data = rq1.no.plot,
   xlab("Simulation conditions") +
   ylab("Significant p-values (%)") +
   scale_fill_discrete(name = "Domains") +
+  scale_y_continuous(labels = percent, 
+                     breaks = seq(0,0.1, 0.01),
+                     limits = c(0, 0.07)) +
   #x-axis
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.line.x.bottom = element_line(linewidth = 0.75))+
@@ -24,6 +27,14 @@ ggplot(data = rq1.no.plot,
                                     margin = margin(r=20)),
         legend.key.size = unit(0.5, "cm")) +
   #horizontal line
-  geom_hline(yintercept = "5%", 
+  geom_hline(yintercept = 0.05, 
              color = "red", 
-             linewidth = 0.5)
+             linewidth = 0.5) +
+  #confidence interval
+  geom_rect(
+    xmin = -Inf, xmax = Inf,
+    ymin = 0.045, ymax = 0.055,
+    fill = "lightblue",
+    alpha = 0.1
+  )
+

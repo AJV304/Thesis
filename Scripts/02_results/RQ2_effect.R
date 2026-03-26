@@ -1,15 +1,20 @@
 #plot research question 2 effect scenario
 
 rq2.yes.nsig <- nrow(rq2.yes %>% filter(p.value < 0.05))
-rq2.yes.plot <- paste0(round(((rq.no.sig)/160*100),1),"%")
+rq2.yes.nsig.perc <- (round((rq2.yes.nsig)/nrow(rq2.yes),3))
 
-rq2.yes.plot <- rbind(w1[1,], c(34, "21.2%", "Opportunistic"))
-rq2.yes.plot <- rq2.yes.plot %>% mutate(n.sig.perc = as.numeric(sub("%", "", n.sig.perc)))
+
+rq2.yes.plot <- rq1.yes.plot[1,]
+levels(rq2.yes.plot$domain) <- c(levels(rq2.yes.plot$domain), "Opportunistic")
+levels(rq2.yes.plot$conditions) <- c(levels(rq2.yes.plot$conditions), "Opportunistic")
+rq2.yes.plot[2,] <- c(rq2.yes.nsig, rq2.yes.nsig.perc, "Opportunistic", "Opportunistic")
+rq2.yes.plot$n.sig.perc <- as.numeric(rq2.yes.plot$n.sig.perc )
 
 ggplot(data = rq2.yes.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = conditions)) +
   geom_bar(stat = "identity", show.legend = FALSE) +
-  #labels
+  scale_y_continuous(
+    labels = percent)+
   xlab("Simulation conditions") +
   ylab("Significant p-values (%)") +
   theme(legend.position = "none") +

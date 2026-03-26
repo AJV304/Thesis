@@ -62,7 +62,7 @@ library(mvtnorm)
 library(dplyr)
 library(faux)
 library(microbenchmark)
-library(thepack)
+#library(thepack)
 ```
 
 ## Introduction
@@ -228,8 +228,18 @@ Type II error refers to a false negative, or failing to reject the null-hypothes
 
 ## Analysis
 
+\## Results
 
-<!-- ## Results -->
+```{r}
+#| label: Generating the data
+source("Scripts/01_datageneration/datageneration.R")
+```
+
+```{r}
+#| label: Research question 1, effect scenario
+
+source("Scripts/02_results/RQ1_effect.R")
+```
 
 <!-- ## Discussion -->
 
