@@ -62,7 +62,7 @@ library(mvtnorm)
 library(dplyr)
 library(faux)
 library(microbenchmark)
-#library(thepack)
+library(thepack)
 ```
 
 ## Introduction
@@ -240,6 +240,46 @@ source("Scripts/01_datageneration/datageneration.R")
 
 source("Scripts/02_results/RQ1_effect.R")
 ```
+
+rq1yes observations
+
+baseline falls within range as hoped.
+
+-dichotomous, baseline, 195, continuous and 205 within range
+
+-alternative, cook and smallest sample: low power
+
+-big sample and strict z increased power
+
+-strict z surprising???
+
+Small deviations in sample size make little difference on power levels, neither do covariates. Larger differences in sample size affect power more strongly showing an increase in power and decrease in power. Similarly, deviations in outlier exclusion criteria has affects on results.
+
+```{r}
+#| label: Research question 1, no-effect scenario
+
+source("Scripts/02_results/RQ1_noeffect.R")
+```
+
+rq1no observations
+
+-only small increase in sample size and strict z show increase in significant p-values
+
+```{r}
+#| label: Research question 2, effect scenario
+
+source("Scripts/02_results/RQ2_effect.R")
+```
+
+92.7% significant in the opportunistic choice
+
+```{r}
+#| label: Research question 2, no-effect scenario
+
+source("Scripts/02_results/RQ2_noeffect.R")
+```
+
+16.3% type I error rate rip
 
 <!-- ## Discussion -->
 

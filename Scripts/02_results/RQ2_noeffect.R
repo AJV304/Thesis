@@ -1,7 +1,7 @@
 #plot research question 2 no effect scenario
 
 rq2.no.nsig <- nrow(rq2.no %>% filter(p.value < 0.05))
-rq2.no.perc <- paste0(round(((rq2.no.nsig)/nrow(rq2.no)*100),1),"%")
+rq2.no.perc <- round(((rq2.no.nsig)/nrow(rq2.no)),3)
 rq2.no.num <- as.numeric(sub("%", "", rq2.no.perc))
 
 

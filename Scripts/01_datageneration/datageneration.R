@@ -1,5 +1,16 @@
 #generating the data set with a seed
-set.seed(12345)
+#hex string from NIST beacon
+beacon <- "DF18AA0067680C4F6B8EE292411ED832A4F6AED9F7D6D51FF65DEA0213D2A3E5
+D539E82C0A3F81D6249B6A32D75D802478F6A8C0B76DE9A91BF288002E5CAAEA"
+
+#extract numbers from string
+numbers <- as.integer(unlist(regmatches(beacon, gregexpr("[0-9]", beacon))))
+
+#Take the first 10 numbers as seed
+seed <- numbers[1:10]
+
+#Setting the seed
+set.seed(seed)
 df <- analysis(1600, 200, 0, 0.2, 0.06, 0.06)
 
 #The no-effect scenario
