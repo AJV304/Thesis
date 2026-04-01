@@ -1,10 +1,8 @@
 ---
-title: "Performance-measures"
+title: "Performance measures"
 format: pdf
 editor: visual
 ---
-
-## Performance measures
 
 This project has two performance measures: type I and type II error for the estimand $\beta_1$.
 
@@ -14,4 +12,4 @@ The type I error refers to a false-positive, or rejecting the null-hypothesis wh
 
 ### Type II
 
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. A type II error rate of 0.20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate. Thus, type II error is measured as the percentage of cases in the effect scenario with a p-value higher than .05 for each specific condition.
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. A type II error rate of 0.20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate. Thus, type II error is measured as the proportion of cases in the effect scenario with a p-value higher than .05 for each specific condition.

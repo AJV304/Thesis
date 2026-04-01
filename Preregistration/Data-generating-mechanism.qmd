@@ -1,5 +1,5 @@
 ---
-title: "parameter"
+title: "Data generating mechanism"
 format: pdf
 editor: visual
 ---
@@ -24,7 +24,7 @@ X \sim \mathcal{N}(0,1) \\ Z \sim \mathcal{N}(0,1) \\ D \sim \text{Bin}(1, 0.5) 
 \end{aligned}
 $$
 
-Five percent (2.5% at each end of the distribution) of the data is drawn with an alternative random error to increase the occurrence of outliers. The means of the alternative error are 3 and -3 in order to simulate data points around the cut-off value of the baseline scenario (3 standard deviations from the mean).
+Five percent (2.5% at each end of the distribution) of the data is drawn with an alternative random error to increase the occurrence of outliers. The means of the alternative errors are 3 and -3 in order to simulate data points around the cut-off value for outliers in the baseline scenario (3 standard deviations from the mean).
 
 $$
 \epsilon \sim \mathcal{N}(3,1) \\ \epsilon \sim \mathcal{N}(-3,1) 
@@ -49,7 +49,7 @@ n = 200, \\
 \end{aligned}
 $$
 
-The number of iterations is based on the desired precision of the project. A Monte-Carlo Error of 1% is deemed appropriate. According to the formula by Morris et al.,
+The $\beta_1$ parameter is the only parameter which changes between the two scenarios. In the effect scenario the parameter has a value of 0.2 and in the no-effect scenario the parameter has a value of 0. The number of iterations is based on the desired precision of the project. A Monte-Carlo Error of 1% is deemed appropriate. According to the formula by Morris et al.,
 
 $$
 \begin{aligned}
