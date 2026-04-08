@@ -5,7 +5,7 @@ rq1.no.plot$domain <-c("Baseline","Sample size","Sample size","Sample size","Sam
 rq1.no.plot$domain <- factor(rq1.no.plot$domain, levels = c("Baseline", "Sample size","Outlier exclusion criteria","Statistical model"))
 
 
-ggplot(data = rq1.no.plot,
+plot.1n <- ggplot(data = rq1.no.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = domain)) +
   geom_bar(stat = "identity") +
   #labels

@@ -54,15 +54,12 @@ H. I. Oberman
 #| warning: false
 #| message: false
 
-library(stats)
 library(tidyr)
 library(ggplot2)
 library(DiagrammeR)
-library(mvtnorm)
 library(dplyr)
-library(faux)
-library(microbenchmark)
 library(thepack)
+library(scales)
 ```
 
 ## Introduction
@@ -93,7 +90,7 @@ There is no clear consensus on whether inconsistencies between preregistrations 
 
 With this simulation study, I intend to close this gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect type I and type II error rates?’ The effect of deviations is studied in three domains: sample size, outlier exclusion criteria, and the statistical model. Different deviations are simulated in each domain and compared to a baseline condition without deviations. This research question is investigated in the context of behavioral psychology and uses a linear regression as the model of interest. The effects are examined across two scenarios: a no-effect scenario, and an effect scenario, in which the main effect parameter is changed. The aim of this study is descriptive and therefore no specific hypotheses are formulated.
 
-As a potential secondary goal, I hope to address the issue of reasons for deviations being unknown. The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the results they prefer. Initially, the deviation conditions are simulated and the outcomes are used to assess type I and type II error as compared to the baseline condition. In the second phase, deviations are simulated but the outcomes are selectively chosen from either the baseline or the deviation condition, based on which condition has the better *p*-value. This is done in order to proxy the opportunistic selection of results by the researcher.
+As a secondary research question, I address the issue of reasons for deviations being unknown. The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the results they prefer. Initially, the deviation conditions are simulated and the outcomes are used to assess type I and type II error as compared to the baseline condition. In the second phase, deviations are simulated but the outcomes are selectively chosen from either the baseline or the deviation conditions, based on which condition has a significant *p*-value. This is done in order to proxy the opportunistic selection of results by the researcher.
 
 With these simulations I hope to shed light on the effect of deviations from preregistration on type I and type II errors, as well as the effect of picking deviations opportunistically.
 
@@ -101,7 +98,7 @@ With these simulations I hope to shed light on the effect of deviations from pre
 
 ### Conditions
 
-I reviewed which deviations to investigate by (1) how common they are, (2) their potential impact and (3) their justifiability. Based on this I chose deviations in the following domains: sample size, outlier exclusion criteria, and statistical model. Within the three chosen domains, multiple conditions are simulated and compared to a baseline condition without any deviations.
+I reviewed which deviations to investigate by (1) how common they are, (2) their potential impact and (3) their justifiability. Based on this deviations were chosen in the following domains: sample size, outlier exclusion criteria, and statistical model. Within the three chosen domains, multiple conditions were simulated and compared to a baseline condition without any deviations.
 
 #### Sample size
 
@@ -151,7 +148,7 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 
 ### Data-generating mechanism
 
-Data is generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.3, and in the no effect scenario, $\beta_1$ is 0. In the baseline condition, the statistical model is defined as $$
+Data is generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no effect scenario, $\beta_1$ is 0. In the baseline condition, the statistical model is defined as $$
 Y = \beta_0 + \beta_1X + \epsilon,
 $$ where $Y$ is the dependent variable, $\beta_0$ the intercept, $\beta_1$ the main effect, and $\epsilon$ the random error.
 
@@ -168,7 +165,7 @@ where $Z$ and $D$ represent a continuous and categorical covariate (respectively
 
 As mentioned, data is generated under two scenarios: an effect scenario and a no-effect scenario. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0.
 
-In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data with increased or decreased values for $\epsilon$.
+In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data with increased or decreased mean values used to generate $\epsilon$.
 
 +----------------------------------------------+----------------------------------------------+
 | Parameter                                    | Value                                        |
@@ -210,7 +207,9 @@ The estimand of this study is $\beta_1,$ which represents the effect of the inde
 
 As previously mentioned, there are two scenarios under which data is generated. A no-effect scenario and an effect scenario. Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (@tbl-cond).
 
-In phase 1, the type I and type II error rates are compared between the baseline result and each deviation result. In phase 2, the effect of choosing whether or not to deviate is examined. This is done by simulating each deviation again, but instead of automatically reporting the deviation result, a choice is made. In each iteration the *p*-values of the deviation result and baseline result are compared, the most desired *p*-value is reported as the outcome for the deviation condition. The error rates will then be compared between the baseline results and the best values result. An overview can be found in @fig-phases.
+To answer the main research question, the type I and type II error rates are compared between the baseline result and each deviation result. All ten conditions, one baseline and nine deviation conditions, are executed using the same data set. This is done iteratively, where the $\beta_1$ regression coeffiecient, the p-value and the confidence interval are recorded for each condition.
+
+To answer the second research question, the effect of choosing whether or not to deviate is examined. This is done using the same data set as in the first section. For each iteration, the baseline *p-*value is assessed. When it is significant, the baseline condition is recorded for that iteration, if it is insignificant, the deviations conditions of that iteration are checked. If any of the deviations conditions are significant, one is chosen at random and recorded for that iteration. This provides an 'optimized' data set, with the largest number of significant iterations possible in the data set. The error rates will then be compared between the baseline results and the 'optimized' result. An overview can be found in @fig-phases.
 
 \newpage
 
@@ -228,47 +227,71 @@ Type II error refers to a false negative, or failing to reject the null-hypothes
 
 ## Analysis
 
-\## Results
+## Results
 
 ```{r}
 #| label: Generating the data
-source("Scripts/01_datageneration/datageneration.R")
+#source("Scripts/01_datageneration/datageneration.R")
+
+#read in saved data
+df <- readRDS("../results.rds")
+
+#The no-effect scenario
+rq1.no <- df %>% filter(scenario == "no effect")
+rq2.no <- choice(rq1.no)
+
+#The effect scenario
+rq1.yes <- df %>% filter(scenario == "effect")
+rq2.yes <- choice(rq1.yes)
+
 ```
 
 ```{r}
 #| label: Research question 1, effect scenario
 
-source("Scripts/02_results/RQ1_effect.R")
+source("../Scripts/02_results/RQ1_effect.R")
 ```
 
-rq1yes observations
+### Research question 1, effect scenario
 
-baseline falls within range as hoped.
+The results for the primary research question show an effect in each of the three deviation domains in the effect scenario (@fig-rq1.y).
 
--dichotomous, baseline, 195, continuous and 205 within range
+Within the sample size domain, small changes in sample size show no effect on power (79.9% and 80.8%) whereas larger changes in sample size did appear impactful. Commonly known, increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a power decrease of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (195)", "n.sig.perc"])*100 ` %. This means that deviating in the form of collecting fewer than planned participants, is likely to lead to an underpowered study. When deviating with large sample size *increases*, studies are likely to increase in power. Results showed an increase in power of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"])*100`% in the 15% increase condition as compared to the baseline condition, resulting in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`%.
 
--alternative, cook and smallest sample: low power
+Deviations in the method of excluding outliers also impacts power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %.
 
--big sample and strict z increased power
+In the statistical model domain, effects are only observed in the alternative outcome condition, and not in the two covariate conditions. Deviating by using an alternative, correlated outcome variable decreases the power by `r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"])*100` %, resulting in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%.
 
--strict z surprising???
-
-Small deviations in sample size make little difference on power levels, neither do covariates. Larger differences in sample size affect power more strongly showing an increase in power and decrease in power. Similarly, deviations in outlier exclusion criteria has affects on results.
+```{r}
+#| label: fig-rq1.y
+#| fig-width: 8
+#| fig-height: 5
+#| fig-cap: "Effect scenario"
+print(plot.1y)
+```
 
 ```{r}
 #| label: Research question 1, no-effect scenario
 
-source("Scripts/02_results/RQ1_noeffect.R")
+source("../Scripts/02_results/RQ1_noeffect.R")
 ```
 
-rq1no observations
+### Research question 1, no-effect scenario
 
--only small increase in sample size and strict z show increase in significant p-values
+In the no-effect scenario only two conditions show results **outside of the precision range**. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range (@fig-rq1.n).
+
+```{r}
+#| label: fig-rq1.n
+#| fig-width: 8
+#| fig-height: 5
+#| fig-cap: "No-effect scenario"
+print(plot.1n)
+```
 
 ```{r}
 #| label: Research question 2, effect scenario
 
-source("Scripts/02_results/RQ2_effect.R")
+#source("Scripts/02_results/RQ2_effect.R")
 ```
 
 92.7% significant in the opportunistic choice
@@ -276,10 +299,10 @@ source("Scripts/02_results/RQ2_effect.R")
 ```{r}
 #| label: Research question 2, no-effect scenario
 
-source("Scripts/02_results/RQ2_noeffect.R")
+#source("Scripts/02_results/RQ2_noeffect.R")
 ```
 
-16.3% type I error rate rip
+16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data.
 
 <!-- ## Discussion -->
 
