@@ -225,8 +225,6 @@ The type I error refers to a false-positive, or rejecting the null-hypothesis wh
 
 Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
 
-## Analysis
-
 ## Results
 
 ```{r}
@@ -252,11 +250,12 @@ rq2.yes <- choice(rq1.yes)
 source("../Scripts/02_results/RQ1_effect.R")
 ```
 
-### Research question 1, effect scenario
+### Unplanned deviations
+#### Effects on power
 
-The results for the primary research question show an effect in each of the three deviation domains in the effect scenario (@fig-rq1.y).
+The results for the primary research question show an effect of deviating on power in each of the three deviation domains in the effect scenario (@fig-rq1.y).
 
-Within the sample size domain, small changes in sample size show no effect on power (79.9% and 80.8%) whereas larger changes in sample size did appear impactful. Commonly known, increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a power decrease of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (195)", "n.sig.perc"])*100 ` %. This means that deviating in the form of collecting fewer than planned participants, is likely to lead to an underpowered study. When deviating with large sample size *increases*, studies are likely to increase in power. Results showed an increase in power of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"])*100`% in the 15% increase condition as compared to the baseline condition, resulting in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`%.
+Within the sample size domain, small changes in sample size show no effect on power (79.9% and 80.8%) whereas larger changes in sample size did appear impactful. Commonly known, increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a power decrease of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (195)", "n.sig.perc"])*100` %. This means that deviating in the form of collecting fewer than planned participants, is likely to lead to an underpowered study. When deviating with large sample size *increases*, studies are likely to increase in power. Results showed an increase in power of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"])*100`% in the 15% increase condition as compared to the baseline condition, resulting in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`%.
 
 Deviations in the method of excluding outliers also impacts power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %.
 
@@ -266,7 +265,7 @@ In the statistical model domain, effects are only observed in the alternative ou
 #| label: fig-rq1.y
 #| fig-width: 8
 #| fig-height: 5
-#| fig-cap: "Effect scenario"
+#| fig-cap: "Power level for Baseline and Deviation Conditions in the Effect scenario"
 print(plot.1y)
 ```
 
@@ -276,7 +275,7 @@ print(plot.1y)
 source("../Scripts/02_results/RQ1_noeffect.R")
 ```
 
-### Research question 1, no-effect scenario
+#### Effects on Type I error 
 
 In the no-effect scenario only two conditions show results **outside of the precision range**. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range (@fig-rq1.n).
 
@@ -284,25 +283,46 @@ In the no-effect scenario only two conditions show results **outside of the prec
 #| label: fig-rq1.n
 #| fig-width: 8
 #| fig-height: 5
-#| fig-cap: "No-effect scenario"
+#| fig-cap: "Type I error rate for Baseline and Deviation scenarios in the no-effect Scenario"
 print(plot.1n)
 ```
 
 ```{r}
 #| label: Research question 2, effect scenario
 
-#source("Scripts/02_results/RQ2_effect.R")
+source("../Scripts/02_results/RQ2_effect.R")
 ```
-
-92.7% significant in the opportunistic choice
 
 ```{r}
 #| label: Research question 2, no-effect scenario
 
-#source("Scripts/02_results/RQ2_noeffect.R")
+source("../Scripts/02_results/RQ2_noeffect.R")
 ```
 
-16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data.
+### Choosing to deviate
+
+Choosing to deviate when the baseline condition is insignificant leads to an increased power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario. In the no-effect scenario, the type I error rate increases to `r (rq2.no.perc*100)`%. In the effect scenario, `r rq2.yes %>% filter(n.sig == "NA") %>% nrow()` iterations showed a significant baseline. Of the remaining `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` iterations, between zero and seven deviations were significant (@tbl-rq2.yes). In the no-effect scenario, the majority of the iterations showed an insignificant baseline as well as insignificant deviations. In the `r (rq2.no.perc*100)`% that did have significant findings, between one and six deviations had significant *p*-values (@tbl-rq2.no).
+
+```{r}
+#| label: tbl-rq2.yes
+#| tbl-cap: "Distribution of the number of significant deviations"
+
+print(rq2.yes.table, quote = FALSE, row.names = FALSE)
+
+```
+
+```{r}
+#| label: tbl-rq2.no
+#| tbl-cap: "Distribution of the number of significant deviations"
+
+print(rq2.no.table)
+```
+
+<!-- 16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data. -->
+
+## Conclusions 
+
+
 
 <!-- ## Discussion -->
 
@@ -313,6 +333,8 @@ print(plot.1n)
 <!-- -   how do we keep the field reliable? which deviations should we try to avoid and which ones do not seem to matter much? -->
 
 <!-- -   hypotheses so many deviations, could be concern but outside of this scope -->
+
+<!-- seed dependency (number of iterations or increased variability due to extra randomness introduced in the tails)-->
 
 <!-- ## Conclusion -->
 

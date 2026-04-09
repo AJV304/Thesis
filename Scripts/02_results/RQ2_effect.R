@@ -10,6 +10,37 @@ levels(rq2.yes.plot$conditions) <- c(levels(rq2.yes.plot$conditions), "Opportuni
 rq2.yes.plot[2,] <- c(rq2.yes.nsig, rq2.yes.nsig.perc, "Opportunistic", "Opportunistic")
 rq2.yes.plot$n.sig.perc <- as.numeric(rq2.yes.plot$n.sig.perc )
 
+#number of significant deviations
+counts <- table(rq2.yes$n.sig)
+percentages <- prop.table(counts) * 100
+
+# Combine into matrix and transpose
+rq2.yes.table <- rbind(
+  Count = counts,
+  Percentage = paste0((round(as.numeric(percentages), 1)), "%")
+)
+
+# Create matrix with Count and Percentage
+rq2.yes.table <- rbind(
+  Count = counts,
+  Percentage = round(percentages, 2)
+)
+
+# Convert to data frame so we can add a "Number" column
+rq2.yes.table <- as.data.frame(rq2.yes.table, check.names = FALSE)
+
+# Add the label column as the first column
+rq2.yes.table <- cbind(
+  Significant.deviations = rownames(rq2.yes.table),
+  rq2.yes.table
+)
+rownames(rq2.yes.table) <- NULL
+rq2.yes.table
+
+
+
+
+#plot but maybe not necessary
 ggplot(data = rq2.yes.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = conditions)) +
   geom_bar(stat = "identity", show.legend = FALSE) +

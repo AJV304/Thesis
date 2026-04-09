@@ -8,6 +8,9 @@ rq2.no.num <- as.numeric(sub("%", "", rq2.no.perc))
 rq2.no.plot <- rbind(rq1.no.plot[1,], c(rq2.no.nsig, rq2.no.num,"Opportunistic", "Opportunistic"))
 rq2.no.plot <- rq2.no.plot %>% mutate(n.sig.perc = as.numeric(sub("%", "", n.sig.perc)))
 
+rq2.no.table <- table(rq2.no$n.sig)
+
+#plot
 ggplot(data = rq2.no.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = conditions)) +
   geom_bar(stat = "identity", show.legend = FALSE) +
