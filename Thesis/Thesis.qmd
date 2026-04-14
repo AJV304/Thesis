@@ -361,10 +361,16 @@ kable(rq2.table,
 ## Discussion
 
 This simulation study demonstrates that type I and type II error are both affected by deviations from a preregistration. 
-Power can be affected both positively and negatively, depending on the type of deviation. Collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes with a steep drop off from the nominal 80% to `rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show little effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
-Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a slightly larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for  
+
+Power can be affected both positively and negatively, depending on the type of deviation. Collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show little effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
+
+Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a slightly larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for using a stricter *z*-score as outlier criterium. 
+
+The small inflation when slightly increasing the sample size is a borderline case. Using the MCSE of 0.055 which was preregistered for this study means that it falls outside of the precision range, outside of which I stated that effects were unlikely to be due to simulation noise. Using the empirical MCSE of this condition however shows that the effect might still be due to noise. With a type I error of 0.055625, the empirical MCSE becomes 0.00573. This means that type I error rates higher than 0.055729 would be considered inflated, which this condition just remains beneath. When theoretically considering this effect, it is more likely that this effect is in fact due to simulation error rather than an actual effect. If this was an effect of the deviation, it would be expected to see an opposite effect when decreasing the sample size slightly as well as a stronger effect when increasing the sample size more extremely. Neither of these effects can be observed in the other sample size conditions, thus making it more likely that the observed effect is indeed due to simulation noise. (In light of this, all other conditions were also evaluated using the empirical MCSE. The slight increase in sample size remained the only condition in which this changed the conclusion.)
+From these results 
 
 <!-- -   limitation of specific field -->
+A limitation of this study is the fact that the data was simulated based on common structures and numbers found in the social sciences. This is likely to make the results less generalizable to other disciplines. The baseline sample size, effect size and methods investigated are all common among social sciences but might look much different for other statistics oriented disciplines such as medicine. It remains unknown whether the found effects would remain under smaller and larger samples or effect sizes.
 
 <!-- -   what does this research say about the field and what has been published till now -->
 
@@ -374,7 +380,7 @@ Only two deviation conditions showed effects on the type I error. Small increase
 
 <!-- seed dependency (number of iterations or increased variability due to extra randomness introduced in the tails)-->
 
-<!-- Monte Carlo SE formulas assume normally distributed ̂θ; for non-normal ̂θ, robust SEs exist; see White and Carlin.I think this may have caused less precision in my estimates as we added the extra outliers in the tails which decreased the normality -->
+<!-- Monte Carlo SE formulas assume normally distributed ̂θ; for non-normal ̂θ, robust SEs exist; see White and Carlin.I think this may have caused less precision in my estimates as we added the extra outliers in the tails which decreased the normality. I checked and the b1 is actually normally distributed-->
 
 ## Conclusion
 
