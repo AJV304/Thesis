@@ -339,7 +339,7 @@ In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0
 #| warning: false
 
 kable(rq2.table,
-      format    = "latex",   # use "html" if rendering to HTML
+      format    = "latex",   
       booktabs  = TRUE,
       col.names = c(" ", "Effect", "No-effect"),
       digits    = 2
@@ -360,7 +360,9 @@ kable(rq2.table,
 
 ## Discussion
 
-When examining the effect of deviating from a preregistration on type I and type II error, I found that 
+This simulation study demonstrates that type I and type II error are both affected by deviations from a preregistration. 
+Power can be affected both positively and negatively, depending on the type of deviation. Collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes with a steep drop off from the nominal 80% to `rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show little effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
+Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a slightly larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for  
 
 <!-- -   limitation of specific field -->
 
@@ -374,7 +376,11 @@ When examining the effect of deviating from a preregistration on type I and type
 
 <!-- Monte Carlo SE formulas assume normally distributed ̂θ; for non-normal ̂θ, robust SEs exist; see White and Carlin.I think this may have caused less precision in my estimates as we added the extra outliers in the tails which decreased the normality -->
 
-<!-- ## Conclusion -->
+## Conclusion
+
+-larger false positive rate in published papers
+-papers with deviations in outlier criterium more likely to be false positive
+-because opportunistic choosing increases type I that much more than individual deviations it is more important to transparently record the reasons for deviating.
 
 \newpage
 

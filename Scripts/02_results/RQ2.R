@@ -47,5 +47,8 @@ rq2.no.table <- t(as.data.frame(rq2.no.table, check.names = FALSE))
 #Now combine both scenarios
 rq2.table <- merge(rq2.yes.table, rq2.no.table, by = "Significant", all = TRUE)
 
-rq2.table[rq2.table$Significant == "NA", "Significant"] <- "Baseline significant"
+rq2.table[rq2.table$Significant == "NA", "Significant"] <- "(Significant baseline)"
 rq2.table[is.na(rq2.table$Occurences.y), "Occurences.y"] <- "0 (0%)"
+rq2.table <- rq2.table[c(nrow(rq2.table), 1:(nrow(rq2.table)-1)), ]
+rownames(rq2.table) <- NULL
+
