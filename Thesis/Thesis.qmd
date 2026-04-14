@@ -280,17 +280,16 @@ rq2.yes <- choice(rq1.yes)
 
 ```
 
+
+### Unplanned deviations
+
+#### Effects on power
 ```{r}
 #| label: Research question 1, effect scenario
 #| echo: false
 
 source("../Scripts/02_results/RQ1_effect.R")
 ```
-
-### Unplanned deviations
-
-#### Effects on power
-
 The results for the primary research question show an effect of deviating on power in each of the three deviation domains (@fig-rq1.y).
 
 Within the sample size domain, small changes in sample size show no effect on power whereas larger changes in sample size are impactful. It is an established fact that increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a deflated power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (170)", "n.sig.perc"]*100` %. This means that deviating in the form of collecting fewer participants than planned, is likely to lead to an underpowered study. When deviating by large sample size *increases*, the results fail to show a negative impact. The power level increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`% in the 15% increase condition.
@@ -309,15 +308,15 @@ In the Statistical model domain, deflated power is only observed in the alternat
 print(plot.1y)
 ```
 
+
+
+#### Effects on Type I error
 ```{r}
 #| label: Research question 1, no-effect scenario
 #| echo: false
 
 source("../Scripts/02_results/RQ1_noeffect.R")
 ```
-
-#### Effects on Type I error
-
 The Monte Carlo standard error for type I error resulted in a precision range of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Only two conditions show results outside of this precision range. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range and therefore do not indicate any effects on the type I error (@fig-rq1.n).
 
 ```{r}
@@ -329,15 +328,15 @@ The Monte Carlo standard error for type I error resulted in a precision range of
 print(plot.1n)
 ```
 
+
+
+### Choosing to deviate
 ```{r}
 #| label: Research question 2
 #| echo: false
 
 source("../Scripts/02_results/RQ2.R")
 ```
-
-### Choosing to deviate
-
 The second research question pertains to the effect of *choosing* to deviate when the baseline condition is insignificant. The results fail to show a negative effect of choosing to deviate on power levels. The power level does not deflate and is actually increased to `r (rq2.yes.nsig.perc*100)`%. In the no-effect scenario, an inflated type I error rate of `r (rq2.no.perc*100)`% is observed. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate in a singular deviation condition `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition).
 
 In the effect scenario, `r rq2.yes %>% filter(n.sig == "NA") %>% nrow()` out of 1600 repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was insignificant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions in which the baseline was insignificant had at least one significant deviation, with seven significant deviation conditions at most.
