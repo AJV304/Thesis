@@ -239,14 +239,26 @@ the required number of iterations to achieve the desired MCSE is 1600.
 
 With an MCSE of 1%, power rates are assessed at a precision interval of \[79, 81\] around the nominal power level of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
 
-For the type I error, 1600 iterations results in an MCSE of 0.00545. $$
+For the type I error, 1600 iterations results in an MCSE of 0.00545. 
+$$
 \begin{aligned}
 MCSE = \sqrt{\frac{\widehat{\text{Type I error}}\left(1-\widehat{\text{Type I error}}\right)}{n_{\text{sim}}}},\\
 MCSE = \sqrt{\frac{\widehat{\text{0.05}}\left(1-\widehat{\text{0.05}}\right)}{1600}}, \\
 MCSE = \sqrt{2.96875e-05},\\
 MCSE = 0.00545
 \end{aligned}
-$$ This means that type I error is assessed with a precision interval of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Any type I error rates outside of this interval are considered deflated or inflated.
+$$ 
+This means that type I error is assessed with a precision interval of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Any type I error rates outside of this interval are considered deflated or inflated.
+
+
+## Preregistration, reproducibility and ethics
+
+This project was preregistered on the 31th of March, 2026. The preregistration can be found at [link]. In order to prevent seed hacking, I preregistered a seed which would only become available after the date of preregistration.
+In order to advance reproducibility, all files related to this project are publicly available at [github link]. This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and r version are recorded. Instructions on how to reproduce the findings can be found under the README file on github.
+During this project an R package was created under the name `thepack` to store the most important functions. The package is publicly available at [githublink]. 
+
+Ethics approval was obtained on October 7th, 2025 from the University of Utrecht under case-number #25-1980. 
+
 
 ## Results
 
