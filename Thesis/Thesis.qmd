@@ -164,43 +164,41 @@ Y_a &\sim Y, \quad \rho(Y, Y_a) = 0.6,
 \end{aligned}
 $$
 
-where $Z$ and $D$ represent a continuous and categorical covariate (respectively) and $Y_a$ represents an alternative outcome variable based on $Y$ with additional error $\epsilon_a$.
+where $Z$ and $D$ represent a continuous and categorical covariate respectively and $Y_a$ represents an alternative outcome variable with a correlation of 0.6 with variable $Y$.
 
 As mentioned, data is generated under two scenarios: an effect scenario and a no-effect scenario. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0.
 
-In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data with increased or decreased mean values used to generate $\epsilon$.
+In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These are simulated by generating 5% of the data, 2.5% at each end of the distribution, with -3 and 3 as mean values for the normal distribution from which $\epsilon$ is drawn.
 
-+----------------------------------------------+----------------------------------------------+
-| Parameter                                    | Value                                        |
-+==============================================+==============================================+
-| Intercept                                    | $\beta_0 = 0$                                |
-+----------------------------------------------+----------------------------------------------+
-| Regression coefficient                       | $\beta_1 = 0$ or $\beta_1 = 0.20$            |
-+----------------------------------------------+----------------------------------------------+
-| Independent variable                         | $X \sim \mathcal{N}(\mu, \sigma^2)$          |
-+----------------------------------------------+----------------------------------------------+
-| Random error                                 | $95\% = \epsilon \sim \mathcal{N}(0, 1)$     |
-+----------------------------------------------+----------------------------------------------+
-|                                              | $2.5\% = \epsilon \sim \mathcal{N}(-3, 1)$\* |
-+----------------------------------------------+----------------------------------------------+
-|                                              | $2.5\% = \epsilon \sim \mathcal{N}(3, 1)$\*  |
-+----------------------------------------------+----------------------------------------------+
-| Continuous covariate regression coefficient  | $\beta_2 = 0.06$                             |
-+----------------------------------------------+----------------------------------------------+
-| Continuous demographic variable              | $Z \sim \mathcal{N}(\mu, \sigma^2)$          |
-+----------------------------------------------+----------------------------------------------+
-| Dichotomous covariate regression coefficient | $\beta_3 = 0.06$                             |
-+----------------------------------------------+----------------------------------------------+
-| Dichotomous demographic variable             | $D \sim \text{Bernoulli}(0.5)$               |
-+----------------------------------------------+----------------------------------------------+
-| Alternative outcome error                    | $\epsilon_a \sim \mathcal{N}(\mu, \sigma^2)$ |
-+----------------------------------------------+----------------------------------------------+
-| Sample size                                  | $200$                                        |
-+----------------------------------------------+----------------------------------------------+
++----------------------------------------------+-----------------------------------------------+
+| Parameter                                    | Value                                         |
++==============================================+===============================================+
+| Intercept                                    | $\beta_0 = 0$                                 |
++----------------------------------------------+-----------------------------------------------+
+| Regression coefficient                       | $\beta_1 = 0$ or $\beta_1 = 0.20$             |
++----------------------------------------------+-----------------------------------------------+
+| Independent variable                         | $X \sim \mathcal{N}(\mu, \sigma^2)$           |
++----------------------------------------------+-----------------------------------------------+
+| Random error                                 | $95\% = \epsilon \sim \mathcal{N}(0, 1)$      |
++----------------------------------------------+-----------------------------------------------+
+|                                              | $2.5\% = \epsilon \sim \mathcal{N}(-3, 1)$ \| |
++----------------------------------------------+-----------------------------------------------+
+|                                              | $2.5\% = \epsilon \sim \mathcal{N}(3, 1)$ \|  |
++----------------------------------------------+-----------------------------------------------+
+| Continuous covariate regression coefficient  | $\beta_2 = 0.06$                              |
++----------------------------------------------+-----------------------------------------------+
+| Continuous demographic variable              | $Z \sim \mathcal{N}(\mu, \sigma^2)$           |
++----------------------------------------------+-----------------------------------------------+
+| Dichotomous covariate regression coefficient | $\beta_3 = 0.06$                              |
++----------------------------------------------+-----------------------------------------------+
+| Dichotomous demographic variable             | $D \sim \text{Bernoulli}(0.5)$                |
++----------------------------------------------+-----------------------------------------------+
+| Alternative outcome error                    | $\epsilon_a \sim \mathcal{N}(\mu, \sigma^2)$  |
++----------------------------------------------+-----------------------------------------------+
+| Sample size                                  | $200$                                         |
++----------------------------------------------+-----------------------------------------------+
 
 : Parameter Values for the Data generating mechanism {#tbl-DGM}
-
-\*Specific value of epsilon to be determined
 
 ### Estimands
 
@@ -210,11 +208,9 @@ The estimand of this study is $\beta_1,$ which represents the effect of the inde
 
 As previously mentioned, there are two scenarios under which data is generated. A no-effect scenario and an effect scenario. Within these scenarios each simulated data set is examined under different conditions. The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (@tbl-cond).
 
-To answer the main research question, the type I and type II error rates are compared between the baseline result and each deviation result. All ten conditions, one baseline and nine deviation conditions, are executed using the same data set. This is done iteratively, where the $\beta_1$ regression coeffiecient, the p-value and the confidence interval are recorded for each condition.
+To answer the main research question, the type I and type II error rates are compared between the baseline result and each deviation result. All ten conditions, one baseline and nine deviation conditions, are executed using the same data set. This is done iteratively, where the $\beta_1$ regression coefficient, the p-value and the confidence interval are recorded for each condition.
 
 To answer the second research question, the effect of choosing whether or not to deviate is examined. This is done using the same data set as in the first section. For each iteration, the baseline *p-*value is assessed. When it is significant, the baseline condition is recorded for that iteration, if it is insignificant, the deviations conditions of that iteration are checked. If any of the deviations conditions are significant, one is chosen at random and recorded for that iteration. This provides an 'optimized' data set, with the largest number of significant iterations possible in the data set. The error rates will then be compared between the baseline results and the 'optimized' result. An overview can be found in @fig-phases.
-
-\newpage
 
 ![Condition Comparisons](../Visuals/phases.png){#fig-phases}
 
@@ -226,12 +222,37 @@ Performance is assessed through the type I and type II error for the estimand $\
 
 The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
 
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. Consequently, in this study, power rates of below 80% are considered an inflated type II error rate.
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. In this study, type II error will be expressed in the form of power rates and consequently, power rates below 80% are considered deflated power.
+
+In order to account for the uncertainty introduced by simulationThe number of iterations is based on the desired precision of the project. A Monte-Carlo standard error (MCSE) of 1% is deemed appropriate. According to the formula by @morris2019a,
+
+$$
+\begin{aligned}
+MCSE = \sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
+0.01 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}}, \\
+n_\text{sim} = \frac{0.8 \times 0.2}{(0.01)^2},\\
+n_\text{sim} = 1600
+\end{aligned}
+$$
+
+the required number of iterations to achieve the desired MCSE is 1600.
+
+With an MCSE of 1%, power rates are assessed at a precision interval of \[79, 81\] around the nominal power level of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
+
+For the type I error, 1600 iterations results in an MCSE of 0.00545. $$
+\begin{aligned}
+MCSE = \sqrt{\frac{\widehat{\text{Type I error}}\left(1-\widehat{\text{Type I error}}\right)}{n_{\text{sim}}}},\\
+MCSE = \sqrt{\frac{\widehat{\text{0.05}}\left(1-\widehat{\text{0.05}}\right)}{1600}}, \\
+MCSE = \sqrt{2.96875e-05},\\
+MCSE = 0.00545
+\end{aligned}
+$$ This means that type I error is assessed with a precision interval of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Any type I error rates outside of this interval are considered deflated or inflated.
 
 ## Results
 
 ```{r}
 #| label: Generating the data
+#| echo: false
 #source("Scripts/01_datageneration/datageneration.R")
 
 #read in saved data
@@ -249,66 +270,78 @@ rq2.yes <- choice(rq1.yes)
 
 ```{r}
 #| label: Research question 1, effect scenario
+#| echo: false
 
 source("../Scripts/02_results/RQ1_effect.R")
 ```
 
 ### Unplanned deviations
+
 #### Effects on power
 
-The results for the primary research question show an effect of deviating on power in each of the three deviation domains in the effect scenario (@fig-rq1.y).
+The results for the primary research question show an effect of deviating on power in each of the three deviation domains (@fig-rq1.y).
 
-Within the sample size domain, small changes in sample size show no effect on power (79.9% and 80.8%) whereas larger changes in sample size did appear impactful. Commonly known, increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a power decrease of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (170)", "n.sig.perc"])*100` %. This means that deviating in the form of collecting fewer than planned participants, is likely to lead to an underpowered study. When deviating with large sample size *increases*, studies are likely to increase in power. Results showed an increase in power of `r (rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"])*100`% in the 15% increase condition as compared to the baseline condition, resulting in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`%.
+Within the sample size domain, small changes in sample size show no effect on power whereas larger changes in sample size are impactful. It is an established fact that increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a deflated power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (170)", "n.sig.perc"]*100` %. This means that deviating in the form of collecting fewer participants than planned, is likely to lead to an underpowered study. When deviating by large sample size *increases*, the results fail to show a negative impact. The power level increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`% in the 15% increase condition.
 
-Deviations in the method of excluding outliers also impacts power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %.
+Deviations in the Outlier exclusion criteria domain also impact power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %.
 
-In the statistical model domain, effects are only observed in the alternative outcome condition, and not in the two covariate conditions. Deviating by using an alternative, correlated outcome variable decreases the power by `r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]-rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"])*100` %, resulting in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%.
+In the Statistical model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable results in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. This is incredibly low when compared to the nominal power level of 80%. Both the continuous and dichotomous covariate conditions fail to show an effect on power.
 
 ```{r}
 #| label: fig-rq1.y
 #| fig-width: 8
 #| fig-height: 5
 #| fig-cap: "Power level for Baseline and Deviation Conditions in the Effect scenario"
+#| echo: false
+
 print(plot.1y)
 ```
 
 ```{r}
 #| label: Research question 1, no-effect scenario
+#| echo: false
 
 source("../Scripts/02_results/RQ1_noeffect.R")
 ```
 
-#### Effects on Type I error 
+#### Effects on Type I error
 
-In the no-effect scenario only two conditions show results **outside of the precision range**. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range (@fig-rq1.n).
+The Monte Carlo standard error for type I error resulted in a precision range of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Only two conditions show results outside of this precision range. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range and therefore do not indicate any effects on the type I error (@fig-rq1.n).
 
 ```{r}
 #| label: fig-rq1.n
 #| fig-width: 8
 #| fig-height: 5
 #| fig-cap: "Type I error rate for Baseline and Deviation scenarios in the no-effect Scenario"
+#| echo: false
 print(plot.1n)
 ```
 
 ```{r}
 #| label: Research question 2
+#| echo: false
 
 source("../Scripts/02_results/RQ2.R")
 ```
 
-
 ### Choosing to deviate
 
-Choosing to deviate when the baseline condition is insignificant leads to an increased power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario. In the no-effect scenario, the type I error rate increases to `r (rq2.no.perc*100)`%. In the effect scenario, `r rq2.yes %>% filter(n.sig == "NA") %>% nrow()` iterations showed a significant baseline. Of the remaining `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` iterations, between zero and seven deviations were significant (@tbl-rq2). In the no-effect scenario, the majority of the iterations showed an insignificant baseline as well as insignificant deviations. In the `r (rq2.no.perc*100)`% that did have significant findings, between one and six deviations had significant *p*-values (@tbl-rq2).
+The second research question pertains to the effect of *choosing* to deviate when the baseline condition is insignificant. The results fail to show a negative effect of choosing to deviate on power levels. The power level does not deflate and is actually increased to `r (rq2.yes.nsig.perc*100)`%. In the no-effect scenario, an inflated type I error rate of `r (rq2.no.perc*100)`% is observed. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate in a singular deviation condition `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition).
+
+In the effect scenario, `r rq2.yes %>% filter(n.sig == "NA") %>% nrow()` out of 1600 repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was insignificant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions in which the baseline was insignificant had at least one significant deviation, with seven significant deviation conditions at most.
+
+In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed an insignificant baseline as well as insignificant deviations (@tbl-rq2). However of the repetitions in which the baseline was insignificant, 13.3% showed at least one significant result. Neither of the scenarios contained a repetition in which all deviations were significant when the baseline was not.
 
 ```{r}
 #| label: tbl-rq2
 #| tbl-cap: "Distribution of the number of significant deviations"
+#| echo: false
+#| warning: false
 
 kable(rq2.table,
       format    = "latex",   # use "html" if rendering to HTML
       booktabs  = TRUE,
-      col.names = c(" ", "Effect condition", "No-effect condition"),
+      col.names = c(" ", "Effect", "No-effect"),
       digits    = 2
 ) |>
   kable_styling(
@@ -321,14 +354,13 @@ kable(rq2.table,
 
 ```
 
-
 <!-- 16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data. -->
 
-## Conclusions 
+<!-- this indicates that if people are indeed deviating because of unsatisfactory results, the false positive rate in preregistered papers is likely to be minimally 16.3%-->
 
+## Discussion
 
-
-<!-- ## Discussion -->
+When examining the effect of deviating from a preregistration on type I and type II error, I found that 
 
 <!-- -   limitation of specific field -->
 
@@ -339,6 +371,8 @@ kable(rq2.table,
 <!-- -   hypotheses so many deviations, could be concern but outside of this scope -->
 
 <!-- seed dependency (number of iterations or increased variability due to extra randomness introduced in the tails)-->
+
+<!-- Monte Carlo SE formulas assume normally distributed ̂θ; for non-normal ̂θ, robust SEs exist; see White and Carlin.I think this may have caused less precision in my estimates as we added the extra outliers in the tails which decreased the normality -->
 
 <!-- ## Conclusion -->
 
