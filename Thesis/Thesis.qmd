@@ -24,14 +24,14 @@ csl: ../References/apa.csl
 \centering
 \vspace*{3cm}
 
-{\Huge Research Report\par}
+{\Huge Busy Making Other Plans:\par}
 \vspace{0.8cm}
 
-{\Large \bfseries Busy Making Other Plans: A Simulation Study on the Effects of Deviations from Preregistrations\par}
+{\Large \bfseries A Simulation Study on the Effects of Deviations from Preregistrations\par}
 \vspace{1cm}
 
 {\large A. J. Vijlbrief\par}
-{\large December 18, 2025\par}
+{\large May 11, 2026\par}
 
 \vfill
 
@@ -42,7 +42,7 @@ H. I. Oberman
 \vspace{0.5cm}
 
 {\large\textbf{Word Count}\par}
-2,480
+idkyet
 \end{titlepage}
 
 \newpage
@@ -281,7 +281,7 @@ rq2.yes <- choice(rq1.yes)
 ```
 
 
-### Unplanned deviations
+### Forced deviation
 
 #### Effects on power
 ```{r}
@@ -330,7 +330,7 @@ print(plot.1n)
 
 
 
-### Choosing to deviate
+### Opportunistic deviation
 ```{r}
 #| label: Research question 2
 #| echo: false
@@ -371,14 +371,25 @@ kable(rq2.table,
 
 ## Discussion
 
-This simulation study demonstrates that type I and type II error are both affected by deviations from a preregistration. 
+### Forced deviation
 
-Power can be affected both positively and negatively, depending on the type of deviation. Collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show little effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
+This simulation study demonstrates that type I and type II error are both affected when researchers are forced to deviate from a preregistration. 
 
-Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a slightly larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for using a stricter *z*-score as outlier criterium. 
+Power can be affected both positively and negatively, depending on the type of deviation and whether there is an effect to be detected. Collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
 
-The small inflation when slightly increasing the sample size is a borderline case. Using the MCSE of 0.055 which was preregistered for this study means that it falls outside of the precision range, outside of which I stated that effects were unlikely to be due to simulation noise. Using the empirical MCSE of this condition however shows that the effect might still be due to noise. With a type I error of 0.055625, the empirical MCSE becomes 0.00573. This means that type I error rates higher than 0.055729 would be considered inflated, which this condition just remains beneath. When theoretically considering this effect, it is more likely that this effect is in fact due to simulation error rather than an actual effect. If this was an effect of the deviation, it would be expected to see an opposite effect when decreasing the sample size slightly as well as a stronger effect when increasing the sample size more extremely. Neither of these effects can be observed in the other sample size conditions, thus making it more likely that the observed effect is indeed due to simulation noise. (In light of this, all other conditions were also evaluated using the empirical MCSE. The slight increase in sample size remained the only condition in which this changed the conclusion.)
-From these results 
+Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for using a stricter *z*-score as outlier criterium. 
+
+The small inflation when slightly increasing the sample size is a borderline case. Using the MCSE of 0.055 which was preregistered for this study means that it falls outside of the precision range, outside of which I stated that effects were unlikely to be due to simulation noise. Using the empirical MCSE of this condition however shows that the effect might still be due to noise. With a type I error of 0.055625, the empirical MCSE becomes 0.00573. This means that type I error rates higher than 0.055729 would be considered inflated, which this condition just remains beneath. When theoretically considering this effect, it is more likely that this effect is in fact due to simulation error rather than an actual effect. If this was an effect of the deviation, it would be expected to see an opposite effect when decreasing the sample size slightly as well as a stronger effect when increasing the sample size more extremely. Neither of these consequences can be observed in the other sample size conditions, thus making it more likely that the observed effect is indeed due to simulation noise. (In light of this, all other conditions were also evaluated using the empirical MCSE. The slight increase in sample size remained the only condition in which this changed the conclusion.)
+
+From these results we can conclude that negative impacts on type I and/or type II can occur when researchers are forced to deviate by 1) strongly decreasing the sample size, 2) using Cook's distance as outlier criterium, 3) switching to an alternative outcome, and 4) using a stricter *z-*score as outlier criterium. Before conducting research, the researcher does not know whether they will be working with an effect or not. As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. Deviating in the number of standard deviations used to calculate z-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. Consequently, the four types of deviations previously mentioned are deemed most harmful. 
+
+### Opportunistic deviation
+
+The results also showed an effect of deviating opportunistically on the type I error rate but failed to provide evidence for a negative effect of choosing to deviate on the power level. The type I error rate of `r (rq2.no.perc*100)`% indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. The types of deviations investigated in this simulation are based on deviations that are commonly reported. This means that even in preregistered papers, type I error rates might be much higher than the aspired 5%. As of yet, researchers often fail to report their reasoning behind deviating [source]. This becomes a much bigger issue when the results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
+Opportunistic deviation was limited to singular deviations in this research. This suggests that 
+<!-- any data on how many deviations are reported per preregistration -->
+
+### Limitations
 
 <!-- -   limitation of specific field -->
 A limitation of this study is the fact that the data was simulated based on common structures and numbers found in the social sciences. This is likely to make the results less generalizable to other disciplines. The baseline sample size, effect size and methods investigated are all common among social sciences but might look much different for other statistics oriented disciplines such as medicine. It remains unknown whether the found effects would remain under smaller and larger samples or effect sizes.
