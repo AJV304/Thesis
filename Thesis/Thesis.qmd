@@ -113,7 +113,7 @@ Literature shows that over half of published papers do not adhere to their pre-s
 
 @lakens2024 argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by @stefan2023, who showed that the type I error increases linearly with the number of outlier detection methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data [@john2012]. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations are important.
 
-The most common method for identifying outliers in the social sciences is the *z*-score [@bakker2014; @leys2013]. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook's distance excludes outliers based on how much their exclusion would influence the regression coefficients. In this study, the baseline condition will be to not exclude any datapoints, with deviation conditions based on *z*-score and Cook's distance (@tbl-cond).
+The most common method for identifying outliers in the social sciences is the *z*-score [@bakker2014; @leys2013]. A minimum of three standard deviations from the mean is often maintained as the rule of thumb for excluding cases. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Cook's distance excludes outliers based on how much their exclusion would influence the regression coefficients. In this study, the baseline condition will be to exclude datapoints based on a *z*-score of 3 standard deviations from the mean, with deviation conditions based on a stricter *z*-score and Cook's distance (@tbl-cond).
 
 #### Statistical model
 
@@ -136,15 +136,15 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 +------------------------------------------+----------------------+------------------------------------+
 |                                          |                      | -30                                |
 +------------------------------------------+----------------------+------------------------------------+
-| Outlier exclusion criteria               | No outliers excluded | Exclusion based on *z*-scores      |
+| Outlier exclusion criteria               | Exclusion based on a *z*-scores of 3 | Exclusion based on *z*-scores of 2      |
 +------------------------------------------+----------------------+------------------------------------+
-|                                          |                      | Exclusion based on Cook's distance |
+|                                          |                      | Exclusion based on Cook's distance larger than 1 |
 +------------------------------------------+----------------------+------------------------------------+
-| Statistical methods: *covariates*        | No covariates        | Continuous covariate               |
+| Statistical methods: covariates       | No covariates        | Continuous covariate               |
 |                                          |                      |                                    |
 |                                          |                      | Dichotomous covariate              |
 +------------------------------------------+----------------------+------------------------------------+
-| Statistical methods: *outcome switching* | Y                    | Ya                                 |
+| Statistical methods: outcome switching | Y                    | Ya (\rho(Y, Y_a) = 0.6)                                |
 +------------------------------------------+----------------------+------------------------------------+
 
 : Parameter Values for Baseline Condition and Deviation Conditions per Domain {#tbl-cond}
@@ -237,7 +237,7 @@ $$
 
 the required number of iterations to achieve the desired MCSE is 1600.
 
-With an MCSE of 1%, power rates are assessed at a precision interval of \[79, 81\] around the nominal power level of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
+With an MCSE of 0.01, power rates are assessed at a precision interval of \[79, 81\] around the nominal power level of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
 
 For the type I error, 1600 iterations results in an MCSE of 0.00545. 
 $$
@@ -253,11 +253,10 @@ This means that type I error is assessed with a precision interval of \[0.045, 0
 
 ## Preregistration, reproducibility and ethics
 
-This project was preregistered on the 31th of March, 2026. The preregistration can be found at [link]. In order to prevent seed hacking, I preregistered a seed which would only become available after the date of preregistration.
-In order to advance reproducibility, all files related to this project are publicly available at [github link]. This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and r version are recorded. Instructions on how to reproduce the findings can be found under the README file on github.
-During this project an R package was created under the name `thepack` to store the most important functions. The package is publicly available at [githublink]. 
+This project was preregistered on the 31th of March, 2026. The preregistration can be found at [link]. In order to prevent "seed hacking", I preregistered a seed which would only become available after the date of preregistration.
+An R package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. The package is publicly available at [githublink]. In order to advance reproducibility, all other files related to this project are publicly available at [github link]. This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and R version are recorded. Instructions on how to reproduce the findings can be found under the README file on GitHub.
 
-Ethics approval was obtained on October 7th, 2025 from the University of Utrecht under case-number #25-1980. 
+Ethics approval was obtained on October 7th, 2025 from the Utrecht University faculty of Social Sciences under case-number #25-1980. 
 
 
 ## Results
@@ -281,7 +280,8 @@ rq2.yes <- choice(rq1.yes)
 ```
 
 
-### Forced deviation
+### Research question one
+The primary research aim of this study is to examine the effects of deviations from preregistration on type I and type II errors. In this section the type I and II errors of each deviation condition are compared to those of the baseline condition **OR NOMINAL?**
 
 #### Effects on power
 ```{r}
@@ -292,11 +292,15 @@ source("../Scripts/02_results/RQ1_effect.R")
 ```
 The results for the primary research question show an effect of deviating on power in each of the three deviation domains (@fig-rq1.y).
 
-Within the sample size domain, small changes in sample size show no effect on power whereas larger changes in sample size are impactful. It is an established fact that increasing sample size can increase the power of a study \[source\]. This effect is also observed in the results of this study. A 15% decrease in sample size resulted in a deflated power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (170)", "n.sig.perc"]*100` %. This means that deviating in the form of collecting fewer participants than planned, is likely to lead to an underpowered study. When deviating by large sample size *increases*, the results fail to show a negative impact. The power level increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`% in the 15% increase condition.
+Within the sample size domain, the effects reflect what is known from the existing literature. Increasing the sample size, increases the power and decreasing the sample size decreases the power [sources]. These effects can be observed in the current study as well (@fig-rq1.y). 
 
-Deviations in the Outlier exclusion criteria domain also impact power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %.
+
+Deviations in the Outlier exclusion criteria domain also impact power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %. Cook's distance is generally considered a less conservative form of outlier exclusion. This may in part explain the 
+
 
 In the Statistical model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable results in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. This is incredibly low when compared to the nominal power level of 80%. Both the continuous and dichotomous covariate conditions fail to show an effect on power.
+
+Overall, collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
 
 ```{r}
 #| label: fig-rq1.y
@@ -375,7 +379,7 @@ kable(rq2.table,
 
 This simulation study demonstrates that type I and type II error are both affected when researchers are forced to deviate from a preregistration. 
 
-Power can be affected both positively and negatively, depending on the type of deviation and whether there is an effect to be detected. Collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
+Power can be affected both positively and negatively, depending on the type of deviation and whether there is an effect to be detected. 
 
 Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for using a stricter *z*-score as outlier criterium. 
 
