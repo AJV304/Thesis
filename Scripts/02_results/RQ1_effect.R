@@ -18,14 +18,15 @@ rq1.yes.plot$domain <- factor(rq1.yes.plot$domain, levels = c("Baseline", "Sampl
 
 plot.1y <- ggplot(data = rq1.yes.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = domain)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", width = 0.75) +
   #labels
   xlab("Simulation conditions") +
   ylab("Significant p-values (%)") +
   scale_fill_discrete(name = "Domains") +
   #y-axis breaks
   scale_y_continuous(labels = percent, 
-                     breaks = seq(0,1, 0.2)) +
+                     breaks = seq(0,1, 0.2),
+                     expand = expansion(mult = c(0, 0.05)))+
   #x-axis
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.line.x.bottom = element_line(linewidth = 0.75))+

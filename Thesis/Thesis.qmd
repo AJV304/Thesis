@@ -271,7 +271,7 @@ Ethics approval was obtained on October 7th, 2025 from the Utrecht University fa
 #source("Scripts/01_datageneration/datageneration.R")
 
 #read in saved data
-df <- readRDS("results.rds")
+df <- readRDS("../results.rds")
 
 #The no-effect scenario
 rq1.no <- df %>% filter(scenario == "no effect")
@@ -298,14 +298,11 @@ source("../Scripts/02_results/RQ1_effect.R")
 Within the Sample Size domain, the effects reflect what is known from the existing literature. Increasing the sample size, increases the power and decreasing the sample size decreases the power [sources]. These effects can be observed in the current study as well (@fig-rq1.y). 
 
 
-Deviations in the Outlier Exclusion Criteria domain also impact power. When using a strict *z*-score (exclusion based on 2 *SD* (standard deviation) instead of 3 *SD*) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that we are able to detect existing effects more often than in the nominal condition. When using Cook's distance instead of *z*-scores, the power drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%. This indicates that, when this method is used, we are less likely to observe an existing effect in the generated data. Cook's distance is generally considered a less conservative form of outlier exclusion. 
+Deviations in the Outlier Exclusion Criteria domain also impact power. When using a strict *z*-score (exclusion based on 2 *SD* (standard deviation) instead of 3 *SD*) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that we are able to detect existing effects more often than in the nominal condition. When using Cook's distance instead of *z*-scores, the power drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%. This indicates that, when this method is used, we are less likely to observe an existing effect in the generated data then we would in the nominal condition. Cook's distance is generally considered a less conservative form of outlier exclusion because it only excludes observations based on their influence on the regression coefficient. It is therefore quite unexpected to see such a large drop in power in this condition. 
 
-This may in part explain the 
+In the Statistical Model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable resulted in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. Both the continuous and dichotomous covariate conditions have no apparent effect on power.
 
-
-In the Statistical Model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable results in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. This is incredibly low when compared to the nominal power of 80%. Both the continuous and dichotomous covariate conditions fail to show an effect on power.
-
-Overall, collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate powers. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
+This simulation study demonstrates that power can be affected when researchers are forced to deviate from a preregistration. This effect can be positive or negative, depending on the type of deviation. Overall, collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate powers. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
 
 ```{r}
 #| label: fig-rq1.y

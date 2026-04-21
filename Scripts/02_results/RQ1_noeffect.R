@@ -16,7 +16,7 @@ rq1.no.plot$domain <- factor(rq1.no.plot$domain, levels = c("Baseline", "Sample 
 # -grouped by color per domain
 plot.1n <- ggplot(data = rq1.no.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = domain)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", width = 0.75) +
   #labels
   xlab("Simulation conditions") +
   ylab("Significant p-values (%)") +
@@ -24,7 +24,7 @@ plot.1n <- ggplot(data = rq1.no.plot,
   #y-axis range
   scale_y_continuous(labels = percent, 
                      breaks = seq(0,0.1, 0.01),
-                     limits = c(0, 0.07)) +
+                     expand = expansion(mult = c(0, 0.1)))+
   #x-axis
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.line.x.bottom = element_line(linewidth = 0.75))+
