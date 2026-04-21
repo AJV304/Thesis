@@ -47,4 +47,7 @@ plot.1y <- ggplot(data = rq1.yes.plot,
     ymin = 0.79, ymax = 0.81,
     fill = "lightblue",
     alpha = 0.05
-  )
+  ) +
+  coord_flip() +
+  scale_x_discrete(limits = rev)
+

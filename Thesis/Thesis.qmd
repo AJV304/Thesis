@@ -226,7 +226,7 @@ Performance is assessed through the type I and type II error for the estimand $\
 
 The type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that would mean detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05. In this case, a rate of higher than 5% is considered an inflated type I error rate.
 
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power level of 80%. In this study, type II error will be expressed in the form of power rates and consequently, power below 80% is considered deflated power.
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power of 80%. In this study, type II error will be expressed in the form of power rates and consequently, power below 80% is considered deflated power.
 
 The number of iterations is based on the desired precision of the project. A Monte-Carlo standard error (MCSE) of 0.01 is deemed appropriate. According to the formula by @morris2019a,
 
@@ -241,7 +241,7 @@ $$
 
 the required number of iterations to achieve the desired MCSE is 1600.
 
-With an MCSE of 0.01, power rates are assessed at a precision interval of \[79, 81\] around the nominal power level of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
+With an MCSE of 0.01, power rates are assessed at a precision interval of \[79, 81\] around the nominal power of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
 
 For the type I error, 1600 iterations results in an MCSE of 0.00545. 
 $$
@@ -255,7 +255,7 @@ $$
 This means that type I error is assessed with a precision interval of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Any type I error rates outside of this interval are considered deflated or inflated.
 
 
-## Preregistration, reproducibility and ethics
+### Preregistration, reproducibility and ethics
 
 This project was preregistered on the 31th of March, 2026. The preregistration can be found at [link]. In order to prevent "seed hacking", I preregistered a seed which would only become available after the date of preregistration.
 An R package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. The package is publicly available at [githublink]. In order to advance reproducibility, all other files related to this project are publicly available at [github link]. This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and R version are recorded. Instructions on how to reproduce the findings can be found in the README file on GitHub.
@@ -271,7 +271,7 @@ Ethics approval was obtained on October 7th, 2025 from the Utrecht University fa
 #source("Scripts/01_datageneration/datageneration.R")
 
 #read in saved data
-df <- readRDS("../results.rds")
+df <- readRDS("results.rds")
 
 #The no-effect scenario
 rq1.no <- df %>% filter(scenario == "no effect")
@@ -285,7 +285,7 @@ rq2.yes <- choice(rq1.yes)
 
 
 ### Research question one
-The primary research aim of this study is to examine the effects of deviations from preregistration on type I and type II errors. In this section the type I and II errors of each deviation condition are compared to those of the baseline condition **OR NOMINAL?**
+The primary research aim of this study is to examine the effects of deviations from preregistration on type I and type II errors. In this section the type I and II errors of each deviation condition are compared to the nominal levels. @fig-rq1.y and @fig-rq1.n show the type I error and power for each condition.
 
 #### Effects on power
 ```{r}
@@ -294,23 +294,24 @@ The primary research aim of this study is to examine the effects of deviations f
 
 source("../Scripts/02_results/RQ1_effect.R")
 ```
-The results for the primary research question show an effect of deviating on power in each of the three deviation domains (@fig-rq1.y).
 
-Within the sample size domain, the effects reflect what is known from the existing literature. Increasing the sample size, increases the power and decreasing the sample size decreases the power [sources]. These effects can be observed in the current study as well (@fig-rq1.y). 
-
-
-Deviations in the Outlier exclusion criteria domain also impact power levels. When using a strict *z*-score (exclusion based on 2 s.d. instead of 3 s.d.) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100` %. When using Cook's distance instead of *z*-scores, the power level drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100` %. Cook's distance is generally considered a less conservative form of outlier exclusion. This may in part explain the 
+Within the Sample Size domain, the effects reflect what is known from the existing literature. Increasing the sample size, increases the power and decreasing the sample size decreases the power [sources]. These effects can be observed in the current study as well (@fig-rq1.y). 
 
 
-In the Statistical model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable results in a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. This is incredibly low when compared to the nominal power level of 80%. Both the continuous and dichotomous covariate conditions fail to show an effect on power.
+Deviations in the Outlier Exclusion Criteria domain also impact power. When using a strict *z*-score (exclusion based on 2 *SD* (standard deviation) instead of 3 *SD*) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that we are able to detect existing effects more often than in the nominal condition. When using Cook's distance instead of *z*-scores, the power drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%. This indicates that, when this method is used, we are less likely to observe an existing effect in the generated data. Cook's distance is generally considered a less conservative form of outlier exclusion. 
 
-Overall, collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate power levels. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
+This may in part explain the 
+
+
+In the Statistical Model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable results in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. This is incredibly low when compared to the nominal power of 80%. Both the continuous and dichotomous covariate conditions fail to show an effect on power.
+
+Overall, collecting much fewer participants, using Cook's distance as outlier criterium and switching to an alternative outcome all deflate powers. Power is most impacted by switching outcomes, with a steep drop off from the nominal 80% to `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`% power. Small changes in sample size and the addition of a covariate show no effect, whereas collecting many more participants than planned and using a *z*-score of two standard deviations show slight increases in power. 
 
 ```{r}
 #| label: fig-rq1.y
 #| fig-width: 8
 #| fig-height: 5
-#| fig-cap: "Power level for Baseline and Deviation Conditions in the Effect scenario"
+#| fig-cap: "Power for Baseline and Deviation Conditions in the Effect scenario"
 #| echo: false
 
 print(plot.1y)
@@ -338,14 +339,14 @@ print(plot.1n)
 
 
 
-### Opportunistic deviation
+### Research question two
 ```{r}
 #| label: Research question 2
 #| echo: false
 
 source("../Scripts/02_results/RQ2.R")
 ```
-The second research question pertains to the effect of *choosing* to deviate when the baseline condition is insignificant. The results fail to show a negative effect of choosing to deviate on power levels. The power level does not deflate and is actually increased to `r (rq2.yes.nsig.perc*100)`%. In the no-effect scenario, an inflated type I error rate of `r (rq2.no.perc*100)`% is observed. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate in a singular deviation condition `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition).
+The second research question pertains to the effect of *choosing* to deviate when the baseline condition is insignificant. The results fail to show a negative effect of choosing to deviate on power. The power does not deflate and is actually increased to `r (rq2.yes.nsig.perc*100)`%. In the no-effect scenario, an inflated type I error rate of `r (rq2.no.perc*100)`% is observed. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate in a singular deviation condition `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition).
 
 In the effect scenario, `r rq2.yes %>% filter(n.sig == "NA") %>% nrow()` out of 1600 repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was insignificant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions in which the baseline was insignificant had at least one significant deviation, with seven significant deviation conditions at most.
 
@@ -393,7 +394,7 @@ From these results we can conclude that negative impacts on type I and/or type I
 
 ### Opportunistic deviation
 
-The results also showed an effect of deviating opportunistically on the type I error rate but failed to provide evidence for a negative effect of choosing to deviate on the power level. The type I error rate of `r (rq2.no.perc*100)`% indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. The types of deviations investigated in this simulation are based on deviations that are commonly reported. This means that even in preregistered papers, type I error rates might be much higher than the aspired 5%. As of yet, researchers often fail to report their reasoning behind deviating [source]. This becomes a much bigger issue when the results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
+The results also showed an effect of deviating opportunistically on the type I error rate but failed to provide evidence for a negative effect of choosing to deviate on the power. The type I error rate of `r (rq2.no.perc*100)`% indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. The types of deviations investigated in this simulation are based on deviations that are commonly reported. This means that even in preregistered papers, type I error rates might be much higher than the aspired 5%. As of yet, researchers often fail to report their reasoning behind deviating [source]. This becomes a much bigger issue when the results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
 Opportunistic deviation was limited to singular deviations in this research. This suggests that 
 <!-- any data on how many deviations are reported per preregistration -->
 
