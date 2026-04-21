@@ -214,7 +214,7 @@ As previously mentioned, there are two scenarios under which data is generated: 
 
 To answer the main research question, the type I and type II error rates are compared between the baseline result and each deviation result. All ten conditions, one baseline and nine deviation conditions, are executed using the same data set. In each repetition the $\beta_1$ regression coefficient, the p-value and the confidence interval are recorded for each condition.
 
-To answer the second research question, the effect of deviating opportunistically is examined. This is done using the same data set as in the first section. For each repetition, the baseline *p-*value is assessed. When it is significant, the baseline condition is recorded. If it is insignificant, the deviations conditions of that repetition are checked. If any of the deviations conditions are significant, one is chosen at random and recorded for that repetition. As a result, for each repetition, a significant result will be recorded if it is available among any of the conditions. This provides an 'optimized' data set. The error rates will then be compared between the baseline results and the opportunistic result. An overview can be found in @fig-phases.
+To answer the second research question, the effect of deviating opportunistically is examined. This is done using the same data set as in the first section. For each repetition, the baseline *p-*value is assessed. When it is significant, the baseline condition is recorded. If it is non-significant, the deviations conditions of that repetition are checked. If any of the deviations conditions are significant, one is chosen at random and recorded for that repetition. As a result, for each repetition, a significant result will be recorded if it is available among any of the conditions. This provides an 'optimized' data set. The error rates will then be compared between the baseline results and the opportunistic result. An overview can be found in @fig-phases.
 
 ![Condition Comparisons](../Visuals/phases.png){#fig-phases}
 
@@ -285,7 +285,7 @@ rq2.yes <- choice(rq1.yes)
 
 
 ### Research question one
-The primary research aim of this study is to examine the effects of deviations from preregistration on type I and type II errors. In this section the type I and II errors of each deviation condition are compared to the nominal levels. @fig-rq1.y and @fig-rq1.n show the type I error and power for each condition.
+The primary research aim of this study is to examine the effects of deviations from preregistration on type I and type II errors. In this section the type I error and power of each deviation condition are compared to the nominal levels. The Monte Carlo standard error resulted in a precision range of \[0.045, 0.055\] around the nominal type I error of 0.05 and a range of \[79,81\] around the nominal 80% power. Values outside of these ranges are considered inflated or deflated. @fig-rq1.y and @fig-rq1.n show the type I error and power for each condition along with the precision range.
 
 #### Effects on power
 ```{r}
@@ -323,7 +323,11 @@ print(plot.1y)
 
 source("../Scripts/02_results/RQ1_noeffect.R")
 ```
-The Monte Carlo standard error for type I error resulted in a precision range of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Only two conditions show results outside of this precision range. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range and therefore do not indicate any effects on the type I error (@fig-rq1.n).
+Only two conditions show results outside of the precision range. Small increases in effect size show an increased type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`%. Using a strict *z-*score results in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. All other deviation scenarios fall within the prespecified precision range and therefore do not indicate any effects on the type I error (@fig-rq1.n).
+
+The small inflation when slightly increasing the sample size is a borderline case. Using the MCSE of 0.055, which was preregistered for this study, means that it falls outside of the precision range. Outside of this range the effects are unlikely to be due to simulation noise. Using the empirical MCSE of this condition, however, shows that the found effect might still be due to noise.
+
+With a type I error of 0.055625, the empirical MCSE becomes 0.00573. This means that type I error rates higher than 0.055729 would be considered inflated, which this condition just remains beneath. When theoretically considering this effect, it is more likely that this effect is in fact due to simulation error rather than an actual effect. If this was an effect of the deviation, it would be expected to see an opposite effect when decreasing the sample size slightly as well as a stronger effect when increasing the sample size more extremely Neither of these consequences can be observed in the other sample size conditions, thus making it more likely that the observed effect is indeed due to simulation noise. (In light of this, all other conditions were also evaluated using the empirical MCSE. The slight increase in sample size remained the only condition in which this changed the conclusion.
 
 ```{r}
 #| label: fig-rq1.n
@@ -343,15 +347,17 @@ print(plot.1n)
 
 source("../Scripts/02_results/RQ2.R")
 ```
-The second research question pertains to the effect of *choosing* to deviate when the baseline condition is insignificant. The results fail to show a negative effect of choosing to deviate on power. The power does not deflate and is actually increased to `r (rq2.yes.nsig.perc*100)`%. In the no-effect scenario, an inflated type I error rate of `r (rq2.no.perc*100)`% is observed. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate in a singular deviation condition `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition).
+The second research question pertains to the effect of *choosing* to deviate when the baseline condition is non-significant. This is done by comparing an opportunistic scenario to the nominal type I error and power. In the opportunistic scenario, one condition was recorded per iteration. Whenever the baseline condition was significant, it was selected. If the baseline was non-significant, a significant deviation condition was selected instead, if available, and the number of significant deviations was recorded. @tbl-rq2 displays how often significant baselines and significant deviation conditions were found.
 
-In the effect scenario, `r rq2.yes %>% filter(n.sig == "NA") %>% nrow()` out of 1600 repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was insignificant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions in which the baseline was insignificant had at least one significant deviation, with seven significant deviation conditions at most.
+We do not observe a negative effect of choosing to deviate on power. In 1484 out of 1600 repetitions, a significant condition was observed. This results in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario. In the no-effect scenario, 261 out of 1600 repetitions showed a significant condition. Yielding an inflated type I error rate of `r (rq2.no.perc*100)`%. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate observed in a singular deviation condition. The highest type I error rate observed for research question one was `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition).
 
-In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed an insignificant baseline as well as insignificant deviations (@tbl-rq2). However of the repetitions in which the baseline was insignificant, 13.3% showed at least one significant result. Neither of the scenarios contained a repetition in which all deviations were significant when the baseline was not.
+In the effect scenario, `r (rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600` of the repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions in which the baseline was non-significant had at least one significant deviation, with seven significant deviation conditions at most.
+
+In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (@tbl-rq2). As expected, significant baseline conditions were observed `r (rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600`% of the time. However of the repetitions in which the baseline was non-significant, 13.3% showed at least one significant result. This indicates that when researchers obtain non-significant results from their preregistered data, and choose to deviate in one of the investigated ways, they can still find a significant result 13.3% of the time. When combining the significant baseline conditions and significant deviation conditions, the type I error rate inflated to `r rq2.no.perc*100`%. This is a large increase in the number of false positives when picking an available significant result.
 
 ```{r}
 #| label: tbl-rq2
-#| tbl-cap: "Distribution of the number of significant deviations"
+#| tbl-cap: "Distribution of the number of significant deviations (with a non-significant baseline"
 #| echo: false
 #| warning: false
 
