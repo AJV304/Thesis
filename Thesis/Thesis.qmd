@@ -4,10 +4,9 @@
 # date: today
 format:
   pdf:
-    documentclass: report
+    apaquarto-pdf: default
     indent: true
     keep-tex: true
-    fig-cap-location: top
     geometry:
       - top=4cm
       - bottom=4cm
@@ -149,6 +148,7 @@ As @lakens2024 argues, at times it might be necessary to alter the statistical m
 +------------------------------------------+----------------------+------------------------------------+
 
 : Parameter Values for Baseline Condition and Deviation Conditions per Domain {#tbl-cond}
+
 *Note.* Variable Ya is defined in the next section.
 
 
@@ -381,36 +381,27 @@ kable(rq2.table,
 
 ## Discussion
 
-### Forced deviation
+[source] and [source] have shown that deviating from preregistration plans happen very commonly. The goal of this simulation study was to investigate the effects of these deviations. In order to do so we identified 3 main domains in which deviations commonly occur and put together 9 deviation conditions. These deviations were then examined in terms of their effects on type I and type II error. The results of the study show that both are indeed affected by deviation. 
 
-This simulation study demonstrates that type I and type II error are both affected when researchers are forced to deviate from a preregistration. 
+The results of this simulation study show that type I error and power are both affected when researchers are forced to deviate from a preregistration. Power can be affected both positively and negatively, depending on the type of deviation and whether there is an effect to be detected. This corroborates the idea theorized by @lakens2024 that it is not inherently bad to deviate from a preregistration. Power showed small inflations and deflations, depending on the type of deviation. Only two deviation conditions showed effects on the type I error. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for using a stricter *z*-score as outlier criterium. 
 
-Power can be affected both positively and negatively, depending on the type of deviation and whether there is an effect to be detected. This corroborates the idea theorized by @lakens2024 that it is not inherently bad to deviate from a preregistration. Power showed small inflations and deflations, depending on the type of deviation, 
+Before conducting research, the researcher does not know whether they will be working with an effect or not. As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. Deviating in the number of standard deviations used to calculate *z*-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. Because the researcher does not know which scenario they are facing, this type of deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario.
 
-Only two deviation conditions showed effects on the type I error. Small increases in sample size resulted in a small inflation of type I error and using two standard deviations as outlier criterium showed a larger inflation. For all other conditions, effects on type I error were not strong enough to suggest an effect outside of simulation noise. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration except for using a stricter *z*-score as outlier criterium. 
+Consequently,from these results we can conclude that negative impacts on type I and/or type II can occur when researchers are forced to deviate by 1) strongly decreasing the sample size, 2) using Cook's distance as outlier criterium (as opposed to a *z*-score of 3 *SD*), 3) switching to an alternative outcome with a moderate to high correlation with the original outcome variable, and 4) using a stricter *z-*score as outlier criterium. These four types of deviations appear to be most consequential as they can either deflate power or inflate the type I error. 
 
-As mentioned in the *Results* section, the type I error result in the sample size decrease condition is a borderline case. When theoretically considering this effect, it is more likely that this effect is in fact due to simulation error rather than an actual effect. If this was an effect of the deviation, it would be expected to see an opposite effect when decreasing the sample size slightly as well as a stronger effect when increasing the sample size more extremely. Neither of these consequences can be observed in the other sample size conditions, thus making it more likely that the observed effect is indeed due to simulation noise. (In light of this, all other conditions were also evaluated using the empirical MCSE. The slight increase in sample size remained the only condition in which this changed the conclusion.)
+The results also showed an effect of deviating opportunistically on the type I error rate and on power. The type I error rate of `r (rq2.no.perc*100)`% in the opportunistic condition indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. 
 
-From these results we can conclude that negative impacts on type I and/or type II can occur when researchers are forced to deviate by 1) strongly decreasing the sample size, 2) using Cook's distance as outlier criterium (as opposed to a *z*-score of 3 *SD*), 3) switching to an alternative outcome with a moderate to high correlation, and 4) using a stricter *z-*score as outlier criterium. 
+The types of deviations investigated in this simulation are based on which deviations are commonly reported. This means that even in preregistered papers, type I error rates might be much higher than the aspired 5%. As of yet, researchers often fail to report their reasons for  deviating [source]. This becomes a much bigger issue when the current results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
+Opportunistic deviation was limited to singular deviations in this research, meaning that only one deviation was done at a time, deviations could not be combined. These results might therefore underestimate the actual impact of opportunistic deviations and real type I error rates in deviation papers might be a lot higher. 
 
-Before conducting research, the researcher does not know whether they will be working with an effect or not. As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. Deviating in the number of standard deviations used to calculate *z*-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. Because the researcher does not know which scenario they are facing, this type of deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario. Consequently, the four types of deviations previously mentioned appear to be most consequential as they can either deflate power or inflate the type I error. 
+It is important to note that the data simulated in this study was based on one set of parameter values. This is likely to make the results less generalizable to other disciplines in which the currently used data structure is less common. The baseline sample size, effect size and methods investigated are all common among social sciences but might look much different for other statistics oriented disciplines such as medicine. It remains unknown whether the found effects would remain under smaller and larger samples or effect sizes. Therefore, future research might explore whether these results persist under alternative data-generating mechanisms. 
 
-### Opportunistic deviation
-
-The results also showed an effect of deviating opportunistically on the type I error rate and on power. 
-
-The type I error rate of `r (rq2.no.perc*100)`% indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. 
-The types of deviations investigated in this simulation are based on deviations that are commonly reported. This means that even in preregistered papers, type I error rates might be much higher than the aspired 5%. As of yet, researchers often fail to report their reasons for  deviating [source]. This becomes a much bigger issue when the current results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
-Opportunistic deviation was limited to singular deviations in this research, meaning that only one deviation was done at a time, deviations could not be combined. These results might therefore underestimate the actual impact of opportunistic deviations. 
+As a result, one of the most important findings of this project is the importance of proper registration of the reasons for deviations. [source] et al. showed that very few researchers that deviate also report on why they did so. The fact that the chance of false positives increases so much when deviating opportunistically indicates that this is an important roadblock in improving the reliability of research. 
 
 
 <!-- any data on how many deviations are reported per preregistration -->
 
-### Limitations
-
 <!-- -   limitation of specific field -->
-A limitation of this study is the fact that the data was simulated based on one set of parameter values. This is likely to make the results less generalizable to other disciplines in which the currently used data structure is less common. The baseline sample size, effect size and methods investigated are all common among social sciences but might look much different for other statistics oriented disciplines such as medicine. It remains unknown whether the found effects would remain under smaller and larger samples or effect sizes. Therefore, future research might explore whether these results persist under alternative data-generating mechanisms. 
-
 
 <!-- -   what does this research say about the field and what has been published till now -->
 
