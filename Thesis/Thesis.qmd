@@ -255,7 +255,9 @@ $$ {#eq-mcsetypeI}
 ::::
 
 
-### Preregistration, reproducibility and ethics
+### Disclosures
+
+#### Preregistration, reproducibility and ethics
 
 This project was preregistered on the 31th of March, 2026. The preregistration can be found at [link]. In order to prevent "seed hacking", I preregistered a seed which would only become available after the date of preregistration.
 An R package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. The package is publicly available at [githublink]. In order to advance reproducibility, all other files related to this project are publicly available at [github link]. This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and R version are recorded. Instructions on how to reproduce the findings can be found in the README file on GitHub.
@@ -436,6 +438,17 @@ The goal of preregistration is to limit flexibility and improve reliability of r
 <!-- -larger false positive rate in published papers -->
 <!-- -papers with deviations in outlier criterium more likely to be false positive -->
 <!-- -because opportunistic choosing increases type I that much more than individual deviations it is more important to transparently record the reasons for deviating. -->
+
+**Transparency**
+*Author Contributions*
+Anna J. Vijlbrief: Conceptualization; Methdology; Investigation; Formal Analysis; Software; Visualization; Writing - original draft; Writing - reviewing and editing
+Anne M. Scheel: Conceptualization; Supervision; Writing - reviewing and editing
+Hanne I. Oberman: Conceptualization; Supervision; Writing - reviewing and editing
+
+*Declaration of Conflicting Interests*
+The author(s) declare that there were no conflicts of interest with respect to the authorship or the publication of this article.
+
+
 
 \newpage
 
