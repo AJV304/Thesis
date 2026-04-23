@@ -66,21 +66,13 @@ library(kableExtra)
 
 ## Introduction
 
-Preregistrations were popularized during the 2010s in psychology as a way to increase reproducibility [@lindsay2018]. Preregistrations are documents that are published at the start of the research process, in which decisions concerning data collection and analysis are recorded. This is done with the aim of limiting the extent to which such decisions can be influenced by results.
-
-This practice increases transparency about research choices and has become more popular, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018]. However, whether the desired effect of reduced flexibility and increased reproducibility has been achieved is debated. Preregistration should lead to more credible and reproducible results [@wagenmakers2012; @lakens2019; @nosek2018]. However, no difference has been found between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024a], and no reduction in *p*-hacking [@brodeur2024].
-
-There are many reasons for the uncertainty of the effect of preregistration. Preregistrations are often incomplete or overly vague about their decisions [@heirene2024; @claesen2021]. Researchers also deviate from their predetermined choices [@vandenakker2024; @claesen2021]. Deviations have been found in as many as 93% of preregistered papers, with up to 89% being incompletely reported [@claesen2021; @willroth2024]. These high deviation rates could be the reason why we see no reduction in significant findings and *p*-hacking.
-
-The aim of this project is to identify potentially problematic deviations and investigate their effects. I first discuss the goals and problems of preregistration and the potential impact of deviations in more detail. Then, through a simulation study, I examine the effect of said deviations on type I and type II error rates.
-
-### The Problem and the Solution
-
 The inability to reliably reproduce findings in the field of psychology is a known problem. The @opensciencecollaboration2015 found that only 36% of significant results were reproducible. One reason for this "replication crisis" is "researcher degrees of freedom" [@simmons2011]. This term describes the flexibility that researchers have in decisions made during their work. This includes decisions such as how many observations to collect, which statistical model to use and which covariates to add. When these decisions are made during data collection or analysis, researchers can make opportunistic choices which steer their results towards desired outcomes. Such opportunistic choices are called *p*-hacking and can dramatically increase false-positive rates [@stefan2023].
 
-The preregistration is proposed as a way to limit these types of practices. Templates are available to researchers, to inform them about what information is important to preregister. The preregistration is then uploaded to a public repository, with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and can evaluate it before the start of the study or compare it to the final research paper.
+The preregistration was proposed as a way to limit these types of practices. Preregistrations are documents that are published at the start of the research process, in which decisions concerning data collection and analysis are recorded. Templates are available to researchers, to inform them about what information is important to preregister. The preregistration is then uploaded to a public repository, with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and can evaluate it before the start of the study or compare it to the final research paper. This practice increases transparency about research choices and has become more popular, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018].
 
-In theory preregistration works well, if researchers are specific in their preregistration and follow it closely, this should lead to better reproducible findings. In practice, preregistrations are often imprecise and incomplete, making them less effective at restricting researcher degrees of freedom. Another common problem are deviations from preregistration [@vandenakker2024; @claesen2021]. Deviating means that the preregistered plan is not being followed during the execution of the study. Deviations occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024]. This includes differences in the total sample size, how outliers are selected and which covariates are used. These deviations could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to *p*-hacking strategies.
+In theory preregistration works well, if researchers are specific in their preregistration and follow it closely, this should lead to better reproducible findings. In practice, preregistrations are often imprecise and incomplete, making them less effective at restricting researcher degrees of freedom. Furthermore, no difference has been found between preregistered and non-preregistered papers in the number of significant findings [@vandenakker2024a], and no reduction in *p*-hacking [@brodeur2024].
+
+Another common problem are deviations from preregistration [@vandenakker2024; @claesen2021]. Deviating means that the preregistered plan is not being followed during the execution of the study. Deviations have been found in as many as 93% of preregistered papers, with up to 89% being incompletely reported [@claesen2021; @willroth2024]. These changes occur most commonly in data collection procedures, statistical models and exclusion criteria [@vandenakker2024]. This includes differences in the total sample size, how outliers are selected and which covariates are used. These deviations could serve to further diminish the effectiveness of preregistrations, as it reintroduces researcher degrees of freedom and leaves room to revert back to *p*-hacking strategies.
 
 ### Are all deviations bad?
 
@@ -228,31 +220,39 @@ The type I error refers to a false-positive, or rejecting the null-hypothesis wh
 
 Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that would mean failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of .20 results in a generally accepted power of 80%. In this study, type II error will be expressed in the form of power rates and consequently, power below 80% is considered deflated power.
 
-The number of iterations is based on the desired precision of the project. A Monte-Carlo standard error (MCSE) of 0.01 is deemed appropriate. According to the formula by @morris2019a,
+The number of iterations is based on the desired precision of the project. A Monte-Carlo standard error (MCSE) of 0.01 is deemed appropriate. According to the formula by @morris2019a, the required number of iterations to achieve the desired MCSE is 1600 (@eq-mcsepower). With an MCSE of 0.01, power rates are assessed at a precision interval of \[79, 81\] around the nominal power of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
 
+For the type I error, 1600 iterations results in an MCSE of 0.00545 (@eq-mcsetypeI). This means that type I error is assessed with a precision interval of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Any type I error rates outside of this interval are considered deflated or inflated.
+
+:::: {#fig-mcse}
+::: {layout-ncol=2}
+
+::: {}
 $$
 \begin{aligned}
-MCSE = \sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
-0.01 = \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}}, \\
-n_\text{sim} = \frac{0.8 \times 0.2}{(0.01)^2},\\
-n_\text{sim} = 1600
+MCSE &= \sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
+0.01 &= \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}}, \\
+n_\text{sim} &= \frac{0.8 \times 0.2}{(0.01)^2},\\
+n_\text{sim} &= 1600
 \end{aligned}
-$$
+$$ {#eq-mcsepower}
+:::
 
-the required number of iterations to achieve the desired MCSE is 1600.
-
-With an MCSE of 0.01, power rates are assessed at a precision interval of \[79, 81\] around the nominal power of 80%. Power levels outside of this range can be stated to have increased or deflated power levels that are not due to simulation noise.
-
-For the type I error, 1600 iterations results in an MCSE of 0.00545. 
+::: {}
 $$
 \begin{aligned}
-MCSE = \sqrt{\frac{\widehat{\text{Type I error}}\left(1-\widehat{\text{Type I error}}\right)}{n_{\text{sim}}}},\\
-MCSE = \sqrt{\frac{\widehat{\text{0.05}}\left(1-\widehat{\text{0.05}}\right)}{1600}}, \\
-MCSE = \sqrt{2.96875e-05},\\
-MCSE = 0.00545
+MCSE &= \sqrt{\frac{\widehat{\text{Type I error}}\left(1-\widehat{\text{Type I error}}\right)}{n_{\text{sim}}}},\\
+MCSE &= \sqrt{\frac{\widehat{\text{0.05}}\left(1-\widehat{\text{0.05}}\right)}{1600}}, \\
+MCSE &= \sqrt{2.96875e-05},\\
+MCSE &= 0.00545
 \end{aligned}
-$$ 
-This means that type I error is assessed with a precision interval of \[0.045, 0.055\] around the nominal $\alpha$ level of 0.05. Any type I error rates outside of this interval are considered deflated or inflated.
+$$ {#eq-mcsetypeI}
+:::
+
+:::
+
+*Note.* Calculations for the number of iterations based on the desired MCSE for power and the MCSE for type I error based on the number of iterations.
+::::
 
 
 ### Preregistration, reproducibility and ethics
