@@ -64,8 +64,6 @@ library(knitr)
 library(kableExtra)
 ```
 
-## Introduction
-
 The inability to reliably reproduce findings in the field of psychology is a known problem. The @opensciencecollaboration2015 found that only 36% of significant results were reproducible. One reason for this "replication crisis" is "researcher degrees of freedom" [@simmons2011]. This term describes the flexibility that researchers have in decisions made during their work. This includes decisions such as how many observations to collect, which statistical model to use and which covariates to add. When these decisions are made during data collection or analysis, researchers can make opportunistic choices which steer their results towards desired outcomes. Such opportunistic choices are called *p*-hacking and can dramatically increase false-positive rates [@stefan2023].
 
 The preregistration was proposed as a way to limit these types of practices. Preregistrations are documents that are published at the start of the research process, in which decisions concerning data collection and analysis are recorded. Templates are available to researchers, to inform them about what information is important to preregister. The preregistration is then uploaded to a public repository, with a time stamp of when it was published. Peer reviewers, and others, have access to the preregistration and can evaluate it before the start of the study or compare it to the final research paper. This practice increases transparency about research choices and has become more popular, with the number of preregistrations increasing annually [@ferguson2023; @lindsay2018].
@@ -206,7 +204,7 @@ As previously mentioned, there are two scenarios under which data is generated: 
 
 To answer the main research question, the type I and type II error rates are compared between the baseline result and each deviation result. All ten conditions, one baseline and nine deviation conditions, are executed using the same data set. In each repetition the $\beta_1$ regression coefficient, the p-value and the confidence interval are recorded for each condition.
 
-To answer the second research question, the effect of deviating opportunistically is examined. This is done using the same data set as in the first section. For each repetition, the baseline *p-*value is assessed. When it is significant, the baseline condition is recorded. If it is non-significant, the deviations conditions of that repetition are checked. If any of the deviations conditions are significant, one is chosen at random and recorded for that repetition. As a result, for each repetition, a significant result will be recorded if it is available among any of the conditions. This provides an 'optimized' data set. The error rates will then be compared between the baseline results and the opportunistic result. An overview can be found in @fig-phases.
+To answer the second research question, the effect of deviating opportunistically is examined. This is done using the same data set as in the first section. For each repetition, the baseline *p-*value is assessed. When it is significant, the baseline condition is recorded. If it is non-significant, the deviation conditions of that repetition are checked. If any of the deviation conditions are significant, one is chosen at random and recorded for that repetition. As a result, for each repetition, a significant result will be recorded if it is available among any of the conditions. This provides an 'optimized' data set. The error rates will then be compared between the baseline results and the opportunistic result. An overview can be found in @fig-phases.
 
 ![Condition Comparisons](../Visuals/phases.png){#fig-phases}
 
@@ -300,7 +298,7 @@ source("../Scripts/02_results/RQ1_effect.R")
 Within the Sample Size domain, the effects reflect what is known from the existing literature. Increasing the sample size, increases the power and decreasing the sample size decreases the power [sources]. These effects can be observed in the current study as well (@fig-rq1.y). 
 
 
-Deviations in the Outlier Exclusion Criteria domain also impact power. When using a strict *z*-score (exclusion based on 2 *SD* (standard deviation) instead of 3 *SD*) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that we are able to detect existing effects more often than in the nominal condition. When using Cook's distance instead of *z*-scores, the power drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%. This indicates that, when this method is used, we are less likely to observe an existing effect in the generated data then we would in the nominal condition. Cook's distance is generally considered a less conservative form of outlier exclusion because it only excludes observations based on their influence on the regression coefficient. It is therefore quite unexpected to see such a large drop in power in this condition. 
+Deviations in the Outlier Exclusion Criteria domain also impact power. When using a strict *z*-score (exclusion based on 2 *SD* (standard deviation) instead of 3 *SD*) power increases to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that we are able to detect existing effects more often than in the nominal rate. When using Cook's distance instead of *z*-scores, the power drops to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%. This indicates that, when this method is used, we are less likely to observe an existing effect in the generated data then we would in the nominal rate. Cook's distance is generally considered a less conservative form of outlier exclusion because it only excludes observations based on their influence on the regression coefficient. It is therefore quite unexpected to see such a large drop in power in this condition. 
 
 In the Statistical Model domain, deflated power is only observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable resulted in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. Both the continuous and dichotomous covariate conditions have no apparent effect on power.
 
@@ -383,7 +381,7 @@ kable(rq2.table,
 
 <!-- this indicates that if people are indeed deviating because of unsatisfactory results, the false positive rate in preregistered papers is likely to be minimally 16.3%-->
 
-## Discussion and conclusion
+## Discussion
 
 @claesen2021 and @vandenakker2024 have shown that deviating from preregistration plans happen very commonly. The goal of this simulation study was to investigate the effects of these deviations. In order to do so we identified three main domains in which deviations commonly occur and put together nine deviation conditions. These deviations were then examined in terms of their effects on type I and type II error. The results of the study show that both are affected by deviations. 
 
