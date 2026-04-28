@@ -18,6 +18,13 @@ rq1.yes.plot$domain <- factor(rq1.yes.plot$domain, levels = c("Baseline", "Sampl
 
 plot.1y <- ggplot(data = rq1.yes.plot,
        mapping = aes(x = conditions, y = n.sig.perc, fill = domain)) +
+  #precision interval
+  geom_rect(
+    xmin = -Inf, xmax = Inf,
+    ymin = 0.79, ymax = 0.81,
+    fill = "lightblue",
+    alpha = 0.05
+  ) +
   geom_bar(stat = "identity", width = 0.75) +
   #labels
   xlab("Simulation conditions") +
@@ -42,13 +49,6 @@ plot.1y <- ggplot(data = rq1.yes.plot,
   geom_hline(yintercept = 0.8, 
              color = "red", 
              linewidth = 0.5) +
-  #precision interval
-  geom_rect(
-    xmin = -Inf, xmax = Inf,
-    ymin = 0.79, ymax = 0.81,
-    fill = "lightblue",
-    alpha = 0.05
-  ) +
   coord_flip() +
   scale_x_discrete(limits = rev)
 
