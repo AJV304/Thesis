@@ -36,3 +36,28 @@
 # end
 # end
 # 
+
+# DiagrammeR(" graph TD; A(Scenario) --> F(Baseline Condition);A --> G(Deviation condition);")
+# DiagrammeR(" graph TD; A(Scenario) --> F(Baseline Condition);F --> G(Deviation condition);")
+# 
+# 
+# grViz("
+#   digraph flowchart {
+#     graph [layout = dot, rankdir = TB]
+#     
+#     node [shape = rectangle, style = rounded, fontname = Helvetica]
+#     
+#     B [label = 'Scenario', shape = ellipse]
+#     C [label = 'Is the baseline condition significant?', shape = diamond]
+#     D [label = 'Record baseline', shape = ellipse]
+#     E [label = 'Are any of the deviations significant?', shape = diamond]
+#     F [label = 'Record a significant deviation at random', shape = ellipse]
+#     G [label = 'Record baseline', shape = ellipse]
+#     
+#     B -> C
+#     C -> D [label = 'yes']
+#     C -> E [label = 'no']
+#     E -> F [label = 'yes']
+#     E -> G [label = 'no']
+#   }
+# ")
