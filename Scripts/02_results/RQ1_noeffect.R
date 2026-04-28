@@ -38,11 +38,17 @@ plot.1n <- ggplot(data = rq1.no.plot,
   #y-axis
   theme(axis.title.y = element_text(margin =  margin(r=20)),
         axis.line.y = element_line(linewidth = 0.75)) +
+  #background
+  theme_bw() +
   #legend
   theme(legend.position = "top",
         legend.title = element_text(size = 15,
                                     margin = margin(r=20)),
-        legend.key.size = unit(0.5, "cm")) +
+        legend.key.size = unit(0.5, "cm"),
+        panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_line(colour = "black")) +
   #horizontal line
   geom_hline(yintercept = 0.05, 
              color = "red", 

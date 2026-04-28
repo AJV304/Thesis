@@ -23,7 +23,7 @@ plot.1y <- ggplot(data = rq1.yes.plot,
     xmin = -Inf, xmax = Inf,
     ymin = 0.79, ymax = 0.81,
     fill = "lightblue",
-    alpha = 0.05
+    alpha = 0.1
   ) +
   geom_bar(stat = "identity", width = 0.75) +
   #labels
@@ -40,11 +40,18 @@ plot.1y <- ggplot(data = rq1.yes.plot,
   #y-axis
   theme(axis.title.y = element_text(margin =  margin(r=20)),
         axis.line.y = element_line(linewidth = 0.75)) +
+  #background
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_line(colour = "black")) +
   #legend
   theme(legend.position = "top",
         legend.title = element_text(size = 15,
                                     margin = margin(r=20)),
-        legend.key.size = unit(0.5, "cm")) +
+        legend.key.size = unit(0.5, "cm"),
+        ) +
   #horizontal line
   geom_hline(yintercept = 0.8, 
              color = "red", 
