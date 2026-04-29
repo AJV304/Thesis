@@ -538,17 +538,17 @@ The goal of this simulation study was to investigate the effects of deviations o
 In order to investigate these effects, I identified three main domains in which deviations commonly occur. Within those domains identified nine deviation conditions. 
 These deviations were then examined in terms of their effects on type I and type II error. 
 
-The results of this simulation study show that type I error and power are both affected when researchers are forced to deviate from a preregistration. 
+The results of this simulation study show that type I and type II error are both affected when researchers are forced to deviate from a preregistration. 
 Negative impacts on type I and/or type II can occur when researchers are forced to deviate by 1) strongly decreasing the sample size, 2) using Cook's distance as outlier criterium (as opposed to a *z*-score of 3 *SD*), 3) switching to an alternative outcome with a moderate to high correlation with the original outcome variable, and 4) using a stricter *z-*score as outlier criterium. 
-These four types of deviations appear to be most consequential as they can either deflate power or inflate the type I error. Especially switching to an alternative outcome seems to have strong effects on power and might therefore be best avoided.
-
-Before conducting research, the researcher does not know whether they will be working with an effect or not. 
-As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. 
-Deviating in the number of standard deviations used to calculate *z*-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. 
-Because the researcher does not know which scenario they are facing, this type of deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario.
+These four types of deviations appear to be most consequential as they can either deflate power or inflate the type I error. 
+Especially switching to an alternative outcome seems to have strong effects on power and might therefore be best avoided.
 
 Power can also be affected positively, depending on the type of deviation and whether there is an effect to be detected. 
-This corroborates the idea theorized by @lakens2024 that it is not inherently bad to deviate from a preregistration. Deviating from a preregistration can hinder a researcher's ability to find existing effects but also improve it. No positive effects of deviation on the type I error was found. In two conditions a slight increase in the number of false positives was found but the highest increase was by only 0.8%. This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration. Consequently, from these results it can be concluded that deviating in and of itself is not necessarily a bad thing and does not need to be avoided. 
+This corroborates the idea theorized by @lakens2024 that it is not inherently bad to deviate from a preregistration. 
+Deviating from a preregistration can hinder a researcher's ability to find existing effects but also improve it. 
+No positive effects of deviation on the type I error was found. In two conditions a slight increase in the number of false positives was found but the highest increase was by only 0.8%. 
+This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration. 
+Consequently, from these results it can be concluded that deviating in and of itself is not necessarily a bad thing and does not need to be avoided. 
 
 What is best avoided is choosing to deviate based on outcomes. The results of this study showed an effect of deviating opportunistically on the type I error rate and on power. 
 The type I error rate of `r (rq2.no.perc*100)`% in the opportunistic condition indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. As expected, power was found to increase up to 92.7% in this case 
@@ -559,6 +559,12 @@ This means that even in preregistered papers, type I error rates might be even h
 
 ### Impacts
 
+Before conducting research, the researcher does not know whether they will be working with an effect or not. 
+As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. 
+Deviating in the number of standard deviations used to calculate *z*-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. 
+Because the researcher does not know which scenario they are facing, this type of deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario. This shows that the decision to deviate should not be made because of its potentially positive effects but should be avoided when possible because of its risks. 
+
+That being said
 
 
 
