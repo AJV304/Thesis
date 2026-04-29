@@ -581,24 +581,23 @@ No positive effects of deviating was found on the type I error. The negative eff
 This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration. 
 Consequently, from these results it can be concluded that deviating in and of itself is not necessarily a bad thing and does not need to be avoided. 
 
-What is best avoided is choosing to deviate based on outcomes. The results of this study showed an effect of deviating opportunistically on the type I error rate and on power. 
-The type I error rate of `r (rq2.no.perc*100)`% in the opportunistic condition indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. 
-
-
-### Impacts
-
-The limited negative effects found in the results show that deviating is not inherently a problem. Some deviations can have negative impacts on the type I error and power but these effects are manageable, except for the severe loss in power when using an alternative outcome variable. What this means for the field is that the commonness of deviation do not by definition pose a threat to the reliability of the field. Yes deviations occur very commonly but that does not mean that these results are immediately questionable. Whether the results were impacted by the deviations is dependent on whether there was an effect to be detected in the first place and why the researcher chose to deviate.
+What this means for the field is that the commonness of deviation do not by definition pose a threat to the reliability of the field. Yes, deviations occur very commonly but that does not mean that these results are immediately questionable. Whether the results were impacted by the deviations is dependent on whether there was an effect to be detected in the first place and why the researcher chose to deviate.
 
 Before conducting research, the researcher does not know whether they will be working with an effect or not. As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. For example, changing the number of standard deviations used to calculate *z*-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. 
 Because the researcher does not know which scenario they are facing, this type of deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario. This shows that the decision to deviate should not be made because of its potentially positive effects but should be avoided when possible because of its risks. 
 
 Deviations are therefore best avoided because they do bring risks. However, this is not always realistic. Many deviations occur due to force majeure. By the literal definition, avoiding these deviations is outside of the control of the researcher. If they must, researchers can deviate and these results show they can do so with possibly minimal effect.
 
-That being said, these effects can be much bigger if the researcher chose to deviate due to unsatisfying results. 
+What is best avoided is choosing to deviate based on outcomes. The results of this study showed an effect of deviating opportunistically on the type I error rate and on power. 
+The type I error rate of `r (rq2.no.perc*100)`% in the opportunistic condition indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. Based on the limitations of this study, 16.3% is an extremely conservative estimate. If all deviations that are observed in the literature are because researchers choose to deviate, then the false positive rate in preregistered papers is much higher. This means that as long as it remains unknown why researchers deviate, it remains unknown how reliable their results are.
 
-
-Many other deviations might also occur, and many deviations might also go unreported. 
-This means that even in preregistered papers, type I error rates might be even higher than the `r (rq2.no.perc*100)`% found in this study and much higher than the aspired 5%.
+As of yet, researchers often fail to report their reasons for deviating [@willroth2024; @claesen2021]. 
+This is a big issue when the current results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
+There has been a call to report deviations from preregistrations for a while now [@heirene2024; @claesen2021; @willroth2024]. 
+I suggest going one step further, and recommend reporting the reasons for the deviation as well. A deviation template has been proposed by @willroth2024 which includes reporting the reasons for deviating. 
+I recommend that this type of reporting becomes the standard among preregistered papers. 
+When researchers properly document how they deviate and why they deviated, it would allow readers to evaluate the possible effects of the deviations more critically. 
+Readers can then draw their own conclusions on the validity of the results. 
 
 ### Limitations
 
@@ -630,15 +629,7 @@ It can serve to improve or worsen the number of false positives and negatives de
 Forced deviations show negative impacts on power and type I error but might be hard to prevent due to the uncontrollable nature of the deviation. 
 Choosing to deviate in order to get better results shows a larger impact on the number of false positives and therefore forms a bigger issue. 
 
-As of yet, researchers often fail to report their reasons for deviating [@willroth2024; @claesen2021]. 
-This is a big issue when the current results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
-There has been a call to report deviations from preregistrations for a while now [@heirene2024; @claesen2021; @willroth2024]. 
-I suggest going one step further, and recommend reporting the reasons for the deviation as well. A deviation template has been proposed by @willroth2024 which includes reporting the reasons for deviating. 
-I recommend that this type of reporting becomes the standard among preregistered papers. 
-When researchers properly document how they deviate and why they deviated, it would allow readers to evaluate the possible effects of the deviations more critically. 
-Readers can then draw their own conclusions on the validity of the results. 
-
-The goal of preregistration is to limit flexibility and improve reliability of research. Although deviations from preregistration happen commonly, the negative effects are limited when this is due to unforseen events.The lack of transparency from researchers on why they deviate is what limits the extent to which these goals can be achieved. 
+The goal of preregistration is to limit flexibility and improve reliability of research. Although deviations from preregistration happen commonly, the negative effects are limited when this is due to unforeseen events.The lack of transparency from researchers on why they deviate is what limits the extent to which the goals of preregistering can be achieved. 
 Therefore I recommend that researchers register the reasons for deviating from their preregistrations. 
 Because deviations are not inherently bad, but they do have the potential to be harmful.
 
