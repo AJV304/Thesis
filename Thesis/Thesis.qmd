@@ -200,8 +200,6 @@ Within the statistical model, three deviation conditions are simulated: outcome 
 
 *Note.* Variable Ya is defined in the next section. SD refers to standard deviation. 
 
-
-
 ## Data-generating Mechanism
 Data is generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". 
 The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. 
@@ -284,7 +282,7 @@ The error rates will then be compared between the baseline results and the oppor
 ```{r}
 #| label: fig-phases
 #| fig-cap: Condition Comparisons per Research Question
-#| apa-note: NoNote \ Note. For research question 1 (RQ1), the baseline result is compared to the deviation result. For research question 2 (RQ2), the baseline result is compared to the 'optimized' result.
+#| apa-note: NoNote \ \emph{Note.} For research question 1 (RQ1), the baseline result is compared to the deviation result. For research question 2 (RQ2), the baseline result is compared to the 'optimized' result.
 #| echo: false
 #| out-width: "100%"
 
@@ -421,10 +419,10 @@ Values outside of these ranges are considered inflated or deflated. @fig-rq1.y a
 source("../Scripts/02_results/RQ1_effect.R")
 ```
 
-The baseline scenario was intended to reflect the nominal power of 80%. The power is as expected (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]*100`%). 
+The baseline scenario was intended to reflect the nominal power of 80%. The power is as expected (`r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]*100)` %). 
 
 Within the sample size domain, the effects reflect what is known from the existing literature.
-Increasing the sample size, increases the power and decreasing the sample size decreases the power [sources]. 
+Increasing the sample size, increases the power and decreasing the sample size decreases the power [@cohen2009]. 
 These effects were observed in the current study as well (@fig-rq1.y). 
 
 Deviations in the Outlier Exclusion Criteria domain also impact power. 
@@ -449,7 +447,7 @@ Small changes in sample size and the addition of a covariate show no effect, whe
 #| fig-width: 8
 #| fig-height: 5
 #| fig-cap: "Power for Baseline and Deviation Conditions in the Effect Scenario"
-#| apa-note: "The red line displays the nominal power of 80%. The blue shaded area represents the precision interval around the nominal power."
+#| apa-note: NoNote \ \emph{Note.}  The red line displays the nominal power of 80%. The blue shaded area represents the precision interval around the nominal power.
 #| echo: false
 
 print(plot.1y)
@@ -483,7 +481,7 @@ In light of this, all other conditions were also evaluated using their observed 
 #| fig-width: 8
 #| fig-height: 5
 #| fig-cap: "Type I Error Rate for Baseline and Deviation Scenarios in the No-effect Scenario"
-#| apa-note: "The red line displays the nominal type I error rate of 5%. The blue shaded area represents the precision interval around the nominal type I error rate."
+#| apa-note: NoNote \ \emph{Note.} The red line displays the nominal type I error rate of 5%. The blue shaded area represents the precision interval around the nominal type I error rate.
 #| echo: false
 print(plot.1n)
 ```
@@ -515,7 +513,17 @@ The highest type I error rate observed for research question one was `r (max(rq1
 
 In the effect scenario, `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the repetitions resulted in a significant baseline. 
 Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. 
-The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most.
+64% of the remaining repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most.
+
+```{r}
+#| label: fig-rq2.y
+#| fig-cap: "Distribution of Significant Conditions"
+#| apa-note: NoNote \ \emph{Note.} 'Ns' denotes non-significant. 'Sig.' denotes significance.
+#| echo: false
+#| out-width: "100%"
+
+knitr::include_graphics("../Visuals/sankeyyes.png")
+```
 
 In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (@tbl-rq2). 
 
@@ -526,7 +534,7 @@ This is a large increase in the number of false positives when picking an availa
 
 ```{r}
 #| label: tbl-rq2
-#| tbl-cap: "Distribution of the number of significant deviations (with a non-significant baseline"
+#| tbl-cap: "Distribution of the number of significant deviations (with a non-significant baseline" 
 #| echo: false
 #| warning: false
 
@@ -550,7 +558,7 @@ kable(rq2.table,
 
 # Discussion
 The goal of this simulation study was to investigate the effects of deviations on research outcomes and the quality of published results.
-@claesen2021 and @vandenakker2024 showed that deviating from preregistration plans happens very commonly but the effects of doing so were unclear.
+@claesen2021 and @vandenakker2024 showed that deviating from preregistration plans happens very commonly, but the effects of doing so were unclear.
 In order to investigate these effects, I identified three main domains in which deviations commonly occur. Within those domains I identified nine deviation conditions. 
 These deviations were then examined in terms of their effects on type I and type II error. 
 
@@ -562,11 +570,11 @@ Especially switching to an alternative outcome seems to have strong effects on p
 Power can also be affected positively, depending on the type of deviation and whether there is an effect to be detected. 
 This corroborates the idea theorized by @lakens2024 that it is not inherently bad to deviate from a preregistration. 
 Deviating from a preregistration can hinder a researcher's ability to find existing effects but also improve it. 
-No positive effects of deviating was found on the type I error. The negative effects were also limited as a slight increase in the number of false positives was found in only two conditions with the highest type I error still being only 5.8%. 
+No positive effects of deviating was found on the type I error. The negative effects were also limited, as a slight increase in the number of false positives was found in only two conditions, with the highest type I error still being only 5.8%. 
 This shows that there is little risk of inflating the type I error when being forced to deviate from a preregistration. 
 Consequently, from these results it can be concluded that deviating in and of itself is not necessarily a bad thing and does not need to be avoided. 
 
-What this means for the field is that the commonness of deviation do not by definition pose a threat to the reliability of the field. Yes, deviations occur very commonly but that does not mean that these results are immediately questionable. Whether the results were impacted by the deviations is dependent on whether there was an effect to be detected in the first place and why the researcher chose to deviate.
+What this means for the field is that the commonness of deviation does not by definition pose a threat to the reliability of the field. Yes, deviations occur very commonly but that does not mean that these results are immediately questionable. Whether the results were impacted by the deviations is dependent on whether there was an effect to be detected in the first place and why the researcher chose to deviate.
 
 Before conducting research, the researcher does not know whether they will be working with an effect or not. As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. For example, changing the number of standard deviations used to calculate *z*-scores can positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. 
 Because the researcher does not know which scenario they are facing, this type of deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario. This shows that the decision to deviate should not be made because of its potentially positive effects but should be avoided when possible because of its risks. 
