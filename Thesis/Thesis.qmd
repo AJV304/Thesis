@@ -105,7 +105,7 @@ In sum, even though deviations from preregistration are common, a clear conclusi
 ## The Current Project
 With this simulation study, I intend to close this gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. 
 Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect type I and type II error rates?’ 
-The effect of deviations is studied in three domains: sample size, outlier exclusion criteria, and the statistical model. 
+The effect of deviations is studied in three domains: Sample Size, Outlier Exclusion Criteria, and the Statistical Model. 
 Different deviations are simulated in each domain and compared to nominal levels, which are represented by a baseline condition without deviations. 
 This research question is investigated in the context of social science and uses a linear regression as the model of interest. 
 The effects are examined across two scenarios: a no-effect scenario, and an effect scenario, in which the main effect parameter is changed. 
@@ -124,19 +124,19 @@ In this section the simulation conditions, data-generating mechanism and planned
 
 ## Deviation domains
 I reviewed which deviations to investigate by (1) how common they are, (2) their potential impact and (3) their justifiability. 
-Based on this, deviations were chosen in the following domains: sample size, outlier exclusion criteria, and statistical model. 
+Based on this, deviations were chosen in the following domains: Sample Size, Outlier Exclusion Criteria, and Statistical Model. 
 Within the three chosen domains, multiple conditions were simulated and compared to a baseline condition without any deviations.
 
 
-### Sample size
+### Sample Size
 Deviations in the sample size are some of the most common deviations, with consistency between preregistrations and published papers only being 28% for the exact sample size [@vandenakker2024]. 
 Changing the sample size can inflate type II error (by decreasing power) as well as the type I error [@lakens2024; @simmons2011]. 
 Small deviations in sample size are common and often due to factors outside of the researcher's agency. 
 Researchers also admit to stopping collection earlier or continuing collection longer after finding disappointing results [@john2012]. 
 However, it is unknown how often this is also used as a reason to deviate from preregistrations. 
-Based on this, the conditions in @tbl-cond are simulated within the sample size domain.
+Based on this, the conditions in @tbl-cond are simulated within the Sample Size domain.
 
-### Outlier exclusion criteria
+### Outlier Exclusion Criteria
 Literature shows that over half of published papers do not adhere to their pre-specified outlier exclusion criteria [@vandenakker2024; @claesen2021]. 
 Vague or missing criteria in preregistrations make it harder to assess deviations and leave a lot of room for interpretation and ad hoc decisions [@heirene2024]. 
 This could potentially lead researchers to choose how to exclude outliers based on which method provides better results. 
@@ -153,10 +153,10 @@ Within linear regression, outliers are also often identified based on their infl
 Cook's distance excludes outliers based on how much their exclusion would influence the regression coefficients. 
 In this study, the baseline condition will be to exclude datapoints based on a *z*-score of 3 standard deviations from the mean, with deviation conditions based on a stricter *z*-score and Cook's distance (@tbl-cond).
 
-### Statistical model
+### Statistical Model
 Amongst all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. 
-"Statistical model" is a very broad domain and includes many types of deviations, such as changes in the dependent variable, independent variable, statistical inference criteria and the actual statistical test. 
-In this paper, "statistical model" refers to the above-mentioned types of changes, not only the statistical test and its specifications.
+"Statistical Model" is a very broad domain and includes many types of deviations, such as changes in the dependent variable, independent variable, statistical inference criteria and the actual statistical test. 
+In this paper, "Statistical Model" refers to the above-mentioned types of changes, not only the statistical test and its specifications.
 
 The broadness of the domain also means that deviations within the domain have been investigated from multiple angles. 
 @claesen2021 found a deviation rate of 70% within the "analysis" domain, including deviations like examining additional effects, changing which model is tested and performing unregistered robustness checks. 
@@ -169,7 +169,7 @@ However, changing the statistical model can also be done opportunistically.
 Choosing to add an extra dependent variable because results are not yet satisfying can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% [@simmons2011]. 
 The reasoning behind the change thus becomes very important. 
 Therefore, deviations due to failing to properly specify how variables would be operationalized in the preregistration are also seen as a larger shortcoming than model deviations due to unforeseen consequences [@willroth2024]. 
-Within the statistical model, three deviation conditions are simulated: outcome switching, adding a continuous covariate, and adding a dichotomous covariate (@tbl-cond).
+Within the Statistical Model, three deviation conditions are simulated: outcome switching, adding a continuous covariate, and adding a dichotomous covariate (@tbl-cond).
 
 <!-- reasons to compare only nested models perhaps to maintain same estimands and performance measures  -->
 
@@ -177,7 +177,7 @@ Within the statistical model, three deviation conditions are simulated: outcome 
 +------------------------------------------+----------------------+------------------------------------+
 | Domain                                   | Baseline Condition   | Deviations Conditions              |
 +==========================================+======================+====================================+
-| Sample size                              | 200                  | +5                                 |
+| Sample Size                              | 200                  | +5                                 |
 +------------------------------------------+----------------------+------------------------------------+
 |                                          |                      | +30                                |
 +------------------------------------------+----------------------+------------------------------------+
@@ -185,15 +185,15 @@ Within the statistical model, three deviation conditions are simulated: outcome 
 +------------------------------------------+----------------------+------------------------------------+
 |                                          |                      | -30                                |
 +------------------------------------------+----------------------+------------------------------------+
-| Outlier exclusion criteria               | *Z*-scores of 3 *SD* | *Z*-scores of 2 *SD*               |
+| Outlier Exclusion Criteria               | *Z*-scores of 3 *SD* | *Z*-scores of 2 *SD*               |
 +------------------------------------------+----------------------+------------------------------------+
 |                                          |                      | Cook's distance of 1               |
 +------------------------------------------+----------------------+------------------------------------+
-| Statistical methods: covariates          | No covariates        | Continuous covariate               |
+| Statistical Model: covariates          | No covariates        | Continuous covariate               |
 |                                          |                      |                                    |
 |                                          |                      | Dichotomous covariate              |
 +------------------------------------------+----------------------+------------------------------------+
-| Statistical methods: outcome switching   | Y                    | Ya                                 |
+| Statistical Model: outcome switching   | Y                    | Ya                                 |
 +------------------------------------------+----------------------+------------------------------------+
 
 : Parameter Values for Baseline Condition and Deviation Conditions per Domain {#tbl-cond}
@@ -251,7 +251,7 @@ These are simulated by generating 5% of the data, 2.5% at each end of the distri
 +----------------------------------------------+-----------------------------------------------+
 | Alternative outcome error                    | $\epsilon_a \sim \mathcal{N}(\mu, \sigma^2)$  |
 +----------------------------------------------+-----------------------------------------------+
-| Sample size                                  | $200$                                         |
+| Sample Size                                  | $200$                                         |
 +----------------------------------------------+-----------------------------------------------+
 
 : Parameter Values for the Data-Generating Mechanism {#tbl-DGM}
@@ -421,7 +421,7 @@ source("../Scripts/02_results/RQ1_effect.R")
 
 The baseline scenario was intended to reflect the nominal power of 80%. The power is as expected (`r (rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]*100)` %). 
 
-Within the sample size domain, the effects reflect what is known from the existing literature.
+Within the Sample Size domain, the effects reflect what is known from the existing literature.
 Increasing the sample size, increases the power and decreasing the sample size decreases the power [@cohen2009]. 
 These effects were observed in the current study as well (@fig-rq1.y). 
 
@@ -528,7 +528,7 @@ knitr::include_graphics("../Visuals/sankeyyes.png")
 In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (@tbl-rq2). 
 
 Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the time, which is in line with the nominal $\alpha$ level of 5%.
-However of the repetitions in which the baseline was non-significant, 13.3% showed at least one significant result. 
+However of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant result. 
 When combining the significant baseline conditions and significant deviation conditions, the type I error rate inflated to `r rq2.no.perc*100`%. 
 This is a large increase in the number of false positives when picking an available significant result.
 
@@ -559,7 +559,7 @@ kable(rq2.table,
 # Discussion
 The goal of this simulation study was to investigate the effects of deviations on research outcomes and the quality of published results.
 @claesen2021 and @vandenakker2024 showed that deviating from preregistration plans happens very commonly, but the effects of doing so were unclear.
-In order to investigate these effects, I identified three main domains in which deviations commonly occur. Within those domains I identified nine deviation conditions. 
+In order to investigate these effects, I identified three main domains in which deviations commonly occur: Sample Size, Outlier Exclusion Criteria and the Statistical Model. Within those domains I identified nine deviation conditions (see @tbl-cond). 
 These deviations were then examined in terms of their effects on type I and type II error. 
 
 The results of this simulation study show that type I and type II error are both affected when researchers are forced to deviate from a preregistration. 
@@ -581,7 +581,7 @@ Because the researcher does not know which scenario they are facing, this type o
 
 Deviations are therefore best avoided because they do bring risks. However, this is not always realistic. Many deviations occur due to force majeure. By the literal definition, avoiding these deviations is outside of the control of the researcher. If they must, researchers can deviate and these results show they can do so with possibly minimal effect.
 
-What is best avoided is choosing to deviate based on outcomes. The results of this study showed an effect of deviating opportunistically on the type I error rate and on power. When researchers obtain non-significant results from their preregistered data, and choose to deviate in one of the investigated ways, they can still find a significant result 13.3% of the time. 
+What is best avoided is choosing to deviate based on outcomes. The results of this study showed an effect of deviating opportunistically on the type I error rate and on power. When researchers obtain non-significant results from their preregistered data, and choose to deviate in one of the investigated ways, they can still find a significant result 12.8% of the time. 
 The total type I error rate of `r (rq2.no.perc*100)`% in the opportunistic condition indicates that when researchers choose to make alterations to their methodology when they find non-significant results, their risk of reporting false positives becomes much higher. Based on the limitations of this study, 16.3% is an extremely conservative estimate. If all deviations that are observed in the literature are because researchers choose to deviate, then the false positive rate in preregistered papers is much higher. This means that as long as it remains unknown why researchers deviate, it remains unknown how reliable their results are.
 
 As of yet, researchers often fail to report their reasons for deviating [@willroth2024; @claesen2021]. 
