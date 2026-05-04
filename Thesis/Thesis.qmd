@@ -1,10 +1,18 @@
 ---
 title: "Busy Making Other Plans: A Simulation Study on the Effects of Deviations from Preregistrations"
 shorttitle: "Busy Making Other Plans"
+abstract: | 
+    The lack of reproducibility in the social sciences is a known problem. Preregistrations were introduced as a solution but in reality preregistrations are often unspecific and incomplete. Furthermore, researchers often deviate from their preregistration. This simulation study aimed to discover how typical deviations affect type I and type II error rates, as well as the effect of deviating opportunistically.
+    
+    Data was generated using a simple linear regression model for two scenarios: an effect scenario and a no-effect scenario. Deviations were simulated in three deviations domains: Sample Size, Outlier Exclusion Criteria and the Statistical Model, across which nine deviations were identified. First, the deviation conditions were individually compared to the nominal type I and type II error levels (5% and 80% respectively), represented by a baseline condition. Then, an opportunistic condition was created in which the number of significant findings was maximized by choosing to deviate when the baseline condition was non-significant.
+    
+    The results showed small inflations in type I error in some of the deviation conditions. Power was positively or negatively affected depending on the deviation. The strongest deviation impact was a drop in power to 35.2% when using an alternative outcome variable. The results of deviating opportunistically showed that doing so greatly increases the type I error to at least 16.3%. In order to draw any conclusions on what this means for the existing preregistered literature, more needs to be known on why researchers deviate. Consequently, researchers need to start registering not only how they deviate from their preregistration but also why. 
+keywords: [open science, preregistration, preregistration deviation, deviation, reproducibility crisis, p-hacking, simulation study, metascience, type I error, type II error, social science, psychology]
 author:
   - name: Anna J. Vijlbrief
     affiliations: Universiteit Utrecht
     corresponding: true
+    # role: 
 format:
   apaquarto-pdf: 
     keep-tex: true
@@ -13,42 +21,6 @@ editor: visual
 bibliography: ../References/MyLibrary.bib
 csl: ../References/apa.csl
 ---
-
-<!-- \begin{titlepage} -->
-
-<!-- \centering -->
-
-<!-- \vspace*{3cm} -->
-
-<!-- {\Huge Busy Making Other Plans:\par} -->
-
-<!-- \vspace{0.8cm} -->
-
-<!-- {\Large \bfseries A Simulation Study on the Effects of Deviations from Preregistrations\par} -->
-
-<!-- \vspace{1cm} -->
-
-<!-- {\large A. J. Vijlbrief\par} -->
-
-<!-- {\large May 11, 2026\par} -->
-
-<!-- \vfill -->
-
-<!-- {\large\textbf{Supervisors}\par} -->
-
-<!-- A. M. Scheel\\ -->
-
-<!-- H. I. Oberman -->
-
-<!-- \vspace{0.5cm} -->
-
-<!-- {\large\textbf{Word Count}\par} -->
-
-<!-- idkyet -->
-
-<!-- \end{titlepage} -->
-
-<!-- WHEN YOU WANT TO RUN THE CODE, REMOVE EVAL: FALSE FROM YAML -->
 
 ```{r}
 #| label: Packages
