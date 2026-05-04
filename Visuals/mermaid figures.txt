@@ -1,0 +1,52 @@
+---
+config:
+  layout: dagre
+  themeVariables:
+    clusterBkg: "#ffff"
+---
+flowchart TB
+ 
+ subgraph RQ2["RQ2"]
+ direction TB
+        D("Scenario")
+        E["Baseline condition"]
+        F["Opportunistic condition"]
+  end
+  subgraph RQ1["RQ1"]
+  direction TB
+        B["Baseline condition"]
+        C["Deviation conditions (9)"]
+        A("Scenario")
+ 
+ 
+ end
+    A --> B
+    A --> C
+    D --> E
+    D --> F
+====
+
+---
+config:
+  layout: dagre
+  themeVariables:
+    edgeLabelBackground: "#7ae0eb"
+---
+flowchart TB
+
+
+    C["Is the baseline condition significant?"]
+    B("Scenario")
+    D("Record baseline")
+    E["Are any of the deviations significant?"]
+    F("Record a significant deviation at random")
+    G("Record baseline")
+
+    B --> C
+    C -- yes --> D
+    C -- no --> E
+    E -- yes --> F
+    E -- no --> G
+
+    C@{ shape: diam}
+    E@{ shape: diam}
