@@ -13,8 +13,6 @@ editor: visual
 bibliography: ../References/MyLibrary.bib
 csl: ../References/apa.csl
 
-# execute:
-#    eval: false
 ---
 
 <!-- \begin{titlepage} -->
@@ -94,7 +92,7 @@ Deviations from preregistrations occur in all different aspects of the research 
 @lakens2024 theorized what the possible consequences could be. 
 If deviations occur due to assumptions being violated or data no longer being suitable for the planned analysis, then deviating from the original research plan can have positive effects on the validity of a test. 
 Similarly, adding additional analyses can increase the robustness. 
-On the other hand, changes in testing also mean that a hypothesis is generally less "severely" tested. This means that a theory has not been given the proper opportunity to be falsified which can result in higher type II errors. 
+On the other hand, changes in testing also mean that a hypothesis is generally less "severely" tested. This means that a theory has not been given the proper opportunity to be falsified which can result in a higher number of false negatives. 
 Consequently, little can be said about whether deviations are bad, especially when the reason for the deviation is unknown.
 
 There is no clear consensus on whether inconsistencies between preregistrations and final publications are a problem. 
@@ -373,11 +371,13 @@ $$ {#eq-mcsetypeI}
 
 ### Preregistration, Reproducibility and Ethics
 This project was preregistered on the 31th of March, 2026. 
-The preregistration can be found at [link]. 
-An `R` package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. 
-The package is publicly available at [githublink]. 
+The preregistration can be found at [https://osf.io/y5v8w/overview]. 
+During the course of this study, I deviated in two ways. A robustness check was added after unexpected results for research question one. The robustness check was performed by increasing the number of repetitions from 1600 to 10000. Secondly, vagueness in the preregistration was clarified. In the preregistration it was stated that the deviation would be compared to the baseline condition. In the final product the comparison is made with the nominal type I error and power. This is a small 
+For further elaboration on my preregistration deviations please consult Appendix A. [@SUPERVISORS, THIS STILL NEEDS TO BE ADDED].
 
-In order to advance reproducibility, all other files related to this project are publicly available at [github link]. 
+An `R` package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. 
+The package is publicly available on [GitHub](https://github.com/AJV304/thepack). 
+In order to advance reproducibility, all other files related to this project are publicly available on [GitHub](https://github.com/AJV304/Thesis). 
 This includes data, code scripts and output files. 
 I made use of `renv` to create a reproducible environment in which package versions and R version were recorded. 
 Instructions on how to reproduce the findings can be found in the README file on GitHub.
@@ -517,15 +517,35 @@ In the effect scenario, `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/
 Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. 
 The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most.
 
-```{r}
-#| label: fig-rq2.y
-#| fig-cap: "Distribution of Significant Conditions"
-#| apa-note: NoNote \ \emph{Note.} 'Ns' denotes non-significant. 'Sig.' denotes significance.
-#| echo: false
-#| out-width: "100%"
+::: {#fig-myplot layout="[65,35]"}
 
-knitr::include_graphics("../Visuals/sankeyyes.png")
+```{r}
+#| out-width: "90%"
+
+knitr::include_graphics("../Visuals/Ysankeyalt.png")
 ```
+
+| Label | Count | Percentage |
+|---|---|---|
+| All repetitions |1600| 100% |
+| Baseline sig. | 1279 | 79.9% |
+| Baseline ns | 325 | 20.1% |
+|---|---|---|
+| 1+ sig. deviation | 205 | 12.8% |
+| No sig. deviations | 116 | 7.3% |
+|---|---|---|
+| 1 sig. | 75 | 4.7% |
+| 2 sig. | 61 | 3.8% |
+| 3 sig. | 30 | 1.9% |
+| 4 sig. | 31 | 1.9% |
+| 5 sig. | 4 | 0.3% |
+| 6 sig. | 3 | 0.2% |
+| 7 sig. | 1 | 0.1% |
+
+*Note.* 'Ns' denotes non-significant. 'Sig.' denotes significance.
+
+Distribution of Significant Conditions in the Effect Scenario, Visually (Left) and Tabular (Right).
+:::
 
 In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (@tbl-rq2). 
 
@@ -533,26 +553,6 @@ Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig 
 However, of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant deviation result. 
 When combining the significant baseline conditions and significant deviation conditions, the type I error rate inflated to `r rq2.no.perc*100`%. 
 This is a large increase in the number of false positives when picking an available significant result.
-
-```{r}
-#| label: tbl-rq2
-#| tbl-cap: "Distribution of the number of significant deviations (with a non-significant baseline" 
-#| echo: false
-#| warning: false
-
-kable(rq2.table,
-      format    = "latex",   
-      booktabs  = TRUE,
-      col.names = c(" ", "Effect", "No-effect"),
-      digits    = 2
-) |>
-  kable_styling(
-    latex_options = c("hold_position"),
-    font_size     = 12
-  ) |>
-  add_header_above(c("Significant deviation conditions" = 1, "Occurences" = 2))
-
-```
 
 <!-- 16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data. -->
 
@@ -585,7 +585,7 @@ The results from the first research question show that deviating can have negati
 In reality, researchers are not aware of whether they are facing an effect or no-effect scenario. 
 This means that they are better off avoiding deviations when possible, to minimize the risk of negative effects. 
 However, avoiding deviations is not always possible. 
-As BLAH BLAH and BLAH BLAH showed, many deviations occur due to force majeure and are by definition outside of the researcher's control. 
+Sometimes deviations occur due to force majeure and are by definition outside of the researcher's control [@lakens2024]. 
 In some cases these uncontrollable deviations might serve to improve the reliability of results. For example, if the assumptions of the preregistered test were violated and the researcher switched to an alternative analysis.
 
 A clearer conclusion on the harm of deviating can be drawn when the reasoning behind the deviation is taken into account. 
@@ -594,17 +594,17 @@ When researchers choose to deviate because their preregistered results were non-
 Yes, power can increase when there is an effect to be detected but since a researcher is never certain which scenario they are facing, the reward of increasing power is not worth the risk of inflating type I. 
 
 ### What does this say about the existing literature? 
-It is difficult to draw conclusions on what this means for the literature. It is known that deviating happens very commonly in preregistered research BLAH.
+It is difficult to draw conclusions on what this means for the literature. It is known that deviating happens very commonly in preregistered research [@vandenakker2024; @claesen2021; @willroth2024].
 If we are dealing with a best case scenario, then all deviations are due to factors outside of the researcher’s control and the literature is relatively unimpacted by these deviations. The type I error in preregistered papers might be slightly increased, but not alarmingly so. The only type of deviation that is cause for concern is when researchers deviated by switching to an alternative outcome. In that case, power drops significantly and as a consequence, when significant results are reported with this type of deviation they are less likely to be due to a true effect.
 
 In a worst case scenario, all deviations stem from malicious intent and deviations were chosen opportunistically to achieve significant results. In that case, the number of false positive results among preregistered papers would be much higher than the nominal 5%. This would mean that among preregistered papers the type I error rate would be at least 16.3%. This estimate is extremely conservative (see Limitations) and therefore serves as a lower bound for the type I error. 
 
-The problem is that the reasons behind deviating remain unknown. As BLAH BLAH showed, of the BLAH% of deviations, BLAH% is reported incompletely and without explanation. This means that it cannot be determined whether we are facing a best case or worst case scenario. Without information about the distribution of motivations behind deviating, the impact of deviating is hard to assess. 
+The problem is that the reasons behind deviating remain unknown. As @claesen2021 and @willroth2024 showed, deviations occur in as much as 93% of preregistered papers, of which 89% is reported incompletely or without explanation. This means that it cannot be determined whether we are facing a best case or worst case scenario. Without information about the distribution of motivations behind deviating, the impact of deviating is hard to assess. 
 
 ## Limitations
 It is important to note that the data simulated in this study was based on one set of parameter values. 
 This is likely to make the results less generalizable to other disciplines in which the currently used data structure is less common. 
-The baseline sample size, effect size and methods are all common among social sciences BLAH but might look much different for other statistics oriented disciplines such as medicine or economics. 
+The baseline sample size, effect size and methods are all common among social sciences but might look much different for other statistics oriented disciplines such as medicine or economics. <!-- maybe add reasoning as appendix -->
 It remains unknown whether the found effects would hold up under smaller and larger samples or effect sizes. 
 Therefore, future research might explore whether these results persist under alternative data-generating mechanisms. 
 
@@ -617,7 +617,7 @@ This means that the effects in this study are likely to be an underestimate of a
 
 Furthermore, deviating was limited to singular deviations in this study, meaning that only one deviation was made at a time, deviations were not be combined. 
 In vivo, researchers might choose to deviate in multiple ways simultaneously. 
-Similar to *p*-hacking, multiple deviation methods might be combined to achieve significant results [BLAH]. 
+Similar to *p*-hacking, multiple deviation methods might be combined to achieve significant results. 
 This could lead to much higher type I error rates than found in this study. 
 
 As a result of limited deviations being tested as well as the fact that these were all tested individually, the actual impact of deviations and real type I error rates in preregistered papers might be severely underestimated. 
@@ -626,13 +626,11 @@ Further research into this topic might explore a factorial version of this simul
 ## Recommendations
 Based on the results and the existing literature, I propose three recommendations for researchers dealing with deviations and preregistrations. 
 
-\begin{enumerate}
-
-\item If you have the choice, don’t deviate. \\
+1. **If you have the choice, don’t deviate.** 
 Before conducting research, a researcher does not know whether they will be working with an effect or not. As a result, the researcher cannot predict whether their deviation will hurt their type I or type II error. For example, changing the number of standard deviations used to calculate *z*-scores was shown to positively impact power in an effect scenario yet inflate type I error in a no-effect scenario. 
 Because the researcher does not know which scenario they are facing, the deviation is best avoided in order to prevent an inflated type I error rate in the case of a no-effect scenario. This shows that the decision to deviate should not be made because of its potentially positive effects but should be avoided when possible because of its risks. 
 
-\item If you have to deviate, report it and the reason for it. \\
+2. **If you have to deviate, report it and the reason for it.**
 Deviations are at times unavoidable, in those cases it is important that they are dealt with properly. 
 As of yet, researchers often fail to report their reasons for deviating [@willroth2024; @claesen2021]. 
 This is a big issue when the current results show that choosing to deviate opportunistically leads to a much larger inflation in the type I error rate than forced deviations. 
@@ -643,9 +641,9 @@ When researchers properly document how they deviate and why they deviated, it al
 Readers can then draw their own conclusions on the validity of the results.
 
 
-\item never ever look at your results and then choose to deviate, it greatly inflates type I
-
-\end{enumerate}
+3. **Never deviate after looking at your results.**
+What the results showed most strongly is that choosing to deviate based on non-significant results is the most harmful. I therefore recommend avoiding it at all costs. Deviation this way can greatly increase the chances of finding false positive results and greatly undermines the reliability of the findings.
+Ironically, in this study I do exactly that. Based on the unexpected finding that a small increase in sample size inflates the type I error, a robustness check was executed. This illustrates the fact that these recommendations are not hard laws. Looking at results and adding a robustness check, or other reliability measures, should not harm type I and type II error. The most important thing is transparency, report all results and deviations openly and honestly. 
 
 ## Conclusion
 Deviating from a preregistered research plan is not inherently bad. 
@@ -678,12 +676,12 @@ Because deviations are not inherently bad, but they do have the potential to be 
 <!-- -papers with deviations in outlier criterium more likely to be false positive -->
 <!-- -because opportunistic choosing increases type I that much more than individual deviations it is more important to transparently record the reasons for deviating. -->
 
-\\
+\
 
 ### **Transparency** 
-*Author Contributions* 
-Anna J. Vijlbrief: Conceptualization; Methdology; Investigation; Formal Analysis; Software; Visualization; Writing - original draft; Writing - reviewing and editing 
-Anne M. Scheel: Conceptualization; Supervision; Writing - reviewing and editing 
+*Author Contributions* \
+Anna J. Vijlbrief: Conceptualization; Methdology; Investigation; Formal Analysis; Software; Visualization; Writing - original draft; Writing - reviewing and editing \
+Anne M. Scheel: Conceptualization; Supervision; Writing - reviewing and editing \
 Hanne I. Oberman: Conceptualization; Supervision; Writing - reviewing and editing
 
 *Declaration of Conflicting Interests*
