@@ -262,7 +262,7 @@ As previously mentioned, there are two scenarios under which data is generated: 
 Within these scenarios, each simulated data set is examined under different conditions. 
 The conditions include a baseline condition, with no deviations, and one condition for each possible deviation (@tbl-cond).
 
-To answer the main research question, the type I and type II error rates were compared between the nominal level, represented by the baseline condition, and each deviation condition (@fig-phases). 
+To answer the main research question, the type I and type II error rates were compared between the nominal level, represented by the baseline condition, and each deviation condition. 
 In each repetition the $\beta_1$ regression coefficient, the p-value and the confidence interval were recorded for each condition.
 All ten conditions, one baseline and nine deviation conditions, were generated for both the effect and the no-effect scenario.
 
@@ -274,19 +274,6 @@ If any of the deviation conditions were significant, one was chosen at random an
 As a result, for each repetition, a significant result was be recorded if it was available among any of the conditions. 
 This provided an 'optimized' data set, with the maximum number of significant results possible. 
 The error rates were then compared between the baseline condition and the opportunistic condition. 
-
-
-```{r}
-#| label: fig-phases
-#| fig-cap: Condition Comparisons per Research Question
-#| apa-note: NoNote \ \emph{Note.} For research question 1 (RQ1), the baseline result is compared to the deviation result. For research question 2 (RQ2), the baseline result is compared to the 'optimized' result.
-#| echo: false
-#| out-width: "100%"
-
-knitr::include_graphics("../Visuals/concomp.png")
-
-```
-
 
 ```{r}
 #| label: fig-opp
@@ -371,9 +358,9 @@ $$ {#eq-mcsetypeI}
 
 ### Preregistration, Reproducibility and Ethics
 This project was preregistered on the 31th of March, 2026. 
-The preregistration can be found at [https://osf.io/y5v8w/overview]. 
-During the course of this study, I deviated in two ways. A robustness check was added after unexpected results for research question one. The robustness check was performed by increasing the number of repetitions from 1600 to 10000. Secondly, vagueness in the preregistration was clarified. In the preregistration it was stated that the deviation would be compared to the baseline condition. In the final product the comparison is made with the nominal type I error and power. This is a small 
-For further elaboration on my preregistration deviations please consult Appendix A. [@SUPERVISORS, THIS STILL NEEDS TO BE ADDED].
+The preregistration can be found at <https://osf.io/y5v8w/overview>. 
+During the course of this study, I deviated in two ways. A robustness check was added after unexpected results for research question one. The robustness check was performed by increasing the number of repetitions from 1600 to 10000. Secondly, vagueness in the preregistration was clarified. In the preregistration it was stated that the deviation would be compared to the baseline condition. In the final product the comparison is made with the nominal type I error and power. 
+For further elaboration on my preregistration deviations please consult Appendix A. [SUPERVISORS, THIS STILL NEEDS TO BE ADDED].
 
 An `R` package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. 
 The package is publicly available on [GitHub](https://github.com/AJV304/thepack). 
@@ -488,6 +475,9 @@ In light of this, all other conditions were also evaluated using their observed 
 print(plot.1n)
 ```
 
+### Robustness check
+The unexpected result of an inflated type I error for the small sample size increase condition prompted me to perform a robustness check on results. For this simulation study that meant increasing the number of repetitions. The number of repetitions was increased to 10000. The results of the robustness check showed that for power the results remain unchanged. For type I, the inflations in the small sample size increase condition and strict z-score conditions, disappear. A small effect on the type I error for the alternative outcome condition does show up as the type I error increases to 5.3%. For further elaboration see Appendix X.   
+
 ## Research Question Two
 
 ```{r}
@@ -502,12 +492,11 @@ This was done by comparing an opportunistic scenario to the nominal type I error
 In the opportunistic scenario, one condition was recorded per repetition (@fig-opp). 
 Whenever the baseline condition was significant, it was selected. 
 If the baseline was non-significant, a significant deviation condition was selected instead, if available, and the number of significant deviations was recorded. 
-@tbl-rq2 displays how often significant baselines and significant deviation conditions were found in each scenario.
 
 As expected, a positive effect of choosing to deviate on power was observed. 
 Conditions were selected in order to maximize the number of significant results, consequently, an increase in power was anticipated. 
 In 1484 out of 1600 repetitions, a significant condition was observed. 
-This resulted in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario. 
+This resulted in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario (@fig-rq2.Y). 
 In the no-effect scenario, 261 out of 1600 repetitions showed a significant condition. 
 Yielding an inflated type I error rate of `r (rq2.no.perc*100)`%. 
 This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate observed in a singular deviation condition. 
@@ -517,7 +506,7 @@ In the effect scenario, `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/
 Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. 
 The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most.
 
-::: {#fig-myplot layout="[65,35]"}
+::: {#fig-rq2.Y layout="[65,35]"}
 
 ```{r}
 #| out-width: "90%"
@@ -547,7 +536,7 @@ knitr::include_graphics("../Visuals/Ysankeyalt.png")
 Distribution of Significant Conditions in the Effect Scenario, Visually (Left) and Tabular (Right).
 :::
 
-In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (@tbl-rq2). 
+In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (TABLE TO BE ADDED). 
 
 Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the time, which was in line with the nominal $\alpha$ level of 5%.
 However, of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant deviation result. 
@@ -557,6 +546,10 @@ This is a large increase in the number of false positives when picking an availa
 <!-- 16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data. -->
 
 <!-- this indicates that if people are indeed deviating because of unsatisfactory results, the false positive rate in preregistered papers is likely to be minimally 16.3%-->
+
+### Robustness check
+
+Increasing the repetition size to 10000 did not change the conclusions for research question two. The type I error rate was 15.4% in the no-effect scenario and the power was 92.3% in the effect scenario. For further elaboration see Appendix X. 
 
 # Discussion
 The goal of this simulation study was to investigate the effects of deviations on research outcomes and the quality of published results.
