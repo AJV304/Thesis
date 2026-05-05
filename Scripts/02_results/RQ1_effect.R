@@ -7,8 +7,8 @@ rq1.yes.plot <- nsig(rq1.yes)
 rq1.yes.plot$conditions <- factor(rq1.yes.plot$conditions, levels = rq1.yes.plot$conditions)
 
 #Add a 'domain' variable to group the conditions
-rq1.yes.plot$domain <-c("Baseline","Sample size","Sample size","Sample size","Sample size","Outlier exclusion criteria","Outlier exclusion criteria","Statistical model","Statistical model","Statistical model")
-rq1.yes.plot$domain <- factor(rq1.yes.plot$domain, levels = c("Baseline", "Sample size","Outlier exclusion criteria","Statistical model"))
+rq1.yes.plot$domain <-c("Baseline","Sample Size","Sample Size","Sample Size","Sample Size","Outlier Exclusion Criteria","Outlier Exclusion Criteria","Statistical Model","Statistical Model","Statistical Model")
+rq1.yes.plot$domain <- factor(rq1.yes.plot$domain, levels = c("Baseline", "Sample Size","Outlier Exclusion Criteria","Statistical Model"))
 
 
 #Create a plot with 

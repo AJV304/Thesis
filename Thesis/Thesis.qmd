@@ -253,18 +253,7 @@ Ethics approval was obtained on October 7th, 2025 from Utrecht University, facul
 ```{r}
 #| label: Generating the data
 #| echo: false
-#source("Scripts/01_datageneration/datageneration.R")
-
-#read in saved data
-df <- readRDS("../results.rds")
-
-#The no-effect scenario
-rq1.no <- df %>% filter(scenario == "no effect")
-rq2.no <- choice(rq1.no)
-
-#The effect scenario
-rq1.yes <- df %>% filter(scenario == "effect")
-rq2.yes <- choice(rq1.yes)
+source("../Scripts/01_datageneration/datageneration.R")
 
 ```
 
@@ -511,24 +500,43 @@ This is where I will report my own preregistration deviations, possibly using a 
 
 # Robustness figures {.appendix}
 
-Here are the quick figures for the robustness checks, will be updated still.
+```{r}
+#| label: Robust, Generating the data
+#| echo: false
+
+source("../Scripts/01_datageneration/datageneration_robust.R")
+```
+
+```{r}
+#| label: Robust, research question 1
+#| echo: false
+
+source("../Scripts/02_results/RQ1_robust.R")
+```
 
 ```{r}
 #| label: fig-robustY
 #| fig-cap: Robust Power per Condition
 #| echo: false
-#| out-width: "100%"
+#| apa-note: NoNote \ \emph{Note.} The red line displays the nominal power of 80%. The blue shaded area represents the precision interval around the nominal power.
 
-knitr::include_graphics("../Visuals/robustY.png")
+print(bigplot.1y)
 ```
 
 ```{r}
 #| label: fig-robustN
 #| fig-cap: Robust Type I Error per Condition
 #| echo: false
-#| out-width: "100%"
+#| apa-note: NoNote \ \emph{Note.}  The red line displays the nominal power of 80%. The blue shaded area represents the precision interval around the nominal power.
 
-knitr::include_graphics("../Visuals/robustN.png")
+print(bigplot.1n)
+```
+
+```{r}
+#| label: Robust, research question 2
+#| echo: false
+
+source("../Scripts/02_results/RQ2_robust.R")
 ```
 
 # AI Statement {.appendix}
