@@ -13,10 +13,16 @@ author:
     affiliations: Universiteit Utrecht
     corresponding: true
     # role: 
+author-note:
+  disclosures:
+    conflict-of-interest: The author(s) declare that there were no conflicts of interest with respect to the authorship or the publication of this article.
 format:
   apaquarto-pdf: 
     keep-tex: true
     floatsintext: true
+    include-in-header:
+      text: |
+        \AtBeginDocument{\thispagestyle{empty}}
 editor: visual
 bibliography: ../References/MyLibrary.bib
 csl: ../References/apa.csl
@@ -336,7 +342,7 @@ source("../Scripts/02_results/RQ2.R")
 
 The second research question pertained to the effect of *choosing* to deviate when the baseline condition is non-significant. This was done by comparing an opportunistic scenario to the nominal type I error and power. In the opportunistic scenario, one condition was recorded per repetition (@fig-opp). Whenever the baseline condition was significant, it was selected. If the baseline was non-significant, a significant deviation condition was selected instead, if available, and the number of significant deviations was recorded.
 
-As expected, a positive effect of choosing to deviate on power was observed. Conditions were selected in order to maximize the number of significant results, consequently, an increase in power was anticipated. In 1484 out of 1600 repetitions, a significant condition was observed. This resulted in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario (@fig-rq2.Y). In the no-effect scenario, 261 out of 1600 repetitions showed a significant condition. Yielding an inflated type I error rate of `r (rq2.no.perc*100)`%. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate observed in a singular deviation condition. The highest type I error rate observed under research question one was `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition.
+As expected, a positive effect of choosing to deviate on power was observed. Conditions were selected in order to maximize the number of significant results, consequently, an increase in power was anticipated. In 1484 out of 1600 repetitions, a significant condition was observed. This resulted in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario (@fig-rq2.Y). In the no-effect scenario, 261 out of 1600 repetitions showed a significant condition, either the baseline condition or a deviation condition (@fig-rq2.N). Yielding an inflated type I error rate of `r (rq2.no.perc*100)`%. This is a large inflation compared to the nominal level of 5% and similarly much higher than the highest type I error rate observed in a singular deviation condition. The highest type I error rate observed under research question one was `r (max(rq1.no.plot$n.sig.perc))*100`% in the `r as.character(rq1.no.plot$conditions[which.max(rq1.no.plot$n.sig.perc)])` condition.
 
 In the effect scenario, `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most.
 
@@ -351,7 +357,7 @@ knitr::include_graphics("../Visuals/Ysankeyalt.png")
 |--------------------|-------|------------|
 | All repetitions    | 1600  | 100%       |
 | Baseline sig.      | 1279  | 79.9%      |
-| Baseline ns        | 325   | 20.1%      |
+| Baseline ns        | 325   | 20.3%      |
 | ---                | ---   | ---        |
 | 1+ sig. deviation  | 205   | 12.8%      |
 | No sig. deviations | 116   | 7.3%       |
@@ -369,13 +375,40 @@ knitr::include_graphics("../Visuals/Ysankeyalt.png")
 Distribution of Significant Conditions in the Effect Scenario, Visually (Left) and Tabular (Right).
 :::
 
-In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (TABLE TO BE ADDED).
+In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations.
 
 Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the time, which was in line with the nominal $\alpha$ level of 5%. However, of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant deviation result. When combining the significant baseline conditions and significant deviation conditions, the type I error rate inflated to `r rq2.no.perc*100`%. This is a large increase in the number of false positives when picking an available significant result.
 
-<!-- 16.3% type I error rate. Large increase in the number of false positives when picking an available significant result. Keep in mind that this is not factorial but 'only' cherrypicking data. -->
+::: {#fig-rq2.N layout="[65,35]"}
 
-<!-- this indicates that if people are indeed deviating because of unsatisfactory results, the false positive rate in preregistered papers is likely to be minimally 16.3%-->
+```{r}
+#| out-width: "90%"
+
+knitr::include_graphics("../Visuals/sankeyaltN.png")
+```
+
+| Label | Count | Percentage |
+|---|---|---|
+| All repetitions | 1600 | 100.0% |
+| Baseline sig. | 83 | 5.2% |
+| Baseline ns | 1517 | 94.8% |
+| --- | --- | --- |
+| 1+ sig. deviation | 178 | 11.1% |
+| No sig. deviations | 1339 | 83.7% |
+| --- | --- | --- |
+| 1 sig. | 126 | 7.9% |
+| 2 sig. | 27 | 1.7% |
+| 3 sig. | 17 | 1.1% |
+| 4 sig. | 5 | 0.3% |
+| 5 sig. | 1 | 0.1% |
+| 6 sig. | 2 | 0.1% |
+
+*Note.* 'Ns' denotes non-significant. 'Sig.' denotes significance.
+
+Distribution of Significant Conditions in the No-Effect Scenario, Visually (Left) and Tabular (Right).
+:::
+
+
 
 ### Robustness check
 
@@ -468,8 +501,6 @@ Anna J. Vijlbrief: Conceptualization; Methdology; Investigation; Formal Analysis
 Anne M. Scheel: Conceptualization; Supervision; Writing - reviewing and editing\
 Hanne I. Oberman: Conceptualization; Supervision; Writing - reviewing and editing
 
-*Declaration of Conflicting Interests* The author(s) declare that there were no conflicts of interest with respect to the authorship or the publication of this article.
-
 \newpage
 
 # References
@@ -499,3 +530,7 @@ knitr::include_graphics("../Visuals/robustY.png")
 
 knitr::include_graphics("../Visuals/robustN.png")
 ```
+
+# AI Statement {.appendix}
+
+![Utrecht University AI Statement]("../Visuals/Ai.statement.pdf")
