@@ -83,9 +83,19 @@ Perhaps this is why no difference has been found between preregistered and non-p
 
 ## Are All Deviations Bad?
 
-Deviations from preregistrations occur in all different aspects of the research process, but what is not known is the effect of these deviations. Do changes from original research plans reduce research quality? @lakens2024 theorized what the possible consequences could be. If deviations occur due to assumptions being violated or data no longer being suitable for the planned analysis, then deviating from the original research plan can have positive effects on the validity of a test. Similarly, adding additional analyses can increase the robustness. On the other hand, changes in testing also mean that a hypothesis is generally less "severely" tested. This means that a theory has not been given the proper opportunity to be falsified which can result in a higher number of false negatives. Consequently, little can be said about whether deviations are bad, especially when the reason for the deviation is unknown.
+Deviations from preregistrations occur in all different aspects of the research process, but what is not known is the effect of these deviations. 
+Do changes from original research plans reduce research quality? @lakens2024 theorized what the possible consequences could be. 
+If deviations occur due to assumptions being violated or data no longer being suitable for the planned analysis, then deviating from the original research plan can have positive effects on the validity of a test. 
+Similarly, additional analyses can increase the robustness. 
+On the other hand, changes in testing also mean that a hypothesis is generally less "severely" tested. 
+This means that a theory has not been given the proper opportunity to be falsified which can result in a higher number of false negatives. 
+Consequently, little can be said about whether deviations are bad, especially when the reason for the deviation is unknown.
 
-There is no clear consensus on whether inconsistencies between preregistrations and final publications are a problem. When asked, researchers themselves deemed deviations to be problematic to varying degrees [@willroth2024]. Changes to analyses and hypotheses were considered the least acceptable, whereas changing research platforms or software were deemed relatively justifiable. The estimated impact on the results and whether the deviation was reported transparently and were also taken into consideration. In sum, even though deviations from preregistration are common, a clear conclusion on their effects is still missing.
+There is no clear consensus on whether inconsistencies between preregistrations and final publications are a problem. 
+When asked, researchers themselves deem deviations to be problematic to varying degrees [@willroth2024]. 
+Changes to analyses and hypotheses were considered the least acceptable, whereas changing research platforms or software were deemed relatively justifiable. 
+The estimated impact on the results and whether the deviation was reported transparently and were also taken into consideration. 
+In sum, even though deviations from preregistration are common, a clear conclusion on their effects is still missing.
 
 ## The Current Project
 
