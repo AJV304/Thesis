@@ -2,11 +2,11 @@
 title: "Busy Making Other Plans: A Simulation Study on the Effects of Deviations from Preregistrations"
 shorttitle: "Busy Making Other Plans"
 abstract: | 
-    Preregistrations were introduced as a solution for the reproducibility problem in the social sciences, but in reality they are often unspecific and incomplete. Furthermore, researchers often deviate from their preregistration. This simulation study aimed to discover how typical deviations affect type I and type II error rates. As well as discover the effect of deviating opportunistically.
+    Although deviations from preregistrations happen commonly, there is no empirical evidence for their effects. This simulation study illustrates how typical deviations affect type I and type II error rates, as well as the effect of researchers choosing to deviate opportunistically.
     
-    Data was generated under two scenarios: an effect scenario and a no-effect scenario. Deviations were simulated in three deviations domains: Sample Size, Outlier Exclusion Criteria and the Statistical Model, across which nine deviations were simulated. Each deviation condition was compared to a baseline condition representing the nominal type I error and power levels of 5% and 80% respectively. An opportunistic condition was then examined, in which deviations were chosen only when the baseline analysis yielded a non-significant result, thereby maximizing significant findings. Type I error and power were compared between the opportunistic condition and the baseline condition.
+    Nine deviation scenarios were identified based on how commonly the deviation occurs, how harmful it can be and how justifiable the deviation is. Deviations were simulated in three deviations domains: Sample Size, Outlier Exclusion Criteria and the Statistical Model. An opportunistic condition was also examined, in which deviations were made only when initial results were found to be non-significant. Each deviation condition was individually compared to the nominal type I error and power levels of 5% and 80% respectively.
     
-    The results showed small inflations in type I error in some of the deviation conditions. The strongest deviation impact on power was a drop in power to 35.2% when using an alternative outcome variable. Deviating opportunistically increased the type I error to 16.3%, which is likely an underestimation of reality. In order to draw any conclusions on what this means for the existing preregistered literature, more needs to be known on why researchers deviate. Consequently, researchers need to start registering not only how they deviate from their preregistration but also why. 
+    The results showed small inflations in type I error in some of the deviation conditions. The strongest deviation impact on power was a drop in power to 35.2% when using an alternative outcome variable. Deviating opportunistically increased the type I error rate to 16.3%. In reality, this is likely an underestimation because deviations were only investigated one at a time. I conclude that it is important to know why researchers deviate and suggest a mandate for registering the not only how researchers deviate from their preregistration but also why. 
 keywords: [open science, preregistration, preregistration deviation, reproducibility crisis, p-hacking, simulation study, metascience, type I error, type II error, social science, psychology]
 author:
   - name: Anna J. Vijlbrief
@@ -270,7 +270,7 @@ This project was preregistered on the 31th of March, 2026. The preregistration c
 
 An `R` package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. The package is publicly available on [GitHub](https://github.com/AJV304/thepack). In order to advance reproducibility, all other files related to this project are publicly available on [GitHub](https://github.com/AJV304/Thesis). This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and R version were recorded. Instructions on how to reproduce the findings can be found in the README file on GitHub.
 
-Ethics approval was obtained on October 7th, 2025 from Utrecht University, faculty of Social Sciences, under case-number #25-1980.
+Ethics approval was obtained on October 7th, 2025 from Utrecht University, faculty of Social Sciences, under case-number #25-1980. Generative AI tools were used in this project solely to assist with code debugging, formatting, and grammar checking. A complete AI disclosure statement can be found in Appendix C.
 
 # Results
 
