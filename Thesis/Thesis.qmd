@@ -44,6 +44,7 @@ format:
         \AtBeginDocument{\thispagestyle{empty}}
         \usepackage[table]{xcolor}
         \usepackage{adjustbox}
+        \usepackage{booktabs}
 editor: visual
 bibliography: ../References/MyLibrary.bib
 csl: ../References/apa.csl
@@ -163,35 +164,39 @@ where $Z$ and $D$ represent a continuous and categorical covariate respectively 
 
 In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These were simulated by generating 5% of the data (2.5% at each end of the distribution) with -3 and 3 as mean values for the standard normal distribution from which $\epsilon$ was drawn.
 
-::: {#tbl-DGM}
-+----------------------------------------------+-----------------------------------------------+
-| Parameter                                    | Value                                         |
-+==============================================+===============================================+
-| Intercept                                    | $\beta_0 = 0$                                 |
-+----------------------------------------------+-----------------------------------------------+
-| Regression coefficient of interest           | $\beta_1 = 0$ or $\beta_1 = 0.20$             |
-+----------------------------------------------+-----------------------------------------------+
-| Independent variable                         | $X \sim \mathcal{N}(0, 1)$                    |
-+----------------------------------------------+-----------------------------------------------+
-| Random error                                 | $\epsilon \sim \mathcal{N}(m, 1)$,            |
-|                                              | where $m = \{-3, 0, 3\}$                      |
-+----------------------------------------------+-----------------------------------------------+
-| Continuous covariate regression coefficient  | $\beta_2 = 0.06$                              |
-+----------------------------------------------+-----------------------------------------------+
-| Continuous demographic variable              | $Z \sim \mathcal{N}(0, 1)$                    |
-+----------------------------------------------+-----------------------------------------------+
-| Dichotomous covariate regression coefficient | $\beta_3 = 0.06$                              |
-+----------------------------------------------+-----------------------------------------------+
-| Dichotomous demographic variable             | $D \sim \text{Bernoulli}(0.5)$                |
-+----------------------------------------------+-----------------------------------------------+
-| Sample Size                                  | $200$                                         |
-+----------------------------------------------+-----------------------------------------------+
+```{r}
+#| label: tbl-DGM
+#| tbl-cap: "Parameter Values for the Data-Generating Mechanism"
+#| apa-note: NoNote \ \emph{Note.} $\\beta_1$ is 0 in the no-effect scenario and 0.20 in the effect scenario. The different means for $\\epsilon$ are used to generate 2.5%, 95%, and 2.5% respectively.
+#| warning: false
 
-Parameter Values for the Data-Generating Mechanism
-:::
+data <- data.frame(
+  Parameter = c(
+    "Intercept",
+    "Regression coefficient of interest",
+    "Independent variable",
+    "Random error",
+    "Continuous covariate regression coefficient",
+    "Continuous demographic variable",
+    "Dichotomous covariate regression coefficient",
+    "Dichotomous demographic variable",
+    "Sample Size"
+  ),
+  Value = c(
+    "$\\beta_0 = 0$",
+    "$\\beta_1 = 0$ or $\\beta_1 = 0.20$",
+    "$X \\sim \\mathcal{N}(0, 1)$",
+    "$\\epsilon \\sim \\mathcal{N}(m, 1)$, where $m = \\{-3, 0, 3\\}$",
+    "$\\beta_2 = 0.06$",
+    "$Z \\sim \\mathcal{N}(0, 1)$",
+    "$\\beta_3 = 0.06$",
+    "$D \\sim \\text{Bernoulli}(0.5)$",
+    "$200$"
+  )
+)
 
-\noindent 
-*Note.* $\beta_1$ is 0 in the no-effect scenario and 0.20 in the effect scenario. The different means for epsilon are used to generate 2.5%, 95%, and 2.5% respectively.
+kable(data, col.names = c("Parameter", "Value"), escape = FALSE, booktabs = TRUE)
+```
 
 ## Estimands
 
@@ -588,4 +593,4 @@ source("../Scripts/02_results/RQ2_robust.R")
 
 # AI Statement {.appendix}
 
-![Utrecht University AI Statement](%22../Visuals/Ai.statement.pdf%22){height="95%"}
+![Utrecht University AI Statement](../Visuals/Ai.statement.pdf){height="95%"}
