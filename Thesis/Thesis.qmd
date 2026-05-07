@@ -10,7 +10,7 @@ abstract: |
 keywords: [open science, preregistration, preregistration deviation, reproducibility crisis, p-hacking, simulation study, metascience, type I error, type II error, social science, psychology]
 author:
   - name: Anna J. Vijlbrief
-    affiliations: Universiteit Utrecht
+    affiliations: Universiteit Utrecht, Faculty of Social Sciences
     corresponding: true
     orcid: 0009-0004-9553-5493
     role: 
@@ -79,22 +79,7 @@ Deviations carry a negative connotation [SOURCE] but empirical evidence of their
 
 Researchers themselves deem deviations to be problematic to varying degrees [@willroth2024]. Changes to analyses and hypotheses are considered the least acceptable, whereas changing research platforms or software are deemed relatively justifiable. To reach these conclusions, researchers also took into account the estimated impact on the results and whether deviations are reported transparently. In sum, even though deviations from preregistration are common, a clear conclusion on their effects is still missing.
 
-## The Current Project
-
-With this simulation study, I intend to close that gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect type I and type II error rates?’ The effect of deviations is studied in three domains: Sample Size, Outlier Exclusion Criteria, and the Statistical Model. Different deviations are simulated in each domain and compared to nominal levels, which are represented by a baseline condition without deviations.
-
-As a secondary research question, I address the issue of reasons for deviation being unknown. Specifically: "What is the effect of deviating opportunistically on the type I and type II error rates?" The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the results they prefer. For the second research question, an 'opportunistic' condition is created in which outcomes are selectively chosen from either the baseline or the deviation conditions, based on which condition has a significant *p*-value. This is done in order to approximate the opportunistic selection of results by the researcher.
-
-With these simulations I hope to shed light on the effect of deviations from preregistration on type I and type II errors, as well as the effect of picking deviations opportunistically.
-
-# Methods
-
-In this section the simulation conditions, data-generating mechanism and planned analyses are outlined. In order to investigate the effects of deviations from preregistration, type I and type II error are compared across different deviation conditions. These conditions fall into different domains: specific parts of the research process in which researchers can deviate.
-
-## Deviation domains
-
-I reviewed which deviations to investigate by (1) how common they are, (2) their potential impact and (3) their justifiability. Based on this, deviations were chosen in the following domains: Sample Size, Outlier Exclusion Criteria, and Statistical Model. Within the three chosen domains, multiple conditions were simulated for which the type I error and power were compared to the nominal levels, represented by a baseline condition without any deviations.
-
+## A Review of Common Deviations
 ### Sample Size
 
 Deviations in sample size are some of the most common deviations, with consistency between preregistrations and published papers being only 28% for the exact sample size [@vandenakker2024]. Changing the sample size can inflate type II error (by decreasing power) as well as the type I error [@lakens2024; @simmons2011]. Small deviations in sample size are common and often due to factors outside of the researcher's agency. Researchers also admit to stopping collection earlier or continuing collection longer after finding disappointing results [@john2012]. However, it is unknown how often this is also used as a reason to deviate from preregistrations. Based on this, the conditions in @tbl-cond were simulated within the Sample Size domain.
@@ -115,37 +100,52 @@ The broadness of the domain also means that deviations within the domain have be
 
 As @lakens2024 argues, at times it might be necessary to alter the statistical model. This could happen when a variable has been measured at a different level than expected or a test assumption has been violated. However, changing the statistical model can also be done opportunistically. Choosing to add an extra dependent variable because results are not yet satisfying can increase the type I error rate to 9.5%, and the addition of a covariate can increase it to 11.7% [@simmons2011]. The reasoning behind the change thus becomes very important. Therefore, failing to properly specify how variables would be operationalized in the preregistration is seen as a larger shortcoming than model deviations due to unforeseen consequences [@willroth2024]. Within the Statistical Model, three deviation conditions were simulated: adding a continuous covariate, adding a dichotomous covariate, and switching outcomes (@tbl-cond).
 
-<!-- reasons to compare only nested models perhaps to maintain same estimands and performance measures  -->
+## The Current Project
 
-+--------------------------------------+----------------------+-----------------------+
-| Domain                               | Baseline Condition   | Deviations Conditions |
-+======================================+======================+=======================+
-| Sample Size                          | 200                  | +5                    |
-+--------------------------------------+----------------------+-----------------------+
-|                                      |                      | +30                   |
-+--------------------------------------+----------------------+-----------------------+
-|                                      |                      | -5                    |
-+--------------------------------------+----------------------+-----------------------+
-|                                      |                      | -30                   |
-+--------------------------------------+----------------------+-----------------------+
-| Outlier Exclusion Criteria           | *Z*-scores of 3 *SD* | *Z*-scores of 2 *SD*  |
-+--------------------------------------+----------------------+-----------------------+
-|                                      |                      | Cook's distance of 1  |
-+--------------------------------------+----------------------+-----------------------+
-| Statistical Model: covariates        | No covariates        | Continuous covariate  |
-|                                      |                      |                       |
-|                                      |                      | Dichotomous covariate |
-+--------------------------------------+----------------------+-----------------------+
-| Statistical Model: outcome switching | Y                    | Ya                    |
-+--------------------------------------+----------------------+-----------------------+
+With this simulation study, I intend to close that gap in the literature and explore the effects of typical preregistration deviations on research outcomes and the quality of published results. Specifically, I aim to answer the question: ‘How do deviations from preregistrations affect type I and type II error rates?’ The effect of deviations is studied in three domains: Sample Size, Outlier Exclusion Criteria, and the Statistical Model. Different deviations are simulated in each domain and compared to nominal levels, which are represented by a baseline condition without deviations.
 
-: Parameter Values for Baseline Condition and Deviation Conditions per Domain {#tbl-cond}
+As a secondary research question, I address the issue of reasons for deviation being unknown. Specifically: "What is the effect of deviating opportunistically on the type I and type II error rates?" The reason behind a deviation is important for assessing its effect. A researcher being forced to deviate due to circumstance is very different from a researcher *choosing* to deviate. When a researcher chooses to deviate, this could be because they are picking the results they prefer. For the second research question, an 'opportunistic' condition is created in which outcomes are selectively chosen from either the baseline or the deviation conditions, based on which condition has a significant *p*-value. This is done in order to approximate the opportunistic selection of results by the researcher.
 
-*Note.* Variables Y and Ya are defined in the next section. *SD* refers to standard deviation.
+With these simulations I hope to shed light on the effect of deviations from preregistration on type I and type II errors, as well as the effect of picking deviations opportunistically.
+
+# Methods
+
+In order to investigate the effects of deviations from preregistration, I performed a model-based simulation study in R (SOURCE version). Deviations were identified across multiple domains: specific parts of the research process in which researchers can deviate. I reviewed which deviations to investigate by (1) how common they are, (2) their potential impact and (3) their justifiability. Based on this, deviations were chosen in the following domains: Sample Size, Outlier Exclusion Criteria, and Statistical Model. Across the three chosen domains, nine deviation conditions were simulated as well as a baseline condition to serve as a control condition (@tbl-cond). The type I error and type II error rates were compared per deviation condition to the nominal type I and type II error rates.
+
+```{r}
+#| label: tbl-cond
+#| tbl-cap: "Parameter Values for Baseline Condition and Deviation Conditions per Domain"
+#| apa-note: NoNote \ \emph{Note.} Variables Y and Ya are defined in the next section. *SD* refers to standard deviation.
+
+
+data <- data.frame(
+  Domain = c(
+    "Sample Size", "", "", "",
+    "Outlier Exclusion Criteria", "",
+    "Statistical Model: covariates", "",
+    "Statistical Model: outcome switching"
+  ),
+  Baseline = c(
+    "200", "", "", "",
+    "\\textit{Z}-scores of 3 \\textit{SD}", "",
+    "No covariates", "",
+    "Y"
+  ),
+  Deviations = c(
+    "+5", "+30", "-5", "-30",
+    "\\textit{Z}-scores of 2 \\textit{SD}", "Cook's distance of 1",
+    "Continuous covariate", "Dichotomous covariate",
+    "Ya"
+  )
+)
+
+kable(data, col.names = c("Domain", "Baseline Condition", "Deviation Conditions"),
+      escape = FALSE, booktabs = TRUE)
+```
 
 ## Data-generating Mechanism
 
-The research questions are investigated in the context of social science and use a linear regression as the model of interest. In order to examine the effects on type I error and power, data was generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0. All ten conditions, one baseline and nine deviation conditions, were generated for both the effect and the no-effect scenario. Power was investigated in the effect scenario and the type I error was investigated in the no-effect scenario.
+The research questions were investigated in the context of social science and used a linear regression as the model of interest. In order to examine the effects on type I error and power, data was generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0. All ten conditions, one baseline and nine deviation conditions, were generated for both the effect and the no-effect scenario. Power was investigated in the effect scenario and the type I error was investigated in the no-effect scenario.
 
 In the baseline condition, the statistical model was defined as $$
 Y = \beta_0 + \beta_1X + \epsilon,
@@ -232,41 +232,41 @@ Type II error refers to a false negative, or failing to reject the null-hypothes
 
 The reliability of the performance measures was assessed using precision based on the Monte-Carlo standard error (MCSE). The desired precision for power was 1%. With an MCSE of 1%, power rates were assessed at a precision interval of \[79, 81\] around the nominal power of 80%. This means that values within this interval did not show strong enough evidence of an effect and might have been caused by simulation noise. Power levels outside of this interval could be stated to have increased or deflated power.
 
-The number of iterations was calculated using the desired precision of the project. According to @morris2019a, the required number of iterations to achieve the desired MCSE of 1% for power is 1600 (@eq-mcsepower).
+The number of iterations was calculated using the desired precision of the project. According to @morris2019a, the required number of iterations to achieve the desired MCSE of 1% for power is 1,600 (@eq-mcsepower).
 
-For the type I error, 1600 iterations results in an MCSE of 0.545% (@eq-mcsetypeI). This means that type I error was assessed with a precision interval of \[4.455, 5.545\] around the nominal $\alpha$ level of 5%. Values within this interval can be due to simulation noise. Any type I error rate outside of this interval was considered a deflated or inflated type I error rate.
+For the type I error, 1,600 iterations results in an MCSE of 0.545% (@eq-mcsetypeI). This means that type I error was assessed with a precision interval of \[4.455, 5.545\] around the nominal $\alpha$ level of 5%. Values within this interval can be due to simulation noise. Any type I error rate outside of this interval was considered a deflated or inflated type I error rate.
 
-<div>
+:::{}
 
 $$
 \begin{aligned}
 MCSE &= \sqrt{\frac{\widehat{\text{Power}}\left(1-\widehat{\text{Power}}\right)}{n_{\text{sim}}}},\\
 0.01 &= \sqrt{\frac{\widehat{\text{0.8}}\left(1-\widehat{\text{0.8}}\right)}{n_{\text{sim}}}}, \\
 n_\text{sim} &= \frac{0.8 \times 0.2}{(0.01)^2},\\
-n_\text{sim} &= 1600
+n_\text{sim} &= 1,600
 \end{aligned}
 $$ {#eq-mcsepower}
 
-</div>
+:::
 
-<div>
+:::{}
 
 $$
 \begin{aligned}
 MCSE &= \sqrt{\frac{\widehat{\text{Type I error}}\left(1-\widehat{\text{Type I error}}\right)}{n_{\text{sim}}}},\\
-MCSE &= \sqrt{\frac{\widehat{\text{0.05}}\left(1-\widehat{\text{0.05}}\right)}{1600}}, \\
+MCSE &= \sqrt{\frac{\widehat{\text{0.05}}\left(1-\widehat{\text{0.05}}\right)}{1,600}}, \\
 MCSE &= \sqrt{0.0000296875},\\
 MCSE &\approx 0.00545
 \end{aligned}
 $$ {#eq-mcsetypeI}
 
-</div>
+:::
 
 ## Disclosures
 
 ### Preregistration, Reproducibility and Ethics
 
-This project was preregistered on the 31th of March, 2026. The preregistration can be found at <https://osf.io/y5v8w/overview>. During the course of this study, I deviated in two ways. A robustness check was added after unexpected results for research question one. The robustness check was performed by increasing the number of repetitions from 1600 to 10.000. Secondly, ambiguity in the preregistration was clarified. In the preregistration it was stated that the deviation would be compared to the baseline condition. In the final product the comparison is made with the nominal type I error and power. For further elaboration on my preregistration deviations please consult Appendix A.
+This project was preregistered on the 31th of March, 2026. The preregistration can be found at <https://osf.io/y5v8w/overview>. During the course of this study, I deviated in two ways. A robustness check was added after unexpected results for research question one. The robustness check was performed by increasing the number of repetitions from 1,600 to 10,000. Secondly, ambiguity in the preregistration was clarified. In the preregistration it was stated that the deviation would be compared to the baseline condition. In the final product the comparison is made with the nominal type I error and power. For further elaboration on my preregistration deviations please consult Appendix A.
 
 An `R` package was created for this project under the name `thepack` in which all functions necessary to simulate the data can be found. The package is publicly available on [GitHub](https://github.com/AJV304/thepack). In order to advance reproducibility, all other files related to this project are publicly available on [GitHub](https://github.com/AJV304/Thesis). This includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and R version were recorded. Instructions on how to reproduce the findings can be found in the README file on GitHub.
 
@@ -307,8 +307,8 @@ source("../Scripts/02_results/RQ1_noeffect.R")
 ```
 The primary research aim of this study was to examine the effects of deviations from
 preregistration on type I and type II errors. In this section the type I error and power of each
-deviation condition are compared to the nominal levels, represented by the baseline condition.
-The type I error is investigated in the no-effect scenario at a precision interval of [4.455, 5.545] around the nominal type I error of 5%. Power is investigated in the effect scenario at an interval of [79, 81] around the nominal 80% power. Values outside of these intervals are considered inflated or deflated. @fig-rq1.y and @fig-rq1.n show the type I error and power for each condition along with the precision interval.
+deviation condition are compared to the nominal levels. 
+@fig-rq1.y and @fig-rq1.n show the type I error and power for the baseline condition and all deviation conditions along with the precision interval as specified in the methodology. Values outside of these intervals were considered inflated or deflated.
 
 ```{r}
 #| label: fig-rq1.y
@@ -322,18 +322,15 @@ print(plot.1y)
 ```
 
 ### The Baseline Condition
-The baseline scenario was intended to reflect the nominal power of 80% and resulted in a power of 79.9 %. The baseline condition for type I error was simulated to reflect the nominal type I
-error rate of 5% and showed a slight increase in type I error (5.2%) that was well within the precision interval
+The deviation condition was simulated as a control condition, without any deviations. It was intended to represent the simulation noise under perfect analysis conditions. Results showed a power level of 79.9 % in the baseline condition and a type I error rate of 5.2%. Both of these results fall naturally within the bounds of the precision interval
 around the nominal $\alpha$ level.
 
 ### Sample Size Domain
-Within the Sample Size domain, the effects on power reflected what is known from the existing literature. Increasing the sample size, increases power and decreasing the sample size decreases power [@cohen2009]. These effects were observed in the current study as well (@fig-rq1.y).
-The effects on type I error were more unexpected. Three out of four Sample Size conditions showed no effect of deviating on the type I error. Small increases in sample size, however, did show an inflated type I error of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`% (@fig-rq1.n). 
-
-The small inflation when slightly increasing the sample size was a borderline case. When
-evaluating the value using the preregistered precision interval, the type I error for a sample size of 205 fell slightly outside of this interval. This meant that the effects were unlikely to be due to
-simulation noise. If the observed type I error rate of the condition is used to calculate the precision interval around the value, instead of the nominal type I error rate, then the observed
-value for sample size 205 fell within the precision interval. In light of this, all other conditions
+Within the Sample Size domain, the effects on power reflected what is known from the existing literature. Increasing the sample size, increases power and decreasing the sample size decreases power. These effects were observed in the current study as well (@fig-rq1.y).
+The effects on type I error were more unexpected. Three out of four Sample Size conditions showed no effect of deviating on the type I error (Sample size (170) = 4.9%, Sample size (195) = 5.1%, Sample size (230) = 5.1%). Small increases in sample size, however, resulted in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`% (@fig-rq1.n). This is outside of the precision interval and can therefore be considered inflated. 
+It may, however, be considered a non-conclusive result. When
+evaluating the value using the preregistered precision interval, the type I error rate falls slightly outside of this interval. This meant that the effects were unlikely to be due to
+simulation noise. If we calculate the precision interval around the observed value (5.6% as opposed to 5%), then the nominal 5% error rate falls within the precision interval . The current level of precision might be insufficient. In light of this, all other conditions
 were also evaluated using their observed type I error rate to determine the MCSE and
 corresponding precision interval. The slight increase in sample size remained the only condition
 in which this nullified the effect.
@@ -349,14 +346,14 @@ print(plot.1n)
 ```
 
 ### Outlier Exclusion Criteria Domain
-Deviations in the Outlier Exclusion Criteria domain also impacted power. When using a strict *z*-score (exclusion based on 2 *SD* instead of 3 *SD*) power increased to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that existing effects were detected more often than the nominal rate. When using Cook's distance instead of *z*-scores, power dropped to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%. This indicates that, when this method was used, it was less likely to observe an existing effect in the generated data. Cook's distance is generally considered a less conservative form of outlier exclusion because it only excludes observations based on their influence on the regression coefficient. It is therefore quite unexpected to see such a large drop in power in this condition.
-One out of two Outlier Exclusion Criteria conditions showed an effect on type I error. Using a strict *z-*score resulted in an inflated type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%
+Deviations in the Outlier Exclusion Criteria domain impacted both power (@fig-rq1.y) and the type I error rate (@fig.rq1.n). Using a strict *z*-score (exclusion based on 2 *SD* instead of 3 *SD*), increased power to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%, and inflated the type I error rate to `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that false negatives were reported less often than the nominal rate, and false positives occurred more often than the nominal rate. 
+Using Cook's distance instead of *z*-scores deflated power to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%, but showed no effects on the type I error rate. This indicates that, when this method was used, it was less likely to observe an existing effect in the generated data. Cook's distance is generally considered a more liberal form of outlier exclusion because it only excludes observations based on their influence on the regression coefficient. It is therefore quite unexpected to see such a large drop in power in this condition.
 
 ### Statistical Model Domain 
-In the Statistical Model domain, the continuous and dichotomous covariate conditions showed no apparent effect on power. Deflated power was observed in the alternative outcome condition. Deviating by using an alternative, correlated outcome variable resulted in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. No effects on the type I error were observed in any of the conditions in the Statistical Model domain.
+In the Statistical Model domain, the error rates were mostly unaffected. Deflated power was observed in the alternative outcome condition, resulting in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%. Power was unaffected in the continuous and dichotomous covariate conditions (79.9% and 79.7% respectively). No apparent effects on the type I error were observed in any of the conditions in the Statistical Model domain (Continuous covariate = 5.4%, Dichotomous covariate = 5.2%, Outcome switching = 4.8%).
 
 ### Robustness check
-The unexpected result of an inflated type I error for the small sample size increase condition prompted me to perform a robustness check on results. For this simulation study that meant increasing the number of repetitions. The number of repetitions was increased to 10.000. The results of the robustness check showed that for power the results remain unchanged. For type I, the inflations in the small sample size increase condition and strict *z*-score conditions, disappear. A small effect on the type I error for the alternative outcome condition does show up as the type I error increases to 5.3%. For further elaboration see Appendix B.
+The unexpected result of an inflated type I error for the small sample size increase condition prompted me to perform a robustness check on results. For this simulation study that meant increasing the number of repetitions. The number of repetitions was increased from 1,600 to 10,000. The results remained unchanged for power. For type I, the inflations in the small sample size increase condition and strict *z*-score conditions, disappear. A small effect on the type I error for the alternative outcome condition does show up as the type I error increases to 5.3%. For further elaboration, see Appendix B.
 
 ## Opportunistic Deviations
 
@@ -370,7 +367,7 @@ source("../Scripts/02_results/RQ2.R")
 The second research question pertained to the effect of *choosing* to deviate when the baseline condition is non-significant. This was done by comparing an opportunistic scenario to the nominal type I error and power. In the opportunistic scenario, one condition was recorded per repetition (@fig-opp). Whenever the baseline condition was significant, it was selected. If the baseline was non-significant, a significant deviation condition was selected instead, if available, and the number of significant deviations was recorded.
 
 ### Effects on Power
-As expected, a positive effect of choosing to deviate on power was observed. Conditions were selected in order to maximize the number of significant results, consequently, an increase in power was anticipated. In 1484 out of 1600 repetitions, a significant condition was observed. This resulted in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario (@fig-rq2.Y). `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most. 
+As expected, a positive effect of choosing to deviate on power was observed. Conditions were selected in order to maximize the number of significant results, consequently, an increase in power was anticipated. In 1484 out of 1,600 repetitions, a significant condition was observed. This resulted in a power of `r (rq2.yes.nsig.perc*100)`% in the effect scenario (@fig-rq2.Y). `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation, with seven significant deviation conditions at most. 
 
 ### Effects on Type I Error
 In the no-effect scenario, the majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations. Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the time, which was in line with the nominal $\alpha$ level of 5%. However, of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant deviation result. When combining the significant baseline conditions and significant deviation conditions, the type I error rate inflated to `r rq2.no.perc*100`%. This is a large increase in the number of false positives when picking an available significant result. It is also much higher than the highest type I error rate observed in a singular deviation condition. The highest type I error rate observed under research question one was `r (max(rq1.no.plot$n.sig.perc))*100`% in the strict *z*-score condition. 
@@ -384,8 +381,8 @@ knitr::include_graphics("../Visuals/Ysankeyalt.png")
 
 | Label              | Count | Percentage |
 |--------------------|-------|------------|
-| All repetitions    | 1600  | 100%       |
-| Baseline sig.      | 1279  | 79.9%      |
+| All repetitions    | 1,600  | 100%       |
+| Baseline sig.      | 1,279  | 79.9%      |
 | Baseline ns        | 325   | 20.3%      |
 | ---                | ---   | ---        |
 | 1+ sig. deviation  | 205   | 12.8%      |
@@ -413,12 +410,12 @@ knitr::include_graphics("../Visuals/sankeyaltN.png")
 
 | Label              | Count | Percentage |
 |--------------------|-------|------------|
-| All repetitions    | 1600  | 100.0%     |
+| All repetitions    | 1,600  | 100.0%     |
 | Baseline sig.      | 83    | 5.2%       |
-| Baseline ns        | 1517  | 94.8%      |
+| Baseline ns        | 1,517  | 94.8%      |
 | ---                | ---   | ---        |
 | 1+ sig. deviation  | 178   | 11.1%      |
-| No sig. deviations | 1339  | 83.7%      |
+| No sig. deviations | 1,339  | 83.7%      |
 | ---                | ---   | ---        |
 | 1 sig.             | 126   | 7.9%       |
 | 2 sig.             | 27    | 1.7%       |
@@ -434,7 +431,7 @@ Distribution of Significant Conditions in the No-Effect Scenario, Visually (Left
 
 ### Robustness check
 
-Increasing the repetition size to 10.000 did not change the conclusions for research question two. The type I error rate was 15.4% in the no-effect scenario and the power was 92.3% in the effect scenario. For further elaboration see Appendix B.
+Increasing the repetition size to 10,000 did not change the conclusions for research question two. The type I error rate was 15.4% in the no-effect scenario and the power was 92.3% in the effect scenario. For further elaboration, see Appendix B.
 
 # Discussion
 
@@ -442,7 +439,7 @@ The goal of this simulation study was to investigate the effects of deviations o
 
 ## The Results
 
-In research question one the effects of deviating were investigated by comparing the type I error and power of the deviation conditions to a baseline condition representing the nominal levels (5% and 80% respectively). What was found is that type I and type II error are both affected when researchers are forced to deviate from a preregistration. Negative impacts on type I and/or type II can occur when researchers are forced to deviate by 1) strongly decreasing the sample size, 2) using Cook's distance as outlier criterium (as opposed to a *z*-score of 3 *SD*), 3) switching to an alternative outcome with a moderate to high correlation with the original outcome variable, and 4) using a stricter *z-*score as outlier criterium (2 *SD* instead of 3 *SD*).
+In research question one the effects of deviating were investigated by comparing the type I error and power of the deviation conditions to a baseline condition representing the nominal levels (5% and 80% respectively). What was found is that type I and type II error are both affected when researchers are forced to deviate from a preregistration. Negative impacts on type I and/or type II can occur when researchers are forced to deviate by 1) strongly decreasing the sample size, 2) using Cook's distance as outlier criterion (as opposed to a *z*-score of 3 *SD*), 3) switching to an alternative outcome with a moderate to high correlation with the original outcome variable, and 4) using a stricter *z-*score as outlier criterion (2 *SD* instead of 3 *SD*).
 
 These four types of deviations appear to be most consequential as they can either deflate power or inflate the type I error. Positive effects on power were also observed, when substantially increasing the sample size and when a strict *z*-score was used to identify outliers. There were no conditions in which the type I error was positively impacted.
 
@@ -510,7 +507,7 @@ The goal of preregistration is to limit flexibility and improve the reliability 
 
 <!-- -larger false positive rate in published papers -->
 
-<!-- -papers with deviations in outlier criterium more likely to be false positive -->
+<!-- -papers with deviations in outlier criterion more likely to be false positive -->
 
 <!-- -because opportunistic choosing increases type I that much more than individual deviations it is more important to transparently record the reasons for deviating. -->
 
@@ -537,7 +534,7 @@ Hanne I. Oberman: Conceptualization; Supervision; Writing - reviewing and editin
 \hline
 \multicolumn{1}{|c|}{\textbf{Preregistered}} & \multicolumn{1}{c|}{\textbf{Deviation}} & \multicolumn{1}{c|}{\textbf{Reason for deviation}} & \multicolumn{1}{c|}{\textbf{Possible effect}} \\
 \hline
-"The number of simulations per condition is 1600"  &  An additional analysis was added with 10.000 iterations & Borderline results in the no-effect scenario, with unexpected outcomes & This is likely to have improved the reliability of conclusions.  \\
+"The number of simulations per condition is 1600"  &  An additional analysis was added with 10,000 iterations & Borderline results in the no-effect scenario, with unexpected outcomes & This is likely to have improved the reliability of conclusions.  \\
 "The baseline condition will be compared to each of the outputs from the deviation conditions"
  & Each deviation condition was compared to the nominal type I error and power levels.  & Vagueness in the preregistration & This is unlikely to have impacted results. The cut-off values for what would be considered inflated/deflated error rates were preregistered very clearly and adhered to. The deviation mainly served to clarify the purpose of the baseline condition as illustrative rather than a comparison. \\
 \hline
