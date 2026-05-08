@@ -129,7 +129,7 @@ In the sample size domain .... In this study, data points were excluded in the b
 ```{r}
 #| label: tbl-cond
 #| tbl-cap: "Parameter Values for Baseline Condition and Deviation Conditions per Domain"
-#| apa-note: NoNote \ \emph{Note.} Variables Y and Ya are defined in the next section. *SD* refers to standard deviation.
+#| apa-note: NoNote \ \emph{Note.} Variables Y and $Y_a$ are defined in the next section.
 
 
 data <- data.frame(
@@ -141,15 +141,15 @@ data <- data.frame(
   ),
   Baseline = c(
     "200", "", "", "",
-    "\\textit{Z}-scores of 3 \\textit{SD}", "",
+    "$\\vert z \\vert > 3$", "",
     "No covariates", "",
     "Y"
   ),
   Deviations = c(
     "+5", "+30", "-5", "-30",
-    "\\textit{Z}-scores of 2 \\textit{SD}", "Cook's distance of 1",
+    "$\\vert z \\vert > 2$", "Cook's distance of $> 1$",
     "Continuous covariate", "Dichotomous covariate",
-    "Ya"
+    "$Y_a$"
   )
 )
 
@@ -159,7 +159,7 @@ kable(data, col.names = c("Domain", "Baseline Condition", "Deviation Conditions"
 
 ## Data-generating Mechanism
 
-The research questions were investigated in the context of social science and used a linear regression as the model of interest. In order to examine the effects on type I error and power, data was generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0. All ten conditions, one baseline and nine deviation conditions, were generated for both the effect and the no-effect scenario. Power was investigated in the effect scenario and the type I error rate was investigated in the no-effect scenario.
+The research questions were investigated in the context of social science and used a linear regression as the model of interest. In order to examine the effects on type I error and power, data was generated under two scenarios: "X has an effect on Y" and "X has no effect on Y". Power was investigated in the effect scenario and the type I error rate was investigated in the no-effect scenario. The only difference in data generation between the two scenarios is in the main effect parameter, $\beta_1$. In the effect scenario, $\beta_1$ is 0.2, and in the no-effect scenario, $\beta_1$ is 0. All ten conditions, one baseline and nine deviation conditions, were generated for both the effect and the no-effect scenario. 
 
 In the baseline condition, the statistical model was defined as $$
 Y = \beta_0 + \beta_1X + \epsilon,
@@ -174,9 +174,13 @@ Y_a &\sim Y, \quad \rho(Y, Y_a) = 0.6,
 \end{aligned}
 $$ {#eq-fullreg}
 
-where $Z$ and $D$ represent a continuous and categorical covariate respectively and $Y_a$ represents an alternative outcome variable. $Y_a$ was generated with a medium to high correlation of 0.6 with variable $Y$ using the `rnorm_pre()` function from the `faux` package \[SOURCE\].
+where $Z$ and $D$ represent a continuous and categorical covariate, respectively, and $Y_a$ represents an alternative outcome variable. $Y_a$ was generated with a medium to high correlation of 0.6 with variable $Y$ using the `rnorm_pre()` function from the `faux` package \[SOURCE\].
 
 In order to assess differences between outlier exclusion criteria, the data needs to include outliers. These were simulated by generating 5% of the data (2.5% at each end of the distribution) with -3 and 3 as mean values for the standard normal distribution from which $\epsilon$ was drawn.
+
+## Estimands
+
+The estimand of this study is $\beta_1,$ which represents the effect of the independent variable $X$ on dependent variable $Y$. The coefficient is estimated using the `lm()` function from the `stats` package in `R` [@rcoreteam2024], under the baseline and deviation conditions.
 
 ```{r}
 #| label: tbl-DGM
@@ -194,6 +198,7 @@ data <- data.frame(
     "Continuous demographic variable",
     "Dichotomous covariate regression coefficient",
     "Dichotomous demographic variable",
+    "Alternative outcome variable",
     "Sample Size"
   ),
   Value = c(
@@ -205,16 +210,13 @@ data <- data.frame(
     "$Z \\sim \\mathcal{N}(0, 1)$",
     "$\\beta_3 = 0.06$",
     "$D \\sim \\text{Bernoulli}(0.5)$",
+    "$Y_a \\sim Y, \\quad \\rho(Y, Y_a) = 0.6$",
     "$200$"
   )
 )
 
-kable(data, col.names = c("Parameter", "Value"), escape = FALSE, booktabs = TRUE)
+kable(data, col.names = c("Parameter", "Value"), escape = FALSE, booktabs = TRUE) 
 ```
-
-## Estimands
-
-The estimand of this study is $\beta_1,$ which represents the effect of the independent variable $X$ on dependent variable $Y$. The coefficient is estimated using the `lm()` function from the `stats` package in `R` [@rcoreteam2024], under the baseline and deviation conditions.
 
 ## Outcomes
 
