@@ -2,7 +2,7 @@
 title: "Busy Making Other Plans: A Simulation Study on the Effects of Deviations from Preregistrations"
 shorttitle: "Busy Making Other Plans"
 abstract: | 
-    Although deviations from preregistrations happen commonly, there is no empirical evidence for their effects. This simulation study illustrates how typical deviations affect type I and type II error rates, as well as the effect of researchers choosing to deviate opportunistically.
+    Although deviations from preregistrations happen commonly, there is no empirical evidence for their effects. This simulation study illustrates how typical deviations affect type I and type II error rates.
     
     Nine deviation scenarios were identified based on how common the deviation is estimated to occur in the literature, how harmful it can be and how justifiable the deviation is. Deviations were simulated in three deviations domains: Sample Size, Outlier Exclusion Criteria and the Statistical Model. An opportunistic condition was also examined, in which deviations were made only when initial results were found to be non-significant. Each deviation condition was individually compared to the nominal type I error rate and power levels of 5% and 80% respectively.
     
@@ -105,7 +105,7 @@ Literature shows that over half of published papers do not adhere to their pre-s
 
 @lakens2024 argues that adding additional exclusion criteria can undermine the severity of a test. This idea is corroborated by @stefan2023, who showed that the type I error rate increases linearly with the number of outlier detection methods used. Furthermore, 38% of researchers admit to excluding outliers only after examining their impact on the data [@john2012]. If this is also the reason why many people deviate from their preregistered outlier criteria, then these deviations are important. Little is known about the impacts on the power of a test. However, changing the way outliers are identified can impact the analyzed sample size, and changing the sample size impacts power (see section Sample Size Deviations). Therefore, more liberal outlier exclusion methods, in which fewer observations are excluded from the analysis, might result in higher power. 
 
-The standard method for identifying outliers in the social sciences is the *z*-score. A minimum of three standard deviations (*SD*) from the mean is often maintained as the rule of thumb for excluding cases [@bakker2014; @leys2013]. Within linear regression, outliers are also often identified based on their influence, commonly using Cook’s distance. Using Cook's distance excludes outliers based on how much their exclusion would influence the regression coefficients. <!-- This makes Cook's distance a more liberal method of outlier exclusion than the standard *z*-score, as a result fewer observations are expected to be removed using Cook's distance [SOURCE]. Theoretically, this would be expected to increase the power of a study when using Cook's distance as outlier exclusion criteria. -->
+The standard method for identifying outliers in the social sciences is the *z*-score. A minimum of three standard deviations (*SD*) from the mean is often maintained as the rule of thumb for excluding cases [@bakker2014; @leys2013]. Within linear regression, outliers are also often identified based on how much their exclusion would influence the regression coefficients, commonly using Cook’s distance at a value of greater than 1 as a cut-off value. <!-- This makes Cook's distance a more liberal method of outlier exclusion than the standard *z*-score, as a result fewer observations are expected to be removed using Cook's distance [SOURCE]. Theoretically, this would be expected to increase the power of a study when using Cook's distance as outlier exclusion criteria. -->
 
 ### Statistical Model Deviations
 Among all of the aforementioned domains, the least is known about why people deviate from their preregistered statistical model. "Statistical Model" is a very broad domain and includes many types of deviations. In this study, "Statistical Model" refers changes in the dependent variable, independent variable, statistical inference criteria, and the actual statistical test, not solely the statistical test and its specifications.
@@ -124,8 +124,8 @@ As a second research question, I address the issue of reasons for deviation bein
 
 To investigate the effects of deviations from preregistrations, I performed a model-based simulation study in R [@rcoreteam2024]. I reviewed which deviations to investigate by (1) how common they are, (2) their potential impact and (3) their justifiability. Deviations were chosen in the following domains: Sample Size, Outlier Exclusion Criteria, and Statistical Model. 
 
-In the Sample Size Domain four deviation conditions were simulated: the sample size was increased and decreased by 5% and by 15%, as compared to the baseline condition with sample size 200 (@tbl-cond). 
-In the baseline condition observations were excluded based on a *z*-score of 3 *SD*, with deviation conditions excluding outliers based on a stricter *z*-score of 2 *SD* and Cook's distance of greater than 1. Within the Statistical Model Domain, three deviation conditions were simulated: adding a continuous covariate, adding a dichotomous covariate, and switching outcomes, as compared to the baseline condition without any covariates and original outcome variable $Y$.
+A baseline condition was simulated as a control condition, which represents a hypothetical study as it was preregistered. In the Sample Size Domain four deviation conditions were simulated: the sample size was increased and decreased by 5% and by 15%, as compared to the baseline condition with sample size 200 (@tbl-cond). 
+In the baseline condition observations were excluded based on a *z*-score of 3 *SD*, with deviation conditions excluding outliers based on a stricter *z*-score of 2 *SD* and Cook's distance of > 1. Within the Statistical Model Domain, three deviation conditions were simulated: adding a continuous covariate, adding a dichotomous covariate, and switching outcomes, as compared to the baseline condition without any covariates and the preregistered outcome variable. OUTCOME SWITCHING REFERS TO DEVIATING BY CHOOSING A DIFFERENT DEPENDENT VARIABLE THAN PREREGISTERED.
 In total nine deviation conditions were simulated, as well as a baseline condition to serve as a control condition. 
 
 
@@ -182,14 +182,14 @@ where $Z$ and $D$ represent a continuous and categorical covariate, respectively
 
 In order to assess differences between outlier exclusion criteria, the data needed to include outliers. These were simulated by generating 5% of the data (2.5% at each end of the distribution) with -3 and 3 as mean values for the standard normal distribution from which $\epsilon$ was drawn.
 
-Data was generated by drawing random samples from the defined population. In the baseline condition, samples of size $\it{n} = 200$ were drawn, outliers were excluded based on an absolute *z*-score of greater than 3, and a simple linear regression was performed. For the nine deviation conditions, the specific deviations were applied to the generated data (i.e. either the sample size, outlier exclusion criterion, or statistical model was changed in accordance with @tbl-cond), after which the regression was performed.
+Data was generated by drawing random samples from the defined population. In the baseline condition, samples of size $\it{n} = 200$ were drawn, outliers were excluded based on an absolute *z*-score of greater than 3, and a simple linear regression was performed <!-- without covariates and with outcome variable $Y$. -->. For the nine deviation conditions, the specific deviations were applied to the generated data (i.e. either the sample size, outlier exclusion criterion, or statistical model was changed in accordance with @tbl-cond), after which the regression was performed.
 
-In the simulated model, the estimand is $\beta_1,$ which represents the effect of the independent variable $X$ on dependent variable $Y$. The coefficient was estimated in the form of a significance test, using the `lm()` function from the `stats` package in `R` [@rcoreteam2024]. The regression was performed in all ten conditions, nine deviation conditions and one baseline condition, and the $\beta_1$ regression coefficient , the *p*-value and the confidence interval were recorded. Significance was assessed at $\alpha$ = 0.05. This process was repeated across 1,600 repetitions. Within each repetition, all ten conditions were evaluated on the same generated dataset, and outcomes were recorded for each condition.
+In the simulated model, the estimand is $\beta_1,$ which represents the effect of the independent variable $X$ on dependent variable $Y$. The coefficient was estimated in the form of a significance test, using the `lm()` function from the `stats` package in `R` [@rcoreteam2024]. The regression was performed in all ten conditions, nine deviation conditions and one baseline condition, and the $\beta_1$ regression coefficient , the *p*-value, and the confidence interval were recorded. Significance was assessed at $\alpha$ = 0.05. This process was repeated across 1,600 repetitions. Within each repetition, all ten conditions were evaluated on the same generated dataset, and outcomes were recorded for each condition.
 
 ```{r}
 #| label: tbl-DGM
 #| tbl-cap: "Parameter Values for the Data-Generating Mechanism"
-#| apa-note: NoNote \ \emph{Note.} $\\beta_1$ is 0 in the no-effect scenario and 0.20 in the effect scenario. The different means for $\\epsilon$ are used to generate 2.5%, 95%, and 2.5% respectively.
+#| apa-note: NoNote \ \emph{Note.} $\\beta_1$ is 0 in the no-effect scenario and 0.20 in the effect scenario. The different means for $\\epsilon$ are used to generate 2.5%, 95%, and 2.5% respectively. The sample size refers to the baseline condition.
 #| warning: false
 
 data <- data.frame(
@@ -209,7 +209,7 @@ data <- data.frame(
     "$\\beta_0 = 0$",
     "$\\beta_1 = 0$ or $\\beta_1 = 0.20$",
     "$X \\sim \\mathcal{N}(0, 1)$",
-    "$\\epsilon \\sim \\mathcal{N}(m, 1)$, where $m = \\{-3, 0, 3\\}$",
+    "$\\epsilon \\sim \\mathcal{N}(m, 0.86)$, where $m = \\{-3, 0, 3\\}$",
     "$\\beta_2 = 0.06$",
     "$Z \\sim \\mathcal{N}(0, 1)$",
     "$\\beta_3 = 0.06$",
@@ -222,33 +222,16 @@ data <- data.frame(
 kable(data, col.names = c("Parameter", "Value"), escape = FALSE, booktabs = TRUE) 
 ```
 
-## Study Design
-
-To answer Research Question 1, deviating by default was investigated by simulating typical deviation conditions and examining their effects on the type I and type II error rates. The type I and type II error rates of each deviation condition were individually compared to the nominal type I and type II error rates.
-
-To answer Research Question 2, the effect of deviating opportunistically was examined. This was done by creating an "Opportunistic condition", using the same data set as for the first research question. For each repetition, the *p-*value of the baseline condition was assessed. When it was significant (at $\alpha = 0.05$), the baseline condition was recorded for that repetition. If it was non-significant, the deviation conditions of that repetition were checked (@fig-opp). If any of the deviation conditions were significant, one was chosen at random and recorded for that repetition. As a result, for each repetition, a significant result was recorded if it was available among any of the conditions. This provided an 'optimized' condition, with the maximum number of significant results possible. The error rates were then compared between the nominal levels and the opportunistic condition.
-
-```{r}
-#| label: fig-opp
-#| fig-cap: Workflow for Each Repetition in the Opportunistic Condition
-#| echo: false
-#| out-width: "80%"
-
-knitr::include_graphics("../Visuals/opp.png")
-
-```
- 
 ## Performance Measures
 
-Performance was assessed through the type I and type II error rates for the estimand $\beta_1$. Specifically, the regression coefficient itself, the *p*-value and the confidence interval were recorded for each condition in each repetition.
+Performance was assessed through the type I and type II error rates for the estimand $\beta_1$. Type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that meant detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05 [@fisher1992]. In this case, a rate of higher than 5% was considered an inflated type I error rate.[^1]
 
-Type I error refers to a false-positive, or rejecting the null-hypothesis when it is true. In this study that meant detecting an effect in the no-effect scenario. Type I error is generally acceptable at a rate of 5% or below, based on an alpha level of .05 [@fisher1992]. In this case, a rate of higher than 5% was considered an inflated type I error rate.
+Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that meant failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of 20% results in a generally accepted power of 80%. In this study, type II error was expressed in the form of power and consequently, power below 80% was considered deflated power.`\footnotemark[1]`{=latex}
 
-Type II error refers to a false negative, or failing to reject the null-hypothesis when it is false. In this study that meant failing to detect an effect in the effect scenario. Type II error is commonly assessed in the form of power. Power is $1-\beta$, where $\beta$ is the type II error. The nominal type II error rate of 20% results in a generally accepted power of 80%. In this study, type II error was expressed in the form of power and consequently, power below 80% was considered deflated power.
+[^1]:A more specific definition of what is considered inflated and deflated follows in Section Precision.
 
 ### Precision
-
-The reliability of the performance measures was assessed using precision based on the Monte-Carlo standard error (MCSE). The desired precision for power was 1%. With an MCSE of 1%, power rates were assessed at a precision interval of \[79, 81\] around the nominal power of 80%. This means that values within this interval did not show strong enough evidence of an effect and might have been caused by simulation noise. Power levels outside of this interval have inflated or deflated power.
+The reliability of the performance measures was assessed using precision based on the Monte-Carlo standard error (MCSE). The desired precision for power was 1%. With an MCSE of 1%, power rates were assessed at a precision interval of \[79, 81\] around the nominal power of 80%. This means that values within this interval did not show strong enough evidence of an effect and might have been caused by simulation noise. Power levels outside of this interval were considered inflated or deflated in this study. 
 
 The number of iterations was calculated using the desired precision of the project. According to @morris2019a, the required number of iterations to achieve the desired MCSE of 1% for power is 1,600 (@eq-mcsepower).
 
@@ -280,9 +263,25 @@ $$ {#eq-mcsetypeI}
 
 :::
 
+## Study Design <!-- if i move this section down then add that it's compared to the range around the PI -->
+
+To answer Research Question 1, deviating by default was investigated by simulating typical deviation conditions and examining their effects on the type I and type II error rates. The type I and type II error rates of each deviation condition were individually compared to the nominal type I and type II error rates.
+
+To answer Research Question 2, the effect of deviating opportunistically was examined. This was done by creating an "Opportunistic condition", using the same data set as for the first research question. For each repetition, the *p-*value of the baseline condition was assessed (@fig-opp). When it was significant, the baseline condition was recorded for that repetition. If it was non-significant, the deviation conditions of that repetition were checked. If any of the deviation conditions were significant, one was chosen at random and recorded for that repetition. As a result, for each repetition, a significant result was recorded if it was available among any of the conditions. This provided an 'optimized' condition, with the maximum number of significant results possible. The error rates were then compared between the nominal levels and the opportunistic condition.
+
+```{r}
+#| label: fig-opp
+#| fig-cap: Workflow for Each Repetition in the Opportunistic Condition
+#| echo: false
+#| out-width: "80%"
+
+knitr::include_graphics("../Visuals/opp.png")
+
+```
+ 
 ## Preregistration, Reproducibility and Ethics
 
-This project was preregistered on the 31th of March, 2026. The preregistration can be found at <https://osf.io/y5v8w/overview>. During the course of this study, I deviated in two ways. A robustness check was added after inconclusive results for Research Question 1. The robustness check was performed by increasing the number of repetitions from 1,600 to 10,000. Secondly, ambiguity in the preregistration was clarified. In the preregistration it was stated that the deviation conditions would be compared to the baseline condition but also that inflated and deflated type I error rates and power would be determined based on the nominal levels. In the final product the comparison is made with the nominal type I error rate and power. For further elaboration on my preregistration deviations please consult Appendix A.
+This project was preregistered on the 31th of March, 2026. The preregistration can be found at <https://osf.io/y5v8w/overview>. During the course of this study, I deviated in two ways. A robustness check was added after inconclusive results for Research Question 1 under the Sample Size Domain. The robustness check was performed by increasing the number of repetitions from 1,600 to 10,000. Secondly, ambiguity in the preregistration was clarified. In the preregistration it was stated that the deviation conditions would be compared to the baseline condition but also that inflated and deflated type I error rates and power would be determined based on the precision interval around the nominal levels. In the final product the comparison was made with the precision interval around thenominal type I error rate and power. For further elaboration on my preregistration deviations please consult Appendix A.
 
 An `R` package was created for this project under the name `thepack` which includes all functions necessary to simulate the data. The package is publicly available on <https://doi.org/10.5281/zenodo.20099859>. In order to advance reproducibility, all other files related to this project are also publicly available on <https://doi.org/10.5281/zenodo.20099802>, this includes data, code scripts and output files. I made use of `renv` to create a reproducible environment in which package versions and R version were recorded. Instructions on how to reproduce the findings can be found in the README file on GitHub.
 
