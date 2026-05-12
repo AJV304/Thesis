@@ -332,20 +332,6 @@ deviation condition are compared to the nominal levels.
 print(plot.1y)
 ```
 
-### The Baseline Condition
-The deviation condition was simulated as a control condition, without any deviations. It was intended to represent the simulation noise under perfect analysis conditions. Results showed a power level of 79.9 % in the baseline condition and a type I error rate of 5.2%. Both of these results fall naturally within the bounds of the precision interval
-around the nominal $\alpha$ level.
-
-### Sample Size Deviations
-Within the Sample Size domain, the effects on power reflected what is known naturally: increasing the sample size, increases power and decreasing the sample size decreases power. These effects were observed in the current study as well (@fig-rq1.y).
-The effects on type I error rate were more unexpected. Three out of four Sample Size conditions showed no effect of deviating on the type I error rate (Sample size (170) = 4.9%, Sample size (195) = 5.1%, Sample size (230) = 5.1%). Small increases in sample size, however, resulted in a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`% (@fig-rq1.n). This is outside of the precision interval and can therefore be considered inflated. 
-It may, however, be considered a non-conclusive result. When
-evaluating the value using the preregistered precision interval, the type I error rate falls slightly outside of this interval. This meant that the effects were unlikely to be due to
-simulation noise. If we calculate the precision interval around the observed value (5.6% as opposed to 5%), then the nominal 5% error rate falls within the precision interval. The current level of precision might be insufficient. In light of this, all other conditions
-were also evaluated using their observed type I error rate to determine the MCSE and
-corresponding precision interval. The slight increase in sample size remained the only condition
-in which this nullified the effect.
-
 ```{r}
 #| label: fig-rq1.n
 #| fig-width: 8
@@ -356,15 +342,24 @@ in which this nullified the effect.
 print(plot.1n)
 ```
 
+### The Baseline Condition
+The deviation condition was simulated as a control condition, without any deviations. It was intended to represent the simulation noise under perfect analysis conditions. Results showed a power level of `r rq1.yes.plot[rq1.yes.plot$conditions == "Baseline", "n.sig.perc"]*100`% in the baseline condition (@fig-rq1.y) and a type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Baseline", "n.sig.perc"]*100`% (@fig-rq1.n). Both of these results fall naturally within the bounds of the precision interval
+around the nominal $\alpha$ level.
+
+### Sample Size Deviations
+Within the Sample Size domain, the effects on power reflected what is known naturally: increasing the sample size, increases power and decreasing the sample size decreases power. These effects were observed in the current study as well (@fig-rq1.y).
+The effects on type I error rate were more unexpected. Three out of four Sample Size conditions showed no effect of deviating on the type I error rate (Sample size (170) = `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (170)", "n.sig.perc"]*100`%, Sample size (195) = `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (195)", "n.sig.perc"]*100`%, Sample size (230) = `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (230)", "n.sig.perc"]*100`%). However, small increases in sample size resulted in an inflated type I error rate of `r rq1.no.plot[rq1.no.plot$conditions == "Sample size (205)", "n.sig.perc"]*100`% (@fig-rq1.n). This is outside of the precision interval and can therefore be considered inflated. 
+The result only just fell outside of the precision interval, the type I error rate was 5.563% with the upper bound of the precision interval being 5.545%. Considering this and the fact that none of the other sample size deviations showed similar effects rendered this an inconclusive result. The current level of precision might have been insufficient and I suspected that the observed result might still have been due to simulation noise. In light of this, a robustness check was performed using 10,000 iterations. The observed inflation for small increases in sample size did not hold up under a larger repetition size. The results of the other sample size conditions remained unchanged.
+
 ### Outlier Exclusion Criteria Deviations
-Deviations in the Outlier Exclusion Criteria domain impacted both power (@fig-rq1.y) and the type I error rate (@fig-rq1.n). Using a strict *z*-score (exclusion based on 2 *SD* instead of 3 *SD*), increased power to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%, and inflated the type I error rate to `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that false negatives were reported less often than the nominal rate, and false positives occurred more often than the nominal rate. 
-Using Cook's distance instead of *z*-scores deflated power to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`%, but showed no effects on the type I error rate. This indicates that, when this method was used, it was less likely to observe an existing effect in the generated data. Due to the liberal nature of Cook's distance as outlier exclusion criterion, it is unexpected to see such a large drop in power.
+Deviations in the Outlier Exclusion Criteria domain impacted both power (@fig-rq1.y) and the type I error rate (@fig-rq1.n). Using a strict *z*-score (exclusion based on 2 *SD* instead of 3 *SD*), increased power to `r rq1.yes.plot[rq1.yes.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%, and inflated the type I error rate to `r rq1.no.plot[rq1.no.plot$conditions == "Strict z-score", "n.sig.perc"]*100`%. This means that false negatives were reported less often than the nominal rate but false positives occurred more often than the nominal rate. 
+Using Cook's distance instead of *z*-scores deflated power to `r rq1.yes.plot[rq1.yes.plot$conditions == "Cook's distance", "n.sig.perc"]*100`% but showed no effects on the type I error rate. This indicates that, when this method was used, it was less likely to observe an existing effect in the generated data. 
 
 ### Statistical Model Deviations
-In the Statistical Model domain, the error rates were mostly unaffected. Power was unaffected in the continuous and dichotomous covariate conditions (79.9% and 79.7% respectively). A substantial deflation in powervwas observed in the alternative outcome condition, resulting in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%.  No apparent effects on the type I error rate were observed in any of the conditions in the Statistical Model domain (Continuous covariate = 5.4%, Dichotomous covariate = 5.2%, Outcome switching = 4.8%).
+In the Statistical Model domain, the error rates were mostly unaffected. Power was unaffected in the continuous and dichotomous covariate conditions (79.9% and 79.7%, respectively). However, a substantial deflation in power was observed in the alternative outcome condition, resulting in a power of `r rq1.yes.plot[rq1.yes.plot$conditions == "Alternative outcome", "n.sig.perc"]*100`%.  No apparent effects on the type I error rate were observed in any of the conditions in the Statistical Model domain (Continuous covariate = 5.4%, Dichotomous covariate = 5.2%, Outcome switching = 4.8%).
 
 ### Robustness check
-The evaluate the inconclusive results of the Sample Size Domain at a higher level of precision, I decided to perform a robustness check. For this simulation study that meant increasing the number of repetitions. The number of repetitions was increased from 1,600 to 10,000. The results remained unchanged for power. For type I, the inflations in the small sample size increase condition and strict *z*-score conditions, disappear. A small effect on the type I error rate for the alternative outcome condition does show up as the type I error rate increases to 5.3%. For further elaboration, see Appendix B.
+The evaluate the inconclusive results in the Sample Size Domain at a higher level of precision, I decided to perform a robustness check. For this simulation study that meant increasing the number of repetitions from 1,600 to 10,000. The results remained unchanged for power. For type I, the inflations in the small sample size increase condition and strict *z*-score conditions disappeared. A small inflation for the type I error rate for the alternative outcome condition did show up, with a type I error rate of 5.3%, which could be considered inflated under the new precision interval ([4.782, 5.218]). For further elaboration, see Appendix B.
 
 ## Opportunistic Deviations
 
@@ -375,13 +370,13 @@ The evaluate the inconclusive results of the Sample Size Domain at a higher leve
 source("../Scripts/02_results/RQ2.R")
 ```
 
-The second research question pertained to the effect of *choosing* to deviate. This was done by comparing an opportunistic scenario to the nominal type I error rate and power. In the opportunistic scenario, the choice to deviate was made based on the results of the baseline condition. Whenever the baseline condition was significant, it was selected. If the baseline was non-significant, a significant deviation condition was selected instead, if available, and the number of significant deviations was recorded.
+The second research question pertained to the effect of choosing to deviate opportunistically. This was done by comparing an opportunistic condition to the nominal type I error rate and power. In the opportunistic condition, the choice to deviate was made based on the results of the baseline condition. Whenever the baseline condition was significant, it was selected. If the baseline was non-significant, a significant deviation condition was selected instead, if available, and the number of significant deviations was recorded.
 
 ### Effects on Power
-Choosing to deviate had a positive effect on power. In 1484 out of 1,600 repetitions, at least one significant condition was observed, in either the baseline condition or the deviation conditions. This resulted in a power of `r (rq2.yes.nsig.perc*100)`% (@fig-rq2.Y). In total, `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the repetitions resulted in a significant baseline. Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation. The highest number of significant deviation conditions was seven out of nine.
+Choosing to deviate had a positive effect on power. In 1,484 out of 1,600 repetitions, at least one significant condition was observed among the baseline condition and the deviation conditions. This resulted in a power of `r (rq2.yes.nsig.perc*100)`%. In total, `r round((rq2.yes %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the repetitions resulted in a significant baseline (@fig-rq2.Y). Of the `r 1600 - rq2.yes %>% filter(n.sig == "NA") %>% nrow()` repetitions where the baseline was non-significant, `r round((rq2.yes %>% filter(n.sig == "0") %>% nrow())/321*100, 1)`% also reported no significant deviation conditions. The remaining 64% of repetitions, in which the baseline was non-significant, had at least one significant deviation. The highest number of significant deviation conditions was seven out of nine.
 
 ### Effects on Type I Error
-The majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations. Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the time, which was in line with the nominal $\alpha$ level of 5%. Of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant deviation result. Combining the significant baseline conditions and significant deviation conditions inflated the type I error rate to `r rq2.no.perc*100`%.  
+The majority (`r round((rq2.no %>% filter(n.sig == "0") %>% nrow())/1600*100, 1)`%) of the repetitions showed a non-significant baseline as well as non-significant deviations (@fig-rq2.N). Significant baseline conditions were observed `r round((rq2.no %>% filter(n.sig == "NA") %>% nrow())/1600*100, 1)`% of the time, which fell within the precision interval around the nominal $\alpha$ level of 5%. Of the repetitions in which the baseline was non-significant, 12.8% showed at least one significant deviation result. Combining the significant baseline conditions and significant deviation conditions inflated the type I error rate to `r rq2.no.perc*100`%.  
 
 ::: {#fig-rq2.Y}
 :::: {layout="[65,35]"}
@@ -449,7 +444,7 @@ Distribution of Significant Conditions in the No-Effect Scenario, Visually (Left
 
 ### Robustness check
 
-Increasing the repetition size to 10,000 did not change the conclusions for Research Question 2. The type I error rate was 15.4% in the no-effect scenario and the power was 92.3% in the effect scenario. For further elaboration, see Appendix B.
+Increasing the repetition size to 10,000 did not change the conclusions for Research Question 2. The type I error rate was 15.4% and the power was 92.3%.
 
 # Discussion
 The goal of this simulation study was to investigate the effects of deviations on research outcomes and the quality of published results. Deviating from preregistration plans happens very commonly [@vandenakker2024; @claesen2021], but the consequences of doing so remained unclear. In order to investigate these effects, I identified three domains in which deviations commonly occur: Sample Size, Outlier Exclusion Criteria and the Statistical Model. Within those domains I identified nine deviation conditions (see @tbl-cond). These deviations were then examined in terms of their effects on type I and type II error as compared to the nominally accepted rates.
