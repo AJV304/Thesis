@@ -27,7 +27,7 @@ This repository is structured as follows:
 │   ├── 01_datageneration
 │   ├── 02_results
 │   ├── 03_visuals
-├── Files
+├── Manuscript
 ├── Visuals
 ├── .Rprofile
 ├── README.md
