@@ -67,7 +67,10 @@ To make sure you are working with the same version of R and packages you can rep
 Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
 
 2. Run the Script
-Only one script needs to be rendered in order to reproduce the results. 
+Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Thesis` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated. 
+
+## Ethics and Privacy
+Ethics approval for this study was obtained from the Faculty of Social Sciences at Utrecht University under number #25-1980. Since the data for this study was simulated, there are no privacy concerns. 
 
 
 
