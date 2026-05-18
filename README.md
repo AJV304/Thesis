@@ -28,7 +28,6 @@ This repository is structured as follows:
 │   ├── 02_results
 │   ├── 03_visuals
 ├── Manuscript
-├── Visuals
 ├── .Rprofile
 ├── README.md
 ├── .gitignore
