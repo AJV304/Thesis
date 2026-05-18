@@ -16,3 +16,23 @@ Deviating opportunistically is a lot more problematic, as it greatly inflates th
 
 ## Repository Structure
 This repository is structured as follows:
+
+```bash
+├── Data
+│   ├── css
+│   ├── favicon.ico
+├── Preregistration
+├── Scripts
+│   ├── 00_setup
+│   ├── 01_datageneration
+│   ├── 02_results
+│   ├── 03_visuals
+├── Files
+├── Visuals
+├── .Rprofile
+├── README.md
+├── .gitignore
+├── Thesis.Rproj
+└── renv.lock
+```
+
