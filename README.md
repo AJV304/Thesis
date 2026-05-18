@@ -54,6 +54,22 @@ The scripts in this repository can be used to analyze the datasets. The scripts 
 This directory includes the scripts necessary to create the sankey graph visuals for the results of Research Question 2.
 
 
+## Reproducing the Results
+In order to reproduce my findings, please take the following steps.
+
+1. Reproduce the environment
+To make sure you are working with the same version of R and packages you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and Rstudio 4.4.2 or newer.
+
+- Open the `Thesis.Rproj` file in Rstudio.
+- Install the required packages by running the following command in the R console:
+`renv::restore()`
+
+Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
+
+2. Run the Script
+Only one script needs to be rendered in order to reproduce the results. 
+
+
 
 
 
