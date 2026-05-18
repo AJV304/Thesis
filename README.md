@@ -19,8 +19,8 @@ This repository is structured as follows:
 
 ```bash
 ├── Data
-│   ├── css
-│   ├── favicon.ico
+│   ├── bigresults.rds
+│   ├── results.rds
 ├── Preregistration
 ├── Scripts
 │   ├── 00_setup
