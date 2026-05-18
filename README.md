@@ -18,10 +18,10 @@ Deviating opportunistically is a lot more problematic, as it greatly inflates th
 This repository is structured as follows:
 
 ```bash
+├── Thesis.Rproj
 ├── Data
 │   ├── bigresults.rds
 │   ├── results.rds
-├── Preregistration
 ├── Scripts
 │   ├── 00_setup
 │   ├── 01_datageneration
@@ -32,7 +32,28 @@ This repository is structured as follows:
 ├── .Rprofile
 ├── README.md
 ├── .gitignore
-├── Thesis.Rproj
 └── renv.lock
 ```
+
+### `Thesis.Rproj` 
+This is the R project directory in which all scripts and files were generated.
+
+### `Data` 
+Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`.
+
+### `Scripts`
+In this directory, all scripts necessary to analyze the data into results can be found.
+
+#### `01_datageneration`
+Although the data sets are also available on this repository, code to generate the data was also included.
+
+#### `02_results`
+The scripts in this repository can be used to analyze the datasets. The scripts are organized per research question, per scenario. Data was generated under two scenarios, an effect scenario and no-effect scenario. 
+
+#### `03_visuals`
+This directory includes the scripts necessary to create the sankey graph visuals for the results of Research Question 2.
+
+
+
+
 
