@@ -39,19 +39,22 @@ This repository is structured as follows:
 This is the R project directory in which all scripts and files were generated.
 
 ### `Data` 
-Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`.
+Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`. A separate `R` package was created for data generation and can be found at <https://doi.org/10.5281/zenodo.20099859>. The GitHub repository is not necessary to reproduce the findings of the current projects, as all functions are loaded into this project separately.
 
 ### `Scripts`
 In this directory, all scripts necessary to analyze the data into results can be found.
 
 #### `01_datageneration`
-Although the data sets are also available on this repository, code to generate the data was also included.
+Although the data sets are also available in this repository, scripts to generate the data were also included. There are two scripts, one for the original analysis of repetition size 1,600 and one for the robustness check with repetition size 10,000.
 
 #### `02_results`
 The scripts in this repository can be used to analyze the datasets. The scripts are organized per research question, per scenario. Data was generated under two scenarios, an effect scenario and no-effect scenario. 
 
 #### `03_visuals`
 This directory includes the scripts necessary to create the sankey graph visuals for the results of Research Question 2.
+
+### Manuscript
+This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` need to be rendered to create a reproducible version of the results. The `Thesis.qmd` file can be found in this folder. 
 
 
 ## Reproducing the Results
@@ -67,7 +70,7 @@ To make sure you are working with the same version of R and packages you can rep
 Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
 
 2. Run the Script
-Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Thesis` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated. 
+Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Manuscript` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated. 
 
 ## Ethics and Privacy
 Ethics approval for this study was obtained from the Faculty of Social Sciences at Utrecht University under number #25-1980. Since the data for this study was simulated, there are no privacy concerns. 
