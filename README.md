@@ -11,7 +11,7 @@ The error rates for these deviation conditions were simulated and compared to th
 Both forced deviations, over which the researcher had no control, and opportunistic deviations, in which the researcher chose to deviate, were simulated.
 
 The results show that being forced to deviate can inflate the type I and type II error rates but does so only marginally. 
-The only forced deviation that is cause for concern is switching outcome variables, this greatly increases the type II error rate. 
+The only forced deviation that is cause for concern is switching outcome variables, which greatly increases the type II error rate. 
 Deviating opportunistically is a lot more problematic, as it greatly inflates the type I error rate.
 
 To improve transparency, this project was preregistered on March 31st, 2026. The preregistration can be found on [OSF](https://osf.io/y5v8w/overview). 
@@ -24,15 +24,13 @@ This repository is structured as follows:
 ├── Data
 │   ├── bigresults.rds
 │   ├── results.rds
+├── Manuscript
 ├── Scripts
 │   ├── 01_datageneration
 │   ├── 02_results
 │   ├── 03_visuals
-├── Manuscript
-├── .Rprofile
 ├── README.md
 ├── Requirements.md
-├── .gitignore
 └── renv.lock
 ```
 
@@ -67,7 +65,7 @@ The `renv.lock` file and `renv` directory are created by the `renv` package. Thi
 In order to reproduce my findings, please take the following steps.
 
 1. Reproduce the environment
-To make sure you are working with the same version of R and packages, you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and R 4.4.2 or newer with the matching RStudio and Rtools version. See `Requirements.md` for more information on the computational environment. If those are installed then please:
+To make sure you are working with the same version of R and packages, you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and `R` version 4.4.2 with the matching RStudio and Rtools version. See `Requirements.md` for more information on the computational environment. If those are installed then please:
 
 - Open the `Thesis.Rproj` project in Rstudio.
 - Install the required packages by running the following command in the R console:
