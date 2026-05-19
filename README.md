@@ -39,7 +39,7 @@ This repository is structured as follows:
 This is the R project directory in which all scripts and files were generated.
 
 ### `Data` 
-Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`. A separate `R` package was created for data generation and can be found at <https://doi.org/10.5281/zenodo.20099859>. No information from the `thepack` GitHub repository is necessary to reproduce the findings of the current projects, as all functions are loaded into this project separately. But if you wish to see how the data was generated then please find the scripts in the following repository: [thepack](github.com/AJV304/thepack).
+Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`. A separate `R` package was created for data generation and can be found at <https://doi.org/10.5281/zenodo.20099859>. No information from the `thepack` GitHub repository is necessary to reproduce the findings of the current projects, as all functions are loaded into this project separately. But if you wish to see how the data was generated then please find the scripts in the following repository: [thepack](https://github.com/AJV304/thepack).
 
 ### `Scripts`
 In this directory, all scripts necessary to analyze the data into results can be found.
