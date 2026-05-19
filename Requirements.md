@@ -8,9 +8,9 @@ The following software is required when reproducing the findings:
     Any computer as strong or stronger than this should have no problems running the simulation. 
     Any computer less strong might be able to run the simulation but with longer rendering time.
 
-- R and RStudio
+- R software
   
-    R version 4.4.2 is required, as well as RStudio.
+    (R)[posit.co/download/rstudio-desktop] version 4.4.2 (or above) is required, as well as the matching RStudio version and (Rtools)[cran.r-poject.org/bin/windows/Rtools/].
 
 - Packages
 
