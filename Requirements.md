@@ -14,4 +14,4 @@ The following software is required when reproducing the findings:
 
 - Packages
 
-  The only package required to reproduce the findings is `renv 1.1.5` or above. This package will make sure that all other dependencies necessary for the analysis are installed when the `renv.lock` file is opened.
+  The only package required to reproduce the findings is `renv 1.1.5` or above. This package will make sure that all other dependencies necessary for the analysis are installed when the `renv.lock` file is opened and the environment is restored.
