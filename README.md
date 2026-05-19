@@ -42,13 +42,13 @@ This is the R project directory in which all scripts and files were generated.
 Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`. A separate `R` package, named `thepack` was created for data generation and can be found at <https://doi.org/10.5281/zenodo.20099859>. No information from the `thepack` is necessary to reproduce the findings of the current project, as all functions from the package are loaded into this project separately. But if you wish to see how the data was generated then please find the scripts in the following repository: [thepack](https://github.com/AJV304/thepack).
 
 The data consists of 7 variables:
-- `b1`: The main effect parameter.
-- `p.value`: The p-value of `b1` in a linear regression.
-- `lower.ci`: The lower value of the confidence interval around `b1`.
-- `upper.ci`: The upper value of the confidence interval around `b1`.
-- `condition`: The name of the simulation condition. This can be the baseline condition or one of the nine deviation conditions.
-- `scenario`: Under which scenario the condition was simulated, either 'effect' or 'no-effect'.
-- `iteration`: Which iteration this data belongs to. 
+- `b1`: The main effect parameter
+- `p.value`: The p-value of `b1` in a linear regression
+- `lower.ci`: The lower value of the confidence interval around `b1`
+- `upper.ci`: The upper value of the confidence interval around `b1`
+- `condition`: The name of the simulation condition. This can be the baseline condition or one of the nine deviation conditions
+- `scenario`: Under which scenario the condition was simulated, either 'effect' or 'no-effect'
+- `iteration`: Which iteration this data belongs to
 
 ### `Manuscript`
 This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` needs to be rendered to create a reproducible version of the results. For this project that is the `Thesis.qmd`, which can be found in this directory. 
