@@ -89,6 +89,7 @@ This .qmd runs all the scripts available in the `Scripts` folder on this reposit
 - Go to Chunk 13: Generating the data with 10,000 repetitions.
 - Remove the `#` before `#source("../Scripts/01_datageneration/datageneration_robust.R")`
 - Remove the rest of the code in the chunk
+- Render
   
 This ensures that the data is generated whilst rendering the script instead of it being read in from the saved data. PLEASE NOTE, that this will greatly increase the rendering time. Although this simulation study is computationally not very heavy, generating the data yourself will likely take at least half an hour. 
 
