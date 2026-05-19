@@ -48,7 +48,7 @@ The data consists of 7 variables:
 - `upper.ci`: The upper value of the confidence interval around `b1`
 - `condition`: The name of the simulation condition. This can be the baseline condition or one of the nine deviation conditions
 - `scenario`: Under which scenario the condition was simulated, either 'effect' or 'no-effect'
-- `iteration`: Which iteration this data belongs to
+- `iteration`: Which iteration the data belongs to
 
 ### `Manuscript`
 This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` needs to be rendered to create a reproducible version of the results. For this project that is the `Thesis.qmd`, which can be found in this directory. 
