@@ -69,9 +69,18 @@ To make sure you are working with the same version of R and packages you can rep
 
 Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
 
-2. Run the Script
+2. Run the `Thesis.qmd`
 Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Manuscript` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated.
-Dynamic referencing was used in the file wherever possible to ensure reproducible and accurate results. This means inline code was used to report statistics and values instead of hardcoding the numbers. 
+Dynamic referencing was used in the file wherever possible to ensure reproducible and accurate results. This means inline code was used to report statistics and values instead of hardcoding the numbers.
+This .qmd runs all the scripts available in the `Scripts` folder on this repository. The only exception is that the data is not generated but is read from the saved data sets, available in the `Data` folder. If you wish to generate the data yourself, this can be done. In that case:
+- Open the `Thesis.qmd` file in RStudio.
+- Go to Chunk 5: Generating the data.
+- Remove the # before #source("../Scripts/01_datageneration/datageneration.R")
+- Remove the rest of the code in the chunk
+- Go to Chunk 13: Generating the data with 10,000 repetitions.
+- Remove the # before #source("../Scripts/01_datageneration/datageneration_robust.R")
+- Remove the rest of the code in the chunk
+This ensures that the data is generated whilst rendering the script instead of it being read in from the saved data. PLEASE NOTE, that this will greatly increase the rendering time. Generating the data yourself will likely take at least half an hour. 
 
 ## Ethics and Privacy
 Ethics approval for this study was obtained from the Faculty of Social Sciences at Utrecht University under number #25-1980. Since the data for this study was simulated, there are no privacy concerns. 
