@@ -9,6 +9,7 @@ The following software is required when reproducing the findings:
     Any computer less strong might be able to run the simulation but with longer rendering time.
 
 - RStudio
+  
     R version 4.4.2 is required, as well as RStudio.
 
 - Packages
