@@ -52,13 +52,16 @@ Although the data sets are also available in this repository, scripts to generat
 The scripts in this repository can be used to analyze the datasets. The scripts are organized per research question, per scenario. Data was generated under two scenarios, an effect scenario and no-effect scenario. 
 
 #### `03_visuals`
-This directory includes the scripts necessary to create the sankey graph visuals for the results of Research Question 2.
+This directory includes the scripts necessary to create the sankey graph visuals for the results of Research Question 2. Other images used in the thesis manuscript are also stored here.
 
-### Manuscript
-This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` need to be rendered to create a reproducible version of the results. The `Thesis.qmd` file can be found in this folder. 
+### `Manuscript`
+This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` needs to be rendered to create a reproducible version of the results. For this project that is the `Thesis.qmd`, which can be found in this directory. 
 
-### Requirements.md
+### `Requirements.md`
 This file contains information about the computational environment that was used to run the analysis. This includes information on which software and packages are required to reproduce the results.
+
+### `renv.lock` and `renv`
+The `renv.lock` file and `renv` directory are created by the `renv` package. This package installs the required packages for this project as well as the correct versions, to reproduce the environment in which the simulation was performed. 
 
 ## Reproducing the Results
 In order to reproduce my findings, please take the following steps.
@@ -86,7 +89,7 @@ This .qmd runs all the scripts available in the `Scripts` folder on this reposit
 - Remove the # before #source("../Scripts/01_datageneration/datageneration_robust.R")
 - Remove the rest of the code in the chunk
   
-This ensures that the data is generated whilst rendering the script instead of it being read in from the saved data. PLEASE NOTE, that this will greatly increase the rendering time. Generating the data yourself will likely take at least half an hour. 
+This ensures that the data is generated whilst rendering the script instead of it being read in from the saved data. PLEASE NOTE, that this will greatly increase the rendering time. Although this simulation study is computationally not very heavy, generating the data yourself will likely take at least half an hour. 
 
 ## Ethics and Privacy
 Ethics approval for this study was obtained from the Faculty of Social Sciences at Utrecht University under number #25-1980. Since the data for this study was simulated, there are no privacy concerns. 
