@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 Scripts/00_setup
+Scripts/02_results/pdist.R
+Scripts/02_results/visual.R
+
