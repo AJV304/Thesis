@@ -81,10 +81,10 @@ Dynamic referencing was used in the file wherever possible to ensure reproducibl
 This .qmd runs all the scripts available in the `Scripts` folder on this repository. The only exception is that the data is not generated from the data generation scripts but is read from the saved data sets, available in the `Data` folder. If you wish to generate the data yourself, this can be done. In that case:
 - Open the `Thesis.qmd` file in RStudio.
 - Go to Chunk 5: Generating the data.
-- Remove the # before #source("../Scripts/01_datageneration/datageneration.R")
+- Remove the `#` before `#source("../Scripts/01_datageneration/datageneration.R")`
 - Remove the rest of the code in the chunk
 - Go to Chunk 13: Generating the data with 10,000 repetitions.
-- Remove the # before #source("../Scripts/01_datageneration/datageneration_robust.R")
+- Remove the `#` before `#source("../Scripts/01_datageneration/datageneration_robust.R")`
 - Remove the rest of the code in the chunk
   
 This ensures that the data is generated whilst rendering the script instead of it being read in from the saved data. PLEASE NOTE, that this will greatly increase the rendering time. Although this simulation study is computationally not very heavy, generating the data yourself will likely take at least half an hour. 
