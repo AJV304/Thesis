@@ -10,7 +10,7 @@ The following software is required when reproducing the findings:
 
 - R software
   
-    [R](posit.co/download/rstudio-desktop) version 4.4.2 (or above) is required, as well as the matching RStudio version and [Rtools](cran.r-poject.org/bin/windows/Rtools/).
+    [R](posit.co/download/rstudio-desktop) version 4.4.2 is required, as well as the matching RStudio version and [Rtools](cran.r-poject.org/bin/windows/Rtools/).
 
 - Packages
 
