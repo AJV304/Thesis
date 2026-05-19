@@ -14,6 +14,8 @@ seed <- numbers[1:10]
 
 #Setting the seed
 set.seed(seed)
+
+#Generating data
 df <- analysis(10000, 200, 0, 0.2, 0.06, 0.06)
 
 #Create data set with only the no-effect scenario
