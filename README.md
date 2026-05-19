@@ -6,7 +6,7 @@ With this simulation study, I investigated the effects of forced and opportunist
 The goal of preregistration is to limit researcher degrees of freedom and improve the reliability of research.
 Whilst preregistrations are becoming more common, so are deviations from preregistration. 
 When people no longer adhere to their preregistered plan, they might be inflating their risk of false negative or false positive outcomes. 
-To investigate this phenomenon, nine deviations were identified, which were either 1) common, 2) risky, or 3) deemed unjustifiable. 
+To investigate this phenomenon, nine deviations were identified, based on 1) how common they are, (2) their potential impact, and (3) their justifiability. 
 The error rates for these deviation conditions were simulated and compared to the nominal type I and type II error rates. 
 Both forced deviations, over which the researcher had no control, and opportunistic deviations, in which the researcher chose to deviate, were simulated.
 
