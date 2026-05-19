@@ -96,6 +96,6 @@ Ethics approval for this study was obtained from the Faculty of Social Sciences 
 This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0). This license allows people to share, distribute and build upon my work as long as proper attribution is given, and any derivative work is released under the same license. This ensure open availability of future work.
 
 ## Correspondence and Responsibility
-This archive will indefinitely be publicly available on GitHub. Correspondence and responsibility should be directed at (Anna Vijlbrief)[https://orcid.org/0009-0004-9553-5493].
+This archive will indefinitely be publicly available on GitHub. Correspondence and responsibility should be directed at [Anna Vijlbrief](https://orcid.org/0009-0004-9553-5493).
 
 
