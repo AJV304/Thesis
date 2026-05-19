@@ -31,6 +31,7 @@ This repository is structured as follows:
 ├── Manuscript
 ├── .Rprofile
 ├── README.md
+├── Requirements.md
 ├── .gitignore
 └── renv.lock
 ```
@@ -56,12 +57,14 @@ This directory includes the scripts necessary to create the sankey graph visuals
 ### Manuscript
 This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` need to be rendered to create a reproducible version of the results. The `Thesis.qmd` file can be found in this folder. 
 
+### Requirements.md
+This file contains information about the computational environment that was used to run the analysis. This includes information on which software and packages are required to reproduce the results.
 
 ## Reproducing the Results
 In order to reproduce my findings, please take the following steps.
 
 1. Reproduce the environment
-To make sure you are working with the same version of R and packages you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and Rstudio 4.4.2 or newer.
+To make sure you are working with the same version of R and packages, you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and Rstudio 4.4.2 or newer. If those two are installed then please:
 
 - Open the `Thesis.Rproj` file in Rstudio.
 - Install the required packages by running the following command in the R console:
@@ -70,9 +73,9 @@ To make sure you are working with the same version of R and packages you can rep
 Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
 
 2. Run the `Thesis.qmd`
-Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Manuscript` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated.
-Dynamic referencing was used in the file wherever possible to ensure reproducible and accurate results. This means inline code was used to report statistics and values instead of hardcoding the numbers.
-This .qmd runs all the scripts available in the `Scripts` folder on this repository. The only exception is that the data is not generated but is read from the saved data sets, available in the `Data` folder. If you wish to generate the data yourself, this can be done. In that case:
+Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found in the `Manuscript` directory. Open this file in RStudio and click on render. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated.
+Dynamic referencing was used in the file wherever possible to ensure reproducible and accurate results. This means inline code was used to report statistics and values instead of hardcoding the numbers. 
+This .qmd runs all the scripts available in the `Scripts` folder on this repository. The only exception is that the data is not generated from the data generation scripts but is read from the saved data sets, available in the `Data` folder. If you wish to generate the data yourself, this can be done. In that case:
 - Open the `Thesis.qmd` file in RStudio.
 - Go to Chunk 5: Generating the data.
 - Remove the # before #source("../Scripts/01_datageneration/datageneration.R")
