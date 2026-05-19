@@ -40,20 +40,20 @@ This is the R project directory in which all scripts and files were generated.
 ### `Data` 
 Two datasets were generated for this project. `results.rds` includes the data with 1,600 repetitions, this is the original number of repetitions. For the robustness check a dataset with 10,000 repetitions was simulated, this can be found under `bigresults.rds`. A separate `R` package was created for data generation and can be found at <https://doi.org/10.5281/zenodo.20099859>. No information from the `thepack` GitHub repository is necessary to reproduce the findings of the current projects, as all functions are loaded into this project separately. But if you wish to see how the data was generated then please find the scripts in the following repository: [thepack](https://github.com/AJV304/thepack).
 
+### `Manuscript`
+This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` needs to be rendered to create a reproducible version of the results. For this project that is the `Thesis.qmd`, which can be found in this directory. 
+
 ### `Scripts`
 In this directory, all scripts necessary to analyze the data into results can be found.
 
 #### `01_datageneration`
-Although the data sets are also available in this repository, scripts to generate the data were also included. There are two scripts, one for the original analysis of repetition size 1,600 and one for the robustness check with repetition size 10,000.
+Although the data sets are also available in this repository, scripts to generate the data were also included. There are two scripts, one for the original analysis of repetition size 1,600 (`datageneration.R`) and one for the robustness check with repetition size 10,000 (`datageneration_robust`).
 
 #### `02_results`
-The scripts in this repository can be used to analyze the datasets. The scripts are organized per research question, per scenario. Data was generated under two scenarios, an effect scenario and no-effect scenario. 
+The scripts in this repository can be used to analyze the datasets. The scripts are organized per research question, per scenario. Data was generated under two scenarios, an effect scenario (to investigate type II error rates) and no-effect scenario (to investigate type I error rates). 
 
 #### `03_visuals`
 This directory includes the scripts necessary to create the sankey graph visuals for the results of Research Question 2. Other images used in the thesis manuscript are also stored here.
-
-### `Manuscript`
-This directory is where the main project files are saved. This project was set up so no scripts needed to be run individually. Instead only one `qmd` needs to be rendered to create a reproducible version of the results. For this project that is the `Thesis.qmd`, which can be found in this directory. 
 
 ### `Requirements.md`
 This file contains information about the computational environment that was used to run the analysis. This includes information on which software and packages are required to reproduce the results.
