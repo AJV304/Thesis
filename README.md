@@ -68,7 +68,9 @@ To make sure you are working with the same version of R and packages, you can re
 
 - Open the `Thesis.Rproj` project in Rstudio.
 - Install the required packages by running the following command in the R console:
-```renv::restore()```
+```
+renv::restore()
+```
 
 Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
 
