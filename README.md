@@ -23,7 +23,6 @@ This repository is structured as follows:
 │   ├── bigresults.rds
 │   ├── results.rds
 ├── Scripts
-│   ├── 00_setup
 │   ├── 01_datageneration
 │   ├── 02_results
 │   ├── 03_visuals
