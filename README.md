@@ -29,6 +29,7 @@ This repository is structured as follows:
 │   ├── 01_datageneration
 │   ├── 02_results
 │   ├── 03_visuals
+├── renv
 ├── README.md
 ├── Requirements.md
 └── renv.lock
