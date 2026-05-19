@@ -1,3 +1,4 @@
+source("renv/activate.R")
 library(stats)
 library(tidyr)
 library(ggplot2)
