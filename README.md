@@ -75,7 +75,7 @@ To make sure you are working with the same package versions, you can reproduce m
 renv::restore()
 ```
 
-Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
+Following those steps should ensure that the results are replicated using the same software as in the original analysis.
 
 2. Run the `Thesis.qmd`
    
