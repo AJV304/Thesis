@@ -14,6 +14,8 @@ The results show that being forced to deviate can inflate the type I and type II
 The only forced deviation that is cause for concern is switching outcome variables, this greatly increases the type II error rate. 
 Deviating opportunistically is a lot more problematic, as it greatly inflates the type I error rate.
 
+To improve transparency, this project was preregistered on March 31st, 2026. The preregistration can be found on [OSF](https://osf.io/y5v8w/overview). 
+
 ## Repository Structure
 This repository is structured as follows:
 
@@ -23,7 +25,6 @@ This repository is structured as follows:
 │   ├── bigresults.rds
 │   ├── results.rds
 ├── Scripts
-│   ├── 00_setup
 │   ├── 01_datageneration
 │   ├── 02_results
 │   ├── 03_visuals
@@ -69,7 +70,8 @@ To make sure you are working with the same version of R and packages you can rep
 Following those steps should ensure that analysis are replicated using the same software as in the original analysis.
 
 2. Run the Script
-Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Manuscript` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated. 
+Only one script needs to be rendered in order to reproduce the results. The `Thesis.qmd` file can be found under the `Manuscript` folder. Open this file in RStudio and render it. This should run all scripts found in the `Scripts` folder and print the output in one pdf file. Running the script might take a bit longer the first time due to packages needing to be installed or updated.
+Dynamic referencing was used in the file wherever possible to ensure reproducible and accurate results. This means inline code was used to report statistics and values instead of hardcoding the numbers. 
 
 ## Ethics and Privacy
 Ethics approval for this study was obtained from the Faculty of Social Sciences at Utrecht University under number #25-1980. Since the data for this study was simulated, there are no privacy concerns. 
