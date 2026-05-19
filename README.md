@@ -93,7 +93,7 @@ This ensures that the data is generated whilst rendering the script instead of i
 Ethics approval for this study was obtained from the Faculty of Social Sciences at Utrecht University under number #25-1980. Since the data for this study was simulated, there are no privacy concerns. 
 
 ## License
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0). This license allows people to share, distribute and build upon my work as long as proper attribution is given, and any derivative work is released under the same license. This ensure open availability of future work.
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0). This license allows people to share, distribute and build upon my work as long as proper attribution is given, and any derivative work is released under the same license. This ensure open availability of future work. For more information, see [LICENSE](https://github.com/AJV304/Thesis/blob/f073e80ec5840a0ddc324937b49cc25814a422db/LICENSE.md).
 
 ## Correspondence and Responsibility
 This archive will indefinitely be publicly available on GitHub. Correspondence and responsibility should be directed at [Anna Vijlbrief](https://orcid.org/0009-0004-9553-5493).
