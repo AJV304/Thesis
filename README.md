@@ -67,7 +67,7 @@ In order to reproduce my findings, please take the following steps.
 
 1. Reproduce the environment
    
-To make sure you are working with the same version of R and packages, you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and `R` version 4.4.2 with the matching RStudio and Rtools version. See `Requirements.md` for more information on the computational environment. If those are installed then please:
+To make sure you are working with the same package versions, you can reproduce my environment using the `renv` package. For this you need: the `renv` package version 1.1.5 and `R` version 4.4.2 with the matching RStudio and Rtools version. See `Requirements.md` for more information on the computational environment. If those are installed then please:
 
 - Open the `Thesis.Rproj` project in Rstudio.
 - Install the required packages by running the following command in the R console:
